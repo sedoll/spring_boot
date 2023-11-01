@@ -15,6 +15,7 @@
 <jsp:include page="../../include/header.jsp"/>
 <h2>회원정보수정</h2>
 <form action="${path}/user/update.do" method="post" onsubmit="return joinCheck(this)">
+    <input type="hidden" name="_method" value="put">
     <div class="register_info_id">
         <p>아이디</p>
         <input type="text" name="id" id="id" value="${user.id}" readonly>
@@ -44,7 +45,7 @@
     </div>
     <div>
         <input type="text" name="addr" id="addr" maxlength="280" placeholder="주소" value="${user.addr}"
-               pattern="^[가-힣a-zA-z0-9]+$">
+               pattern="^[가-힣a-zA-Z0-9\s]*$">
     </div>
     <div>
         <input type="submit" value="회원정보수정">

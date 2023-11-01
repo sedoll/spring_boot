@@ -36,11 +36,13 @@
                required>
     </div>
     <div>
-        <input type="password" name="pw" id="pw" minlength="4" maxlength="16" placeholder="비밀번호" required>
+        <input type="password" name="pw" id="pw" minlength="4" maxlength="16" placeholder="비밀번호"
+               pattern="^\d{4,}(?:[a-z@^*]*)?$" required>
         <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" -->
     </div>
     <div>
-        <input type="password" name="pw2" id="pw2" minlength="4" maxlength="16" placeholder="비밀번호 확인" required>
+        <input type="password" name="pw2" id="pw2" minlength="4" maxlength="16" placeholder="비밀번호 확인"
+               pattern="^\d{4,}(?:[a-z@^*]*)?$" required>
     </div>
     <div>
         <input type="email" name="email" id="email" minlength="10" maxlength="90" placeholder="이메일"
@@ -50,7 +52,7 @@
         <input type="tel" name="tel" id="tel" placeholder="010(02,0505)-0000-0000" pattern="\d{2,4}-\d{3,4}-\d{4}" required>
     </div>
     <div>
-        <input type="text" name="addr" id="addr" maxlength="280" placeholder="주소" pattern="^[가-힣a-zA-z0-9]+$">
+        <input type="text" name="addr" id="addr" maxlength="280" placeholder="주소" pattern="^[가-힣a-zA-Z0-9\s]*$">
     </div>
     <div>
         <input type="submit" value="회원가입">

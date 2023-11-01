@@ -11,15 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+// GET(SELECT), POST(INSERT), DELETE(DELETE), PUT(UPDATE)
 
 @Controller
 @RequestMapping("/user/*")
@@ -41,38 +39,47 @@ public class UserController {
     private static final String ID_REGEX = "^[a-z0-9]{5,18}$";
 
 
-//    // 회원정보 출력
-//    @GetMapping("userList.do")
-//    @ResponseBody
-//    public List<UserInfo> userInfoList() {
-//
-//        return userService.userList();
-//    }
-//
-    // 특정 회원 정보 출력
-//    @GetMapping("getUser.do")
-//    @ResponseBody
-//    public UserInfo getUser(HttpServletRequest req) {
-//        String id = req.getParameter("id");
-//        return userService.getUser(id);
-//    }
-
     // 회원정보 출력
+    // 만약 테이블이 비어있으면 빈 리스트 반환
     @GetMapping("userList.do")
-    public String userInfoList(Model model) throws Exception{
+    @ResponseBody
+    public List<UserInfo> userInfoList() throws Exception {
         List<UserInfo> userInfoList = userService.userList();
-        model.addAttribute("userList", userInfoList);
-        return "/user/list";
+        if(userInfoList.isEmpty()) { // 데이터가 없는 경우를 위해 예외처리
+            throw new NoSuchFieldException("No Such List");
+        }
+        return userInfoList;
     }
-
+//
     // 특정 회원 정보 출력
+    // 일치하는 데이터가 업승면 null 반환
     @GetMapping("getUser.do")
-    public String getUser(HttpServletRequest req, Model model) throws Exception{
+    @ResponseBody
+    public UserInfo getUser(HttpServletRequest req) throws Exception {
         String id = req.getParameter("id");
         UserInfo userInfo = userService.getUser(id);
-        model.addAttribute("userInfo", userInfo);
-        return "/user/get";
+        if(userInfo==null) { // 회원이 없으면 예외처리, url로 직접 들어오는 것도 방지
+            throw new NoSuchFieldException("No Such Data");
+        }
+        return userInfo;
     }
+
+    // 회원정보 출력
+//    @GetMapping("userList.do")
+//    public String userInfoList(Model model) throws Exception{
+//        List<UserInfo> userInfoList = userService.userList();
+//        model.addAttribute("userList", userInfoList);
+//        return "/user/list";
+//    }
+//
+//    // 특정 회원 정보 출력
+//    @GetMapping("getUser.do")
+//    public String getUser(HttpServletRequest req, Model model) throws Exception{
+//        String id = req.getParameter("id");
+//        UserInfo userInfo = userService.getUser(id);
+//        model.addAttribute("userInfo", userInfo);
+//        return "/user/get";
+//    }
 
     // 아이디 로그인 폼 이동
     @GetMapping("idLoginForm.do")
@@ -126,7 +133,17 @@ public class UserController {
         }
     }
 
-    // 탈퇴
+    // 계정 삭제 - delete 방식
+    // delete 된 데이터가 없으면 0 반환
+    @DeleteMapping("remove.do")
+    @ResponseBody
+    public String userDelete(@RequestParam String id) throws Exception {
+        int cnt = userService.delUser(id);
+        if(cnt == 0) {
+            throw new NoSuchFieldException("Nothing to Process");
+        }
+        return id + " 삭제 완료, 처리 수: " + cnt;
+    }
 
     // 계정활성화
 
@@ -151,14 +168,26 @@ public class UserController {
     }
 
     //회원 가입 - 회원 가입 처리
-    @RequestMapping(value = "insert.do", method = RequestMethod.POST)
-    public String userInsert(HttpServletResponse res, UserInfo userInfo, Model model) throws Exception {
-        userService.insUser(userInfo);
-        res.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = res.getWriter();
-        out.println("<script>alert('회원가입 완료');</script>");
-        out.flush();
-        return "/index";
+//    @RequestMapping(value = "insert.do", method = RequestMethod.POST)
+//    public String userInsert(HttpServletResponse res, UserInfo userInfo, Model model) throws Exception {
+//        userService.insUser(userInfo);
+//        res.setContentType("text/html;charset=UTF-8");
+//        PrintWriter out = res.getWriter();
+//        out.println("<script>alert('회원가입 완료');</script>");
+//        out.flush();
+//        return "/index";
+//    }
+
+    // 회원가입 - post json 방식
+    // insert된 데이터가 없으면 0 반환
+    @PostMapping("insertPost.do")
+    @ResponseBody
+    public UserInfo userInsertPost(UserInfo userInfo) throws Exception {
+        int cnt = userService.insUser(userInfo);
+        if(cnt == 0) {
+            throw new NoSuchFieldException("No Insert Process Data");
+        }
+        return userService.getUser(userInfo.getId());
     }
     
     // 회원가입 - 중복 아이디 검사
@@ -179,26 +208,6 @@ public class UserController {
         PrintWriter out = response.getWriter();
         out.println(json.toString());
     }
-//    @RequestMapping(value = "idCheck.do", method = RequestMethod.POST)
-//    public void idCheck(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
-//        String id = request.getParameter("id");
-//        UserInfo userInfo = userService.getUser(id);
-//        boolean result = false;
-//        if (userInfo != null) {
-//            result = false;
-//        } else {
-//            result = true;
-//        }
-//
-//        if(isValidId(id)) {
-//            result = true;
-//        }
-//
-//        JSONObject json = new JSONObject();
-//        json.put("result", result);
-//        PrintWriter out = response.getWriter();
-//        out.println(json.toString());
-//    }
 
     //회원정보수정
     // 회원정보 수정 폼 이동
@@ -210,20 +219,28 @@ public class UserController {
         return "/user/mypage/userUpdate";
     }
     
-    // 회원정보수정
+    // 회원정보수정 - post
     @PostMapping("update.do")
-    public String memberEdit(HttpServletRequest request, HttpServletResponse response, UserInfo userInfo, Model model) throws Exception {
-
+    public String memberEdit(HttpServletRequest request, HttpServletResponse res, UserInfo userInfo, Model model) throws Exception {
         userService.updUser(userInfo);
-
-        model.addAttribute("user", userInfo);
-
-        response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("<script>alert('회원님의 정보가 수정되었습니다.');</script>");
+        res.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = res.getWriter();
+        out.println("<script>alert('수정 완료');</script>");
         out.flush();
-
-        return "/user/getUser.do?id="+userInfo.getId();
+        model.addAttribute("user", userInfo);
+        return "redirect:/user/updateForm.do?id="+userInfo.getId();
+    }
+    
+    // 회원정보수정 - put 나중에 사용할 방식
+    // update된 데이터가 없으면 0 반환
+    @PutMapping("update.do")
+    @ResponseBody
+    public UserInfo memberEditPut(UserInfo userInfo) throws Exception{
+        int cnt = userService.updUser(userInfo);
+        if(cnt == 0) {
+            throw new NoSuchFieldException("No Update Process Data");
+        }
+        return userService.getUser(userInfo.getId());
     }
 
     

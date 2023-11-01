@@ -18,7 +18,7 @@
         <input type="text" name="id" id="id" minlength="4" maxlength="90" placeholder="아이디" pattern="^[a-zA-Z0-9@.]*$" required>
     </div>
     <div>
-        <input type="password" name="pw" id="pw" minlength="4" maxlength="16" placeholder="비밀번호"  required>
+        <input type="password" name="pw" id="pw" minlength="4" maxlength="16" placeholder="비밀번호" pattern="^\d{4,}(?:[a-z@^*]*)?$"  required>
         <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" -->
     </div>
     <div>

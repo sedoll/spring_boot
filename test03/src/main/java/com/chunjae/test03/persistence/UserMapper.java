@@ -1,10 +1,7 @@
 package com.chunjae.test03.persistence;
 
 import com.chunjae.test03.entity.UserInfo;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -34,6 +31,10 @@ public interface UserMapper {
     // 계정 활성화
     @Update("update userinfo set act='JOIN' where id=#{id}")
     public void joinUserAct(String id);
+
+    // 계정 삭제
+    @Delete("delete from userinfo where id=#{id}")
+    public int delUser(String id);
     
     // 이메일 로그인
     @Select("select * from userinfo where email=#{email}")
@@ -53,11 +54,11 @@ public interface UserMapper {
 
     // 회원 수정
     @Update("update userinfo set pw=#{pw}, name=#{name}, email=#{email}, tel=#{tel}, addr=#{addr} where id = #{id}")
-    public void updUser(UserInfo userInfo);
+    public int updUser(UserInfo userInfo);
 
     // 회원 가입
     @Insert("insert into userinfo values(default, #{id}, #{pw}, #{name}, #{email}, #{addr}, #{tel}, default, default, default, default)")
-    public void insUser(UserInfo userInfo);
+    public int insUser(UserInfo userInfo);
     
 //    <!-- 로그인을 컨트롤에서 처리 -->
 //    <select id="signIn" resultType="kr.ed.haebeop.domain.Member">

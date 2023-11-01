@@ -2,6 +2,7 @@ package com.chunjae.test03.service;
 
 import com.chunjae.test03.entity.UserInfo;
 import com.chunjae.test03.persistence.UserMapper;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -34,6 +35,9 @@ public class UserService {
 
     // 계정 활성화
     public void joinUserAct(String id) {userMapper.joinUserAct(id);}
+
+    // 계정 삭제
+    public int delUser(String id) {return userMapper.delUser(id);}
 
     // 이메일 로그인
     public Boolean loginEmail(UserInfo userInfo) {
@@ -72,7 +76,7 @@ public class UserService {
     public UserInfo findByPw(UserInfo userInfo) {return userMapper.findByPw(userInfo);}
 
     // 회원 수정
-    public void updUser(UserInfo userInfo) {
+    public int updUser(UserInfo userInfo) {
         String ppw = userInfo.getPw();
         System.out.println(ppw);
         if(ppw.length() <= 16) {
@@ -80,13 +84,13 @@ public class UserService {
             System.out.println(pw);
             userInfo.setPw(pw);
         }
-        userMapper.updUser(userInfo);
+        return userMapper.updUser(userInfo);
     }
 
     // 회원 가입
-    public void insUser(UserInfo userInfo) {
+    public int insUser(UserInfo userInfo) {
         String pw = pwEncoder.encode(userInfo.getPw());
         userInfo.setPw(pw);
-        userMapper.insUser(userInfo);
+        return userMapper.insUser(userInfo);
     }
 }
