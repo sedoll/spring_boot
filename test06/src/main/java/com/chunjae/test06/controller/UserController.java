@@ -5,6 +5,10 @@ import com.chunjae.test06.service.UserService;
 import com.chunjae.test06.utils.EmailSocket;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -82,55 +86,12 @@ public class UserController {
 //    }
 
     // 아이디 로그인 폼 이동
-    @GetMapping("loginForm.do")
+    @GetMapping("login")
     public String idLoginForm() throws Exception{
-        String id = (String) session.getAttribute("sid");
-        if(id!=null) {
-            return "index";
-        } else {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication instanceof AnonymousAuthenticationToken)
             return "login";
-        }
-    }
-
-    // 로그인
-    @PostMapping("login.do")
-    public String idLogin(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        String id = req.getParameter("id");
-        String pw = req.getParameter("pw");
-        UserInfo userInfo = new UserInfo();
-        UserInfo userInfo2;
-
-        boolean ck = isValidEmail(id);
-        boolean result = false;
-
-        if(ck) {
-            userInfo.setEmail(id);
-            userInfo.setPw(pw);
-            userInfo2 = userService.getUserEmail(id);
-            result = userService.loginEmail(userInfo);
-        } else {
-            userInfo.setId(id);
-            userInfo.setPw(pw);
-            userInfo2 = userService.getUser(id);
-            result = userService.loginId(userInfo);
-        }
-
-        System.out.println(ck);
-        if(result) {
-            res.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = res.getWriter();
-            out.println("<script>alert('로그인 성공');</script>");
-            out.flush();
-            session.setAttribute("slev", userInfo2.getLev());
-            session.setAttribute("sid", userInfo2.getId());
-            return "index";
-        } else {
-            res.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = res.getWriter();
-            out.println("<script>alert('로그인 실패');</script>");
-            out.flush();
-            return "login";
-        }
+        return "redirect:/";
     }
 
     // 계정 삭제 - delete 방식
@@ -162,36 +123,45 @@ public class UserController {
     
     //회원가입
     //회원가입 폼 이동
-    @GetMapping("insertForm.do")
+    @GetMapping("join")
     public String userInsertForm() throws Exception {
-        return "join";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication instanceof AnonymousAuthenticationToken)
+            return "join";
+        return "redirect:/";
     }
 
     //회원 가입 - 회원 가입 처리
-//    @RequestMapping(value = "insert.do", method = RequestMethod.POST)
-//    public String userInsert(HttpServletResponse res, UserInfo userInfo, Model model) throws Exception {
-//        userService.insUser(userInfo);
-//        res.setContentType("text/html;charset=UTF-8");
-//        PrintWriter out = res.getWriter();
-//        out.println("<script>alert('회원가입 완료');</script>");
-//        out.flush();
-//        return "/index";
-//    }
-
-    // 회원가입 - post json 방식
     // insert된 데이터가 없으면 0 반환
-    @PostMapping("insertPost.do")
-    @ResponseBody
-    public UserInfo userInsertPost(UserInfo userInfo) throws Exception {
+    @PostMapping("join.do")
+    public String userInsert(HttpServletResponse res, UserInfo userInfo, Model model) throws Exception {
+        System.out.println();
+        System.out.println("회원가입진행");
         int cnt = userService.insUser(userInfo);
         if(cnt == 0) {
             throw new NoSuchFieldException("No Insert Process Data");
         }
-        return userService.getUser(userInfo.getId());
+        System.out.println(cnt);
+        return "index";
     }
+
+    // 회원가입 - post json 방식
+    // insert된 데이터가 없으면 0 반환
+//    @PostMapping("join.do")
+//    @ResponseBody
+//    public UserInfo userInsertPost(UserInfo userInfo) throws Exception {
+//        System.out.println();
+//        System.out.println("회원가입진행");
+//        int cnt = userService.insUser(userInfo);
+//        if(cnt == 0) {
+//            throw new NoSuchFieldException("No Insert Process Data");
+//        }
+//        System.out.println(cnt);
+//        return userService.getUser(userInfo.getId());
+//    }
     
     // 회원가입 - 중복 아이디 검사
-    @RequestMapping(value = "idCheck.do", method = RequestMethod.POST)
+    @RequestMapping(value = "idCheck", method = RequestMethod.POST)
     public void idCheck(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
         String id = request.getParameter("id");
         boolean result = isValidId(id); // 아이디 유효성 검증 결과를 먼저 확인
@@ -209,39 +179,62 @@ public class UserController {
         out.println(json.toString());
     }
 
+    // 회원가입 - 중복 이메일 검사
+    @RequestMapping(value = "emailCheck", method = RequestMethod.POST)
+    public void emailCheck(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
+        String email = request.getParameter("email");
+        boolean result = isValidEmail(email); // 아이디 유효성 검증 결과를 먼저 확인
+
+        if (result) {
+            UserInfo userInfo = userService.getUserEmail(email);
+            if (userInfo != null) {
+                result = false; // 이미 존재하는 아이디인 경우 false로 설정
+            }
+        }
+
+        JSONObject json = new JSONObject();
+        json.put("result", result);
+        PrintWriter out = response.getWriter();
+        out.println(json.toString());
+    }
+
     //회원정보수정
     // 회원정보 수정 폼 이동
-    @GetMapping("updateForm.do")
+    @GetMapping("update")
     public String editForm(HttpServletRequest request, Model model) throws Exception {
         String id = request.getParameter("id");
+        String msg = "수정 실패";
+        if(request.getParameter("ck") != null) {
+            int ck = Integer.parseInt(request.getParameter("ck"));
+            if(ck == 1) {
+                msg = "수정 완료";
+            }
+        }
+
         UserInfo userInfo = userService.getUser(id);
         model.addAttribute("user", userInfo);
-        return "user/mypage/userUpdate";
+        model.addAttribute("msg", msg);
+        return "user/userUpdate";
     }
     
     // 회원정보수정 - post
-    @PostMapping("update.do")
-    public String memberEdit(HttpServletRequest request, HttpServletResponse res, UserInfo userInfo, Model model) throws Exception {
-        userService.updUser(userInfo);
-        res.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = res.getWriter();
-        out.println("<script>alert('수정 완료');</script>");
-        out.flush();
-        model.addAttribute("user", userInfo);
-        return "redirect:user/updateForm.do?id="+userInfo.getId();
+    @PutMapping("update.do")
+    public String memberEdit(UserInfo userInfo, Model model) throws Exception {
+        int ck = userService.updUser(userInfo);
+        return "redirect:update?id="+userInfo.getId() + "&ck="+ck;
     }
     
     // 회원정보수정 - put 나중에 사용할 방식
     // update된 데이터가 없으면 0 반환
-    @PutMapping("update.do")
-    @ResponseBody
-    public UserInfo memberEditPut(UserInfo userInfo) throws Exception{
-        int cnt = userService.updUser(userInfo);
-        if(cnt == 0) {
-            throw new NoSuchFieldException("No Update Process Data");
-        }
-        return userService.getUser(userInfo.getId());
-    }
+//    @PutMapping("update.do")
+//    @ResponseBody
+//    public UserInfo memberEditPut(UserInfo userInfo) throws Exception{
+//        int cnt = userService.updUser(userInfo);
+//        if(cnt == 0) {
+//            throw new NoSuchFieldException("No Update Process Data");
+//        }
+//        return userService.getUser(userInfo.getId());
+//    }
 
     
     //회원등급변경 - 관리자

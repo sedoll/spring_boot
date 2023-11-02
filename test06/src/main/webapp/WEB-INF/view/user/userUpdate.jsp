@@ -8,12 +8,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <jsp:include page="../../include/head.jsp"/>
+    <jsp:include page="../include/head.jsp"/>
     <title>회원정보수정</title>
 </head>
 <body>
-<jsp:include page="../../include/header.jsp"/>
+<jsp:include page="../include/header.jsp"/>
 <h2>회원정보수정</h2>
+<h4 style="color: red">${msg}</h4>
 <form action="${path}/user/update.do" method="post" onsubmit="return joinCheck(this)">
     <input type="hidden" name="_method" value="put">
     <div class="register_info_id">

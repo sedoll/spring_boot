@@ -19,6 +19,10 @@ public interface UserMapper {
     // 이메일로 회원 상세 정보 보기
     @Select("select * from userinfo where email = #{email}")
     public UserInfo getUserEmail(String email);
+
+    // no로 회원 상세 정보 보기
+    @Select("select * from userinfo where no = #{no}")
+    public UserInfo getUserNo(Integer no);
     
     // 회원탈퇴 act:JOIN-활동, act:DORMANT-휴면, WITHDRAW-탈퇴
     @Update("update userinfo set act='WITHDRAW' where id=#{id}")

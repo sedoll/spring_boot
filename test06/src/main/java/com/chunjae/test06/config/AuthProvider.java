@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+// 인증 관리자
 @Component
 public class AuthProvider implements AuthenticationProvider {
     @Autowired
@@ -28,7 +29,7 @@ public class AuthProvider implements AuthenticationProvider {
         String password = (String) authentication.getCredentials(); // 로그인 창에 입력한 password
         UsernamePasswordAuthenticationToken token;
         UserInfo userVo = userService.getUser(name);
-        if (userVo != null && pwEncoder.matches(password, userVo.getPw())) { // 일치하는 user 정보가 있는지 확인
+        if (userVo != null && pwEncoder.matches(password, userVo.getPw()) && userVo.getAct().equals("JOIN")) { // 일치하는 user 정보가 있는지 확인
             List<GrantedAuthority> roles = new ArrayList<>();
             if(userVo.getLev().equals("ADMIN")){
                 roles.add(new SimpleGrantedAuthority("ADMIN")); // 권한 부여

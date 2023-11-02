@@ -21,6 +21,8 @@ CREATE TABLE userinfo (
 	CONSTRAINT key_name UNIQUE(email) -- 이메일 중복 방지
 );
 
+-- ALTER TABLE userinfo MODIFY COLUMN tel VARCHAR(100);
+
 
 -- 더미데이터
 -- 관리자

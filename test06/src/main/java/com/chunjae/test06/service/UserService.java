@@ -2,6 +2,7 @@ package com.chunjae.test06.service;
 
 import com.chunjae.test06.entity.UserInfo;
 import com.chunjae.test06.persistence.UserMapper;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class UserService {
 
     // 이메일로 회원 상세 정보 보기
     public UserInfo getUserEmail(String email) {return userMapper.getUserEmail(email);}
+
+    // no로 회원 상세 정보 보기
+    public UserInfo getUserNo(Integer no) {return userMapper.getUserNo(no);}
 
     // 회원탈퇴
     public void withUserAct(String id) {userMapper.withUserAct(id);}

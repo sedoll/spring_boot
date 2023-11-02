@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="include/header.jsp"/>
 <h2>회원가입</h2>
-<form action="${path}/user/insert.do" method="post" onsubmit="return joinCheck(this)">
+<form action="${path}/user/join.do" method="post" onsubmit="return joinCheck(this)">
     <div class="register_info_id">
         <p>아이디는 영어 소문자, 숫자만 가능합니다.</p>
         <input type="text" name="id" id="id" minlength="5" maxlength="18" placeholder="아이디" pattern="^[a-z0-9]+$"
@@ -47,6 +47,16 @@
     <div>
         <input type="email" name="email" id="email" minlength="10" maxlength="90" placeholder="이메일"
                pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}" required>
+        <button type="button" id="ck_btn2" class="button is-link" onclick="emailCheck()">중복확인</button>
+        <input type="hidden" name="emailck" id="emailck" value="no">
+    </div>
+    <div>
+        <c:if test="${empty qid }">
+            <p id="msg2" style="padding-left:0.5rem">아직 아이디 중복 체크를 하지 않으셨습니다.</p>
+        </c:if>
+        <c:if test="${not empty qid }">
+            <p id="msg2" style="padding-left:0.5rem">아이디 중복 체크후 수정하였습니다.</p>
+        </c:if>
     </div>
     <div>
         <input type="tel" name="tel" id="tel" placeholder="010(02,0505)-0000-0000" pattern="\d{2,4}-\d{3,4}-\d{4}" required>
@@ -69,8 +79,19 @@
                 $("#msg").html("아직 아이디 중복 체크를 하지 않으셨습니다.");
             }
         });
+
+        $("#email").keyup(function () {
+            $("#emailck").val("no");
+            if ($(this).val() != "") {
+                $("#msg2").html("<strong>이메일 입력중입니다.</strong>");
+                $("#email").focus();
+            } else {
+                $("#msg2").html("아직 아이디 중복 체크를 하지 않으셨습니다.");
+            }
+        });
     });
 
+    // 아이디 중복 검사
     function idCheck() {
         if ($("#id").val() == "") {
             alert("아이디를 입력하지 않으셨습니다.");
@@ -79,7 +100,7 @@
         }
         var params = {id: $("#id").val()} //전송되어질 데이터를 객체로 묶음
         $.ajax({
-            url: "${path}/user/idCheck.do",	//아이디가 전송되어질 곳
+            url: "${path}/user/idCheck",	//아이디가 전송되어질 곳
             type: "post",		//전송방식
             dataType: "json",	//데이터 반환 방식
             data: params,		//전송방식이 post인 경우 객체로 묶어서 전송
@@ -93,15 +114,43 @@
                 } else if (idChk == true) {	//사용 가능한 아이디
                     $("#idck").val("yes");
                     $("#msg").html("<strong style='color:blue'>사용가능한 아이디 입니다.</strong>");
-                } else if (idck == "") {
+                } else if (idChk == "") {
                     $("#msg").html("<strong>아이디가 확인되지 않았습니다. 다시 시도해주시기 바랍니다.</strong>");
                 }
             }
         });
     }
-</script>
 
-<script>
+    // 이메일 중복 검사
+    function emailCheck() {
+        if ($("#email").val() == "") {
+            alert("아이디를 입력하지 않으셨습니다.");
+            $("#email").focus();
+            return;
+        }
+        var params = {email: $("#email").val()} //전송되어질 데이터를 객체로 묶음
+        $.ajax({
+            url: "${path}/user/emailCheck",	//아이디가 전송되어질 곳
+            type: "post",		//전송방식
+            dataType: "json",	//데이터 반환 방식
+            data: params,		//전송방식이 post인 경우 객체로 묶어서 전송
+            success: function (result) {
+                console.log(result.result);
+                var emailChk = result.result;	//true 또는 false를 받음
+                if (emailChk == false) {	//사용할 수 없는 아이디
+                    $("#emailck").val("no");
+                    $("#msg2").html("<strong style='color:red'>중복 되거나 조건에 맞지 않는 아이디 입니다.</strong>");
+                    $("#email").focus();
+                } else if (emailChk == true) {	//사용 가능한 아이디
+                    $("#emailck").val("yes");
+                    $("#msg2").html("<strong style='color:blue'>사용가능한 아이디 입니다.</strong>");
+                } else if (emailChk == "") {
+                    $("#msg2").html("<strong>아이디가 확인되지 않았습니다. 다시 시도해주시기 바랍니다.</strong>");
+                }
+            }
+        });
+    }
+
     function joinCheck(f) {
         if (f.pw.value != f.pw2.value) {
             alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
@@ -110,6 +159,10 @@
         }
         if (f.idck.value != "yes") {
             alert("아이디 중복 체크를 하지 않으셨습니다.");
+            return false;
+        }
+        if (f.emailck.value != "yes") {
+            alert("이메일 중복 체크를 하지 않으셨습니다.");
             return false;
         }
     }
