@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제목</title>
+  <link rel="stylesheet" th:href="@{../static/img}"> <!-- 경로를 지정할 때에는 @를 사용 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<h1>내용</h1>
+<div th:if="${param.authError}">
+  <p style="color: blue">토큰 정보가 만료되었습니다. 토큰 갱신 필요</p>
+</div>
+<form th:action="@{/login}">
+  <button type="submit">로그인</button>
+</form>
+<!--<a th:href="@{/login}">로그인</a> 보안 때문에 이렇게는 잘 안 씀 -->
+<a th:href="@{/join}">회원가입</a>
+<p>해당 페이지는 타임리프를 써서 보여지고 있는 페이지</p>
+<h2>값을 가져오는 방법</h2>
+표현법 1 : <span th:text="${attrName}"></span><br>
+표현법 2 : [[${attrName}]] <br>
+<hr>
+<h2>하나의 데이터 불러오기</h2>
+<ul>
+  <li>이름 : [[${human.name}]]</li>
+  <li>나이 : [[${human.age}]]</li>
+</ul>
+<hr>
+<h2>list 형의 데이터</h2>
+<ul th:each="human1 : ${humanList}">
+  <li th:text="${human1.name}"></li>
+  <li th:text="${human1.age}"></li>
+</ul>
+<hr>
+<h2>list 형의 데이터, table</h2>
+<table>
+  <thead>
+  <tr>
+    <th>이름</th>
+    <th>나이</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="human1 : ${humanList}">
+    <td th:text="${human1.name}"></td>
+    <td th:text="${human1.age}"></td>
+  </tr>
+  </tbody>
+</table>
+<img th:src="@{/static/img/neom.jpg}" alt="오류">
+</body>
+</html>
