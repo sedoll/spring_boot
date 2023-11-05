@@ -10,14 +10,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Board {
-    private Integer id;
-    private String name;
-    private String password;
-    private String username;
-    private String email;
-    private String address;
-    private String tel;
-    private String regdate;
-    private String lev;
-    private String act;
+    private Integer id;         // 번호
+    private String name;        // 작성자
+    private String title;       // 제목
+    private String content;     // 내용
+    private Integer cnt;        // 조회수
+    private String resdate;     // 게시일
 }

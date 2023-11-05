@@ -1,49 +1,60 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path0" value="${pageContext.request.contextPath}" />
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal" var="principal"/>
+</sec:authorize>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">--%>
-    <link rel="stylesheet" href="${path0}/resource/css/pure-min.css">
-    <link rel="stylesheet" href="${path0}/resource/css/grids-responsive-min.css">
-    <link rel="stylesheet" href="${path0}/resource/css/styles.css">
-    <title>게시판</title>
+    <jsp:include page="../include/head.jsp"/>
+    <title>게시판 목록</title>
 </head>
 <body>
-<div class="pure-menu pure-menu-horizontal">
-    <a href="#" class="pure-menu-heading">Your Logo</a>
-    <ul class="pure-menu-list">
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
-        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Pricing</a></li>
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
-    </ul>
-</div>
-<div class="banner">
-    <h1 class="banner-head">
-        <h2>게시판</h2>
-    </h1>
-</div>
+<jsp:include page="../include/header.jsp"/>
+<div class="banner"></div>
 <div class="l-content" style="width:1280px;margin:20px auto;">
-    <h2 style="text-align: center;">게시판</h2>
-    <form class="pure-form pure-form-aligned" action="${path0}/auth" method="post" style="width:600px;margin:15px auto;">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        <fieldset>
-            <div class="pure-control-group">
-                <label for="aligned-name">Id</label>
-                <input type="text" name="name" id="aligned-name" placeholder="Id" pattern="^[a-z0-9]*$" minlength="4" maxlength="16" required/>
-            </div>
-            <div class="pure-control-group">
-                <label for="aligned-password">Password</label>
-                <input type="password" name="password" id="aligned-password" placeholder="Password" pattern="^\d{4,}(?:[a-z@^*]*)?$" minlength="4" maxlength="16" required/>
-            </div>
-            <div class="pure-controls">
-                <button type="submit" class="pure-button pure-button-primary">LOG IN</button>
-            </div>
-        </fieldset>
-    </form>
+    <h2 style="text-align: center;">게시판 목록</h2>
+    <div class="search_from">
+        <select name="select_filter" class="select_filter">
+            <option value="0">번호</option>
+            <option value="1">이름</option>
+            <option value="2">작성자</option>
+            <option value="3">조회수</option>
+            <option value="4">게시일</option>
+        </select>
+        <input type="text" name="search_filter" class="search_filter">
+    </div>
+    <table class="table" id="myTable">
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성자</th>
+            <th scope="col">조회수</th>
+            <th scope="col">게시일</th>
+            <th scope="col">비고</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${boardList}" var="board" varStatus="status">
+            <tr>
+                <td scope="row">${status.count}</td>
+                <td><a href="${path0}/common/getBoard?id=${board.id}">${board.title}</a></td>
+                <td>${board.name}</td>
+                <td>${board.cnt}</td>
+                <td>${board.resdate}</td>
+                <td></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <c:if test="${not empty principal}">
+        <a href="${path0}/board/boardInsert?name=${principal}">게시글 작성</a>
+    </c:if>
 </div>
 <div class="l-content">
 
@@ -53,5 +64,6 @@
         <a href="#">Try now</a> for 14 days. No credit card required. Header image courtesy of <a href="http://unsplash.com/">Unsplash</a>.
     </p>
 </div>
+<script src="${path0}/resource/js/datatables.js"></script>
 </body>
 </html>

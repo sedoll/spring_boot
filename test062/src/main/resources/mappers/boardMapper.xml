@@ -5,8 +5,13 @@
         select * from board order by id desc
     </select>
     <select id="getBoard" resultType="com.chunjae.test06.entity.Board">
-        select * from board where name = #{name}
+        select * from board where id = #{id}
     </select>
+    <!-- 게시글작성 -->
+    <insert id="insertBoard">
+        INSERT INTO board values(default, #{name}, #{title}, #{content}, default, default)
+    </insert>
+
     <!-- 탈퇴하기 act:JOIN-활동중, DORMANT-휴면중, WITHDRAW-탈퇴중 -->
     <update id="getWithdraw">
         update board set act='WITHDRAW' where id = #{id}

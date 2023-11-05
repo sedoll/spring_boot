@@ -27,7 +27,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
+    
+    // 유저 정보 페이지 (마이페이지)
     @GetMapping("/get")
     public String getUserInfo(HttpSession session, Model model){
         String name = (String) session.getAttribute("sname");
@@ -131,15 +132,16 @@ public class UserController {
 //        }
 //    }
 
-    //회원정보수정 폼 로딩
+    // 회원정보수정 폼 로딩
     @GetMapping("/updateForm")
-    public String updateFormLoad(@RequestParam("id") String name, Model model){
+    public String updateFormLoad(@RequestParam("name") String name, Model model){
         Euser user = userService.getUserByName(name);
         model.addAttribute("msg","회원정보를 수정하실 수 있습니다.");
         model.addAttribute("user", user);
         return "user/updateUser";
     }
 
+    // 회원정보수정
     @PostMapping("/updateUserPro")
     public String updateUserPro(Euser user, Model model){
         Euser euser = userService.getUserById(user.getId());

@@ -27,7 +27,7 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-
+    // 관리자 유저목록 확인페이지
     @GetMapping("/userList")
     public String getUserList(Model model){
         List<Euser> userList = userService.getUserList();
@@ -38,13 +38,14 @@ public class AdminController {
         model.addAttribute("userList", userList);
         return "admin/list";
     }
-
+    
+    // 관리자 메인페이지
     @GetMapping("/admIndex")
     public String getIndex(Model model) {
         return "admin/admIndex";
     }
 
-
+    // 관리자 유저정보 확인페이지
     @GetMapping("/user")
     public String getUser(@RequestParam("name") String name, HttpSession session, Model model){
         Euser user = userService.getUser(name);

@@ -92,3 +92,37 @@ COMMIT;
 DROP TABLE kuser;
 
 DESC kuser;
+
+
+-- 게시판
+DROP TABLE board;
+
+CREATE TABLE board(
+	id int PRIMARY KEY AUTO_INCREMENT,
+	name VARCHAR(20) NOT NULL,
+	title VARCHAR(100) NOT NULL,
+	content VARCHAR(1000),
+	cnt INT DEFAULT 0,
+	resdate DATETIME DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(name) REFERENCES kuser(name) ON DELETE 		
+		CASCADE
+		);
+
+INSERT INTO board values(DEFAULT, "admin", "admin1", "내용1", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "admin", "admin2", "내용2", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "admin", "admin3", "내용3", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "admin", "admin4", "내용4", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "admin", "admin5", "내용5", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "lee1", "lee1", "내용1", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "lee1", "lee2", "내용2", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "lee1", "lee3", "내용3", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "lee1", "lee4", "내용4", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "lee1", "lee5", "내용5", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "kim1", "kim1", "내용1", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "kim1", "kim2", "내용2", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "kim1", "kim3", "내용3", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "kim1", "kim4", "내용4", default, DEFAULT);
+INSERT INTO board values(DEFAULT, "kim1", "kim5", "내용5", default, DEFAULT);
+    
+
+	

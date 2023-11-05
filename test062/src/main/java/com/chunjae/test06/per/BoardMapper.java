@@ -8,7 +8,8 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
     List<Board> getBoardList();
-    Board getBoard(String name);
+    Board getBoard(Integer id);
+    int insertBoard(Board Board);
     int getWithdraw(Integer id);
     int getActivate(String name);
     int getDormant(String name);

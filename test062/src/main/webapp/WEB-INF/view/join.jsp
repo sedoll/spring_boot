@@ -123,22 +123,23 @@
                 }
             });
         });
-        function joinConfirm(f){
-            if(f.password.value!=f.password2.value){
-                alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
-                f.password.focus();
-                return false;
-            }
-            if(f.idCheck.value!="true"){
-                alert("아이디 중복 체크를 하지 않으셨습니다.");
-                return false;
-            }
-            if(f.emailCheck.value!="true"){
-                alert("이메일 중복 체크를 하지 않으셨습니다.");
-                return false;
-            }
-        }
     });
+
+    function joinConfirm(f){
+        if(f.password.value!=f.password2.value){
+            alert("비밀번호와 비밀번호 확인이 서로 다릅니다.");
+            f.password.focus();
+            return false;
+        }
+        if(f.idCheck.value!="true"){
+            alert("아이디 중복 체크를 하지 않으셨습니다.");
+            return false;
+        }
+        if(f.emailCheck.value!="true"){
+            alert("이메일 중복 체크를 하지 않으셨습니다.");
+            return false;
+        }
+    }
     </script>
 </div>
 <div class="footer l-box">
