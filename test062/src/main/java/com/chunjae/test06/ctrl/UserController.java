@@ -20,33 +20,13 @@ import java.util.List;
 @Slf4j
 @Controller
 @CrossOrigin("http://localhost:8085")
+@RequestMapping("/user/*")
 public class UserController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private UserService userService;
-
-    @GetMapping("/userList")
-    public String getUserList(Model model){
-        List<Euser> userList = userService.getUserList();
-        if(userList.isEmpty()){
-            throw new NoSuchDataException("No Such List");
-        }
-        model.addAttribute("msg", "회원목록을 로딩합니다.");
-        model.addAttribute("userList", userList);
-        return "admin/list";
-    }
-
-    @GetMapping("/user")
-    public String getUser(@RequestParam("name") String name, HttpSession session, Model model){
-        Euser user = userService.getUser(name);
-        if(user==null){
-            throw new NoSuchDataException("No Such Data");
-        }
-        model.addAttribute("user", user);
-        return "admin/get";
-    }
 
     @GetMapping("/get")
     public String getUserInfo(HttpSession session, Model model){
@@ -58,34 +38,35 @@ public class UserController {
         model.addAttribute("user", user);
         return "user/get";
     }
-
-    @GetMapping("/login")
-    public String login(HttpSession session, Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication instanceof AnonymousAuthenticationToken)
-            return "login";
-        return "redirect:/";
-    }
-
-    //아이디 로그인
-    @PostMapping("/loginByName")
-    public String loginByNamePro(@RequestParam("name") String name,@RequestParam("password") String password, HttpSession session, Model model){
-        Euser user = userService.getByName(name);
-        if(user!=null){
-            if(user.getPassword().equals(password)){
-                model.addAttribute("msg", "로그인 성공");
-                session.setAttribute("sname", user.getName());
-                session.setAttribute("slevel", user.getLev());
-            } else {
-                model.addAttribute("msg", "비밀번호 오류 로그인 실패");
-                session.invalidate();
-            }
-        } else {
-            model.addAttribute("msg", "해당 아이디를 가진 회원이 존재하지 않습니다.");
-            session.invalidate();
-        }
-        return "redirect:/";
-    }
+    
+//    // 로그인 창
+//    @GetMapping("/login")
+//    public String login(HttpSession session, Model model){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication instanceof AnonymousAuthenticationToken)
+//            return "login";
+//        return "redirect:/";
+//    }
+//
+//    //아이디 로그인
+//    @PostMapping("/loginByName")
+//    public String loginByNamePro(@RequestParam("name") String name,@RequestParam("password") String password, HttpSession session, Model model){
+//        Euser user = userService.getByName(name);
+//        if(user!=null){
+//            if(user.getPassword().equals(password)){
+//                model.addAttribute("msg", "로그인 성공");
+//                session.setAttribute("sname", user.getName());
+//                session.setAttribute("slevel", user.getLev());
+//            } else {
+//                model.addAttribute("msg", "비밀번호 오류 로그인 실패");
+//                session.invalidate();
+//            }
+//        } else {
+//            model.addAttribute("msg", "해당 아이디를 가진 회원이 존재하지 않습니다.");
+//            session.invalidate();
+//        }
+//        return "redirect:/";
+//    }
 
     //탈퇴
     @GetMapping("/withdraw")
@@ -104,51 +85,51 @@ public class UserController {
         return "redirect:/";
     }
 
-    //회원가입 폼 로딩
-    @GetMapping("/join")
-    public String joinFormLoad(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication instanceof AnonymousAuthenticationToken)
-            return "join";
-        return "redirect:/";
-    }
-
-    //회원가입 처리
-    @PostMapping("/joinPro")
-    public String joinPro(Euser euser, Model model){
-        int cnt = userService.userJoin(euser);
-        if(cnt == 0){
-            throw new NoSuchDataException("No Insert Process Data");
-        }
-        return "redirect:/";
-    }
-
-    //중복 id 검증(Ajax)
-    @PostMapping("/idCheck")
-    @ResponseBody
-    public boolean idCheckAjax(@RequestBody Euser test){
-        logger.info("**************** name :"+test.getName());
-        boolean result = false;
-        Euser user = userService.getByName(test.getName());
-        if(user!=null){
-            result = false;
-        } else {
-            result = true;
-        }
-        return result;
-    }
-
-    //중복 이메일 검증(Ajax)
-    @PostMapping("/emailCheck")
-    @ResponseBody
-    public boolean emailCheckAjax(@RequestParam("email") String email){
-        Euser user = userService.getByEmail(email);
-        if(user!=null){
-            return false;
-        } else {
-            return true;
-        }
-    }
+//    //회원가입 폼 로딩
+//    @GetMapping("/join")
+//    public String joinFormLoad(){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication instanceof AnonymousAuthenticationToken)
+//            return "join";
+//        return "redirect:/";
+//    }
+//
+//    //회원가입 처리
+//    @PostMapping("/joinPro")
+//    public String joinPro(Euser euser, Model model){
+//        int cnt = userService.userJoin(euser);
+//        if(cnt == 0){
+//            throw new NoSuchDataException("No Insert Process Data");
+//        }
+//        return "redirect:/";
+//    }
+//
+//    //중복 id 검증(Ajax)
+//    @PostMapping("/idCheck")
+//    @ResponseBody
+//    public boolean idCheckAjax(@RequestBody Euser test){
+//        logger.info("**************** name :"+test.getName());
+//        boolean result = false;
+//        Euser user = userService.getByName(test.getName());
+//        if(user!=null){
+//            result = false;
+//        } else {
+//            result = true;
+//        }
+//        return result;
+//    }
+//
+//    //중복 이메일 검증(Ajax)
+//    @PostMapping("/emailCheck")
+//    @ResponseBody
+//    public boolean emailCheckAjax(@RequestParam("email") String email){
+//        Euser user = userService.getByEmail(email);
+//        if(user!=null){
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 
     //회원정보수정 폼 로딩
     @GetMapping("/updateForm")
@@ -172,7 +153,7 @@ public class UserController {
             throw new NoSuchDataException("No Update Process Data");
         }
         model.addAttribute("msg","회원정보를 수정하였습니다.");
-        return "redirect:/updateForm?id="+euser.getName();
+        return "redirect:/user/updateForm?id="+euser.getName();
     }
 
     //회원등급변경(관리자)

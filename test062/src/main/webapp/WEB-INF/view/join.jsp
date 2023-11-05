@@ -6,32 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
-    <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
-    <%--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">--%>
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <link rel="stylesheet" href="${path0}/resource/css/pure-min.css">
-    <link rel="stylesheet" href="${path0}/resource/css/grids-responsive-min.css">
-    <link rel="stylesheet" href="${path0}/resource/css/styles.css">
+    <jsp:include page="./include/head.jsp"/>
     <title>회원 가입</title>
 </head>
 <body>
-<div class="pure-menu pure-menu-horizontal">
-    <a href="#" class="pure-menu-heading">Your Logo</a>
-    <ul class="pure-menu-list">
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
-        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Pricing</a></li>
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
-    </ul>
-</div>
-<div class="banner">
-    <h1 class="banner-head">
-        <h2>회원 가입</h2>
-    </h1>
-</div>
+<jsp:include page="./include/header.jsp"/>
+<div class="banner"></div>
 <div class="l-content" style="width:1280px;margin:20px auto;">
     <h2>회원 가입</h2>
-    <form class="pure-form pure-form-aligned" action="${path0}/joinPro" method="post" onsubmit="return joinConfirm(this)">
+    <form class="pure-form pure-form-aligned" action="${path0}/common/joinPro" method="post" onsubmit="return joinConfirm(this)">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <fieldset>
             <legend>회원 가입 정보를 입력하시기 바랍니다.</legend>
@@ -91,7 +74,7 @@
             }
             var test = { name : $("#id").val() }; //전송되어질 데이터를 객체로 묶음
             $.ajax({
-                url:"${path1 }/idCheck",	//아이디가 전송되어질 곳
+                url:"${path1 }/common/idCheck",	//아이디가 전송되어질 곳
                 type:"post",		//전송방식
                 data:JSON.stringify(test),
                 dataType:"json",
@@ -120,7 +103,7 @@
             }
             var params = {	email : $("#email").val()	} //전송되어질 데이터를 객체로 묶음
             $.ajax({
-                url:"${path1 }/emailCheck",	//아이디가 전송되어질 곳
+                url:"${path1 }/common/emailCheck",	//아이디가 전송되어질 곳
                 type:"post",		//전송방식
                 dataType:"json",	//데이터 반환 방식
                 data:params,		//전송방식이 post인 경우 객체로 묶어서 전송
@@ -151,7 +134,7 @@
                 return false;
             }
             if(f.emailCheck.value!="true"){
-                alert("아이디 중복 체크를 하지 않으셨습니다.");
+                alert("이메일 중복 체크를 하지 않으셨습니다.");
                 return false;
             }
         }

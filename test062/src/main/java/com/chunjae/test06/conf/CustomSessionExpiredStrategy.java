@@ -21,6 +21,6 @@ public class CustomSessionExpiredStrategy implements SessionInformationExpiredSt
 
         session.setAttribute("DUPLICATE_LOGIN", true);
 
-        response.sendRedirect("/login");
+        response.sendRedirect("/common/login");
     }
 }

@@ -6,30 +6,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">--%>
-    <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <link rel="stylesheet" href="${path0}/resource/css/pure-min.css">
-    <link rel="stylesheet" href="${path0}/resource/css/grids-responsive-min.css">
-    <link rel="stylesheet" href="${path0}/resource/css/styles.css">
-    <title>회원 가입</title>
+    <jsp:include page="../include/head.jsp"/>
+    <title>회원 수정</title>
 </head>
 <body>
-<div class="pure-menu pure-menu-horizontal">
-    <a href="#" class="pure-menu-heading">Your Logo</a>
-    <ul class="pure-menu-list">
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
-        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Pricing</a></li>
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
-    </ul>
-</div>
+<jsp:include page="../include/header.jsp"/>
 <div class="banner">
     <h1 class="banner-head">
-        <h2>회원 가입</h2>
+        <h2>회원 수정</h2>
     </h1>
 </div>
 <div class="l-content" style="width:1280px;margin:20px auto;">
     <h2>회원 가입</h2>
-    <form class="pure-form pure-form-aligned" action="${path0}/updateUserPro" method="post" onsubmit="return updateConfirm(this)">
+    <form class="pure-form pure-form-aligned" action="${path0}/user/updateUserPro" method="post" onsubmit="return updateConfirm(this)">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <fieldset>
             <legend>회원 가입 정보를 입력하시기 바랍니다.</legend>
