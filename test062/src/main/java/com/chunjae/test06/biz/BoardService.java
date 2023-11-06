@@ -1,6 +1,7 @@
 package com.chunjae.test06.biz;
 
 import com.chunjae.test06.entity.Board;
+import com.chunjae.test06.entity.Comment;
 import org.springframework.stereotype.Service;
 
 import javax.websocket.server.ServerEndpoint;
@@ -19,4 +20,7 @@ public interface BoardService {
     public Integer insertBoard(Board board);
     public int updatBoard(Board board); // 수정
     public int deleBoard(Integer id); // 삭제
+
+    public List<Comment> CommentList(Integer par); // 댓글 리스트 목록
+    public int inserBoardCom(Comment comment); // 댓글 입력
 }

@@ -106,7 +106,7 @@ CREATE TABLE board(
 	resdate DATETIME DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY(name) REFERENCES kuser(name) ON DELETE 		
 		CASCADE
-		);
+);
 
 INSERT INTO board values(DEFAULT, "admin", "admin1", "내용1", default, DEFAULT);
 INSERT INTO board values(DEFAULT, "admin", "admin2", "내용2", default, DEFAULT);
@@ -123,6 +123,39 @@ INSERT INTO board values(DEFAULT, "kim1", "kim2", "내용2", default, DEFAULT);
 INSERT INTO board values(DEFAULT, "kim1", "kim3", "내용3", default, DEFAULT);
 INSERT INTO board values(DEFAULT, "kim1", "kim4", "내용4", default, DEFAULT);
 INSERT INTO board values(DEFAULT, "kim1", "kim5", "내용5", default, DEFAULT);
-    
 
+-- 게시판 댓글
+CREATE TABLE board_com(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	NAME VARCHAR(20) NOT NULL,
+	CONTENT VARCHAR(300) NOT NULL,
+	resdate DATETIME DEFAULT CURRENT_TIMESTAMP,
+	par INT,
+	FOREIGN KEY(name) REFERENCES kuser(name) ON DELETE 		
+		CASCADE
+);
+
+-- 중고 상품 테이블
+DROP TABLE product;
+
+CREATE TABLE product(
+	no INT PRIMARY KEY AUTO_INCREMENT,
+	id VARCHAR(20) NOT NULL,
+	title VARCHAR(100),
+	content VARCHAR(2000),
+	cnt INT,
+	resdate DATETIME DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(id) REFERENCES kuser(name) ON DELETE 		
+		CASCADE
+);
 	
+-- 자료실 db
+CREATE TABLE fileobj (
+	no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	pno INT NOT NULL, -- 상품 테이블 번호
+	savefolder VARCHAR(400),
+	originfile VARCHAR(400),
+	savefile VARCHAR(800),
+	filesize LONG,
+	uploaddate VARCHAR(100)
+);

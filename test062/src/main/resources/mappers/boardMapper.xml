@@ -21,6 +21,14 @@
     <delete id="deleBoard">
         DELETE from board where id = #{id}
     </delete>
+    <!-- 댓글 목록 -->
+    <select id="commentList" resultType="com.chunjae.test06.entity.Comment">
+        select * from board_com where par = #{par}
+    </select>
+    <!-- 댓글 작성 -->
+    <insert id="inserBoardCom">
+        INSERT INTO board_com values(default, #{name}, #{content}, default, #{par})
+    </insert>
 
     <!-- 탈퇴하기 act:JOIN-활동중, DORMANT-휴면중, WITHDRAW-탈퇴중 -->
     <update id="getWithdraw">

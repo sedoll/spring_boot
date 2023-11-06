@@ -3,6 +3,7 @@ package com.chunjae.test06.ctrl;
 import com.chunjae.test06.biz.BoardServiceImpl;
 import com.chunjae.test06.biz.UserService;
 import com.chunjae.test06.entity.Board;
+import com.chunjae.test06.entity.Comment;
 import com.chunjae.test06.entity.Euser;
 import com.chunjae.test06.excep.NoSuchDataException;
 import lombok.extern.slf4j.Slf4j;
@@ -125,10 +126,12 @@ public class CommonController {
     @GetMapping("getBoard")
     public String getBoard(@RequestParam("id") Integer id,  Model model) throws Exception {
         Board board = boardService.getBoard(id);
+        List<Comment> commentList = boardService.CommentList(id);
         log.info(board.toString());
         if(board==null) { // 회원이 없으면 예외처리, url로 직접 들어오는 것도 방지
             throw new NoSuchFieldException("No Such Data");
         }
+        model.addAttribute("comment", commentList);
         model.addAttribute("board", board);
         return "board/getBoard";
     }

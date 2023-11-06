@@ -3,6 +3,7 @@ package com.chunjae.test06.ctrl;
 import com.chunjae.test06.biz.BoardService;
 import com.chunjae.test06.biz.BoardServiceImpl;
 import com.chunjae.test06.entity.Board;
+import com.chunjae.test06.entity.Comment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,7 @@ public class BoardController {
             return "redirect:/common/boardList";
         } else {
             log.info("게시글 작성 실패");
-            return "redirect:/index";
+            return "redirect:/";
         }
     }
 
@@ -62,7 +63,7 @@ public class BoardController {
             return "redirect:/common/getBoard?id="+board.getId();
         } else {
             log.info("게시글 수정 실패");
-            return "redirect:/index";
+            return "redirect:/";
         }
     }
     
@@ -75,7 +76,39 @@ public class BoardController {
             return "redirect:/common/boardList";
         } else {
             log.info("게시글 삭제 실패");
-            return "redirect:/index";
+            return "redirect:/";
         }
+    }
+
+    // 댓글 작성
+    @PostMapping("commentInsert")
+    public String insertComment(Comment comment) throws Exception {
+        log.info(comment.toString());
+        Integer ck = boardService.inserBoardCom(comment);
+        if(ck == 1) {
+            log.info("댓글 작성 성공");
+            return "redirect:/common/getBoard?id="+comment.getPar();
+        } else {
+            log.info("댓글 작성 실패");
+            return "redirect:/";
+        }
+    }   
+    
+    // 댓글 수정 폼 이동
+    @GetMapping("comUpdate")
+    public String comUpdateGet(@RequestParam("id") Integer id, Model model) throws Exception {
+        return "/board/commentUpdate";
+    }
+
+    // 댓글 수정
+    @PostMapping("comUpdate")
+    public String comUpdatePost(@RequestParam("id") Integer id, Model model) throws Exception {
+        return "/board/commentUpdate";
+    }
+
+    // 댓글 삭제
+    @GetMapping("comDelete")
+    public String comDelete(@RequestParam("id") Integer id, Model model) throws Exception {
+        return "/board/commentUpdate";
     }
 }

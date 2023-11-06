@@ -1,6 +1,7 @@
 package com.chunjae.test06.biz;
 
 import com.chunjae.test06.entity.Board;
+import com.chunjae.test06.entity.Comment;
 import com.chunjae.test06.per.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,15 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public int deleBoard(Integer id) {
         return boardMapper.deleBoard(id);
+    }
+
+    @Override
+    public List<Comment> CommentList(Integer par) {
+        return boardMapper.commentList(par);
+    }
+
+    @Override
+    public int inserBoardCom(Comment comment) {
+        return boardMapper.inserBoardCom(comment);
     }
 }

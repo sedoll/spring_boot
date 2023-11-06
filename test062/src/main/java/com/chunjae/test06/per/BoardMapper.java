@@ -1,6 +1,7 @@
 package com.chunjae.test06.per;
 
 import com.chunjae.test06.entity.Board;
+import com.chunjae.test06.entity.Comment;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public interface BoardMapper {
     int insertBoard(Board Board); // 추가
     int updatBoard(Board Board); // 수정
     int deleBoard(Integer id); // 삭제
+    List<Comment> commentList(Integer par); // 댓글 리스트 목록
+    int inserBoardCom(Comment comment); // 댓글 입력
     int getWithdraw(Integer id);
     int getActivate(String name);
     int getDormant(String name);
