@@ -55,4 +55,12 @@ public class AdminController {
         model.addAttribute("user", user);
         return "admin/get";
     }
+
+    //회원등급변경(관리자)
+    @GetMapping("/upgradeLevel")
+    public String upgradeLevel(@RequestParam("name") String name, @RequestParam("lev") String lev, HttpSession session, Model model){
+        int cnt = userService.updateLevel(name, lev);
+        model.addAttribute("msg", "등급을 변경하였습니다.");
+        return "redirect:/";
+    }
 }

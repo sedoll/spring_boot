@@ -44,11 +44,20 @@
 
         <%-- emp인 경우에 보여지도록 설정, jstl el --%>
         <c:if test="${authorities eq '[EMP]'}">
-            <li class="pure-menu-item"><a href="${path1}/emp/empIndex" class="pure-menu-link">관리자 페이지</a></li>
+            <li class="pure-menu-item"><a href="${path1}/emp/empIndex" class="pure-menu-link">직원 페이지</a></li>
         </c:if>
         <%-- emp인 경우에 보여지도록 설정  spring el--%>
 <%--        <sec:authorize access="hasAuthority('EMP')">--%>
 <%--            <li class="pure-menu-item"><a href="${path1}/emp/empIndex" class="pure-menu-link">직원 페이지</a></li>--%>
 <%--        </sec:authorize>--%>
+
+        <%-- user인 경우에 보여지도록 설정, jstl el --%>
+        <c:if test="${authorities eq '[USER]'}">
+            <li class="pure-menu-item"><a href="${path1}/user/userIndex" class="pure-menu-link">마이 페이지</a></li>
+        </c:if>
+        <%-- emp인 경우에 보여지도록 설정  spring el--%>
+        <%--        <sec:authorize access="hasAuthority('EMP')">--%>
+        <%--            <li class="pure-menu-item"><a href="${path1}/emp/empIndex" class="pure-menu-link">직원 페이지</a></li>--%>
+        <%--        </sec:authorize>--%>
     </ul>
 </div>

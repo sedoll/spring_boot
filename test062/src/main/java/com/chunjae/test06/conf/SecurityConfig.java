@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .antMatchers("/").permitAll()
                 .antMatchers("/common/**").permitAll() // "/login", "/join", "/idCheck", "/emailCheck", "/joinPro", "/updateForm", "/updateUserPro"
                 .antMatchers("/user/**").hasAnyAuthority("ADMIN", "EMP", "USER")
+                .antMatchers("/board/**").hasAnyAuthority("ADMIN", "EMP", "USER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN") // Role 말고 Authority로 적용
                 .antMatchers("/emp/**").hasAnyAuthority("ADMIN", "EMP")
                 .mvcMatchers("/","/resource/**","/css/**", "/js/**", "/images/**").permitAll()

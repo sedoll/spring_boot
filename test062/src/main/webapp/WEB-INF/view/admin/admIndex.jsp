@@ -7,6 +7,7 @@
     <title>Admin</title>
 </head>
 <body>
+<h1>관리자 페이지</h1>
     <h2>/admin/admIndex</h2>
 </body>
 </html>

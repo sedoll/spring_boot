@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @Controller
 @CrossOrigin("http://localhost:8085")
-@RequestMapping("/user/*")
+@RequestMapping("/emp/*")
 public class EmpController {
     
     // 직원 인덱스 페이지
-    @GetMapping("/admIndex")
+    @GetMapping("/empIndex")
     public String getIndex(Model model) {
-        return "admin/admIndex";
+        return "emp/empIndex";
     }
 }

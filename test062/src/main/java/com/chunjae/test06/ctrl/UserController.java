@@ -158,11 +158,9 @@ public class UserController {
         return "redirect:/user/updateForm?id="+euser.getName();
     }
 
-    //회원등급변경(관리자)
-    @GetMapping("/upgradeLevel")
-    public String upgradeLevel(@RequestParam("name") String name, @RequestParam("lev") String lev, HttpSession session, Model model){
-        int cnt = userService.updateLevel(name, lev);
-        model.addAttribute("msg", "등급을 변경하였습니다.");
-        return "redirect:/";
+    // 마이 페이지
+    @GetMapping("/userIndex")
+    public String getIndex(Model model) {
+        return "user/userIndex";
     }
 }

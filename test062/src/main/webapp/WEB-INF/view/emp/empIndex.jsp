@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee</title>
+    <title>직원페이지</title>
 </head>
 <body>
+<h1>직원페이지</h1>
     <h2>/emp/empIndex</h2>
 </body>
 </html>

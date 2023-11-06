@@ -7,6 +7,7 @@
     <title>User</title>
 </head>
 <body>
+<h1>마이페이지</h1>
     <h2>/user/userIndex</h2>
 </body>
 </html>
