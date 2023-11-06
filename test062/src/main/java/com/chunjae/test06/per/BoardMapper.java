@@ -7,9 +7,11 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
-    List<Board> getBoardList();
-    Board getBoard(Integer id);
-    int insertBoard(Board Board);
+    List<Board> getBoardList(); // 리스트 목록
+    Board getBoard(Integer id); // 상세
+    int insertBoard(Board Board); // 추가
+    int updatBoard(Board Board); // 수정
+    int deleBoard(Integer id); // 삭제
     int getWithdraw(Integer id);
     int getActivate(String name);
     int getDormant(String name);
@@ -18,7 +20,6 @@ public interface BoardMapper {
     Board findById(String email, String tel);
     Board findByPw(String email, String tel, String name);
     int BoardJoin(Board Board);
-    int updatBoard(Board Board);
     int updateLevel(String name, String lev);
     int removBoard(String name);
     Board getBoardById(Integer id);

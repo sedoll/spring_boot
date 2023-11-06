@@ -3,7 +3,8 @@
 <c:set var="path0" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <sec:authorize access="isAuthenticated()">
-    <sec:authentication property="principal" var="principal"/>
+    <sec:authentication property="principal" var="principal"/> <%-- 아이디 가져오기 --%>
+    <sec:authentication property="authorities" var="authorities"/> <%-- 인증권한 정보 가져오기 --%>
 </sec:authorize>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +43,7 @@
         <tbody>
         <c:forEach items="${boardList}" var="board" varStatus="status">
             <tr>
-                <td scope="row">${status.count}</td>
+                <td scope="row">${board.id}</td>
                 <td><a href="${path0}/common/getBoard?id=${board.id}">${board.title}</a></td>
                 <td>${board.name}</td>
                 <td>${board.cnt}</td>

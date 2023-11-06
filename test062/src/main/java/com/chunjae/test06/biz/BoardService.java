@@ -16,5 +16,7 @@ public interface BoardService {
     public Board getBoard(Integer id);
     
     // 게시글 작성
-    public Integer boardInsert(Board board);
+    public Integer insertBoard(Board board);
+    public int updatBoard(Board board); // 수정
+    public int deleBoard(Integer id); // 삭제
 }

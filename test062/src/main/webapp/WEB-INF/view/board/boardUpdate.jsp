@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jsp:include page="../include/head.jsp"/>
-    <title>게시판 글작성</title>
+    <title>게시판 글 수정</title>
 </head>
 <body>
 <div class="pure-menu pure-menu-horizontal">
@@ -21,27 +21,28 @@
 <jsp:include page="../include/header.jsp"/>
 <div class="banner"></div>
 <div class="l-content" style="width:1280px;margin:20px auto;">
-    <h2 style="text-align: center;">게시판 글작성</h2>
-    <form class="pure-form pure-form-aligned" action="${path0}/board/boardInsert" method="post" style="width:600px;margin:15px auto;"
+    <h2 style="text-align: center;">게시판 글 수정</h2>
+    <form class="pure-form pure-form-aligned" action="${path0}/board/boardUpdate" method="post" style="width:600px;margin:15px auto;"
           onsubmit="return textCheck(this)">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <fieldset>
-            <legend>게시판 글 작성</legend>
+            <legend>게시판 글 수정</legend>
             <div class="pure-control-group">
                 <label for="id">Id</label>
-                <input type="text" name="name" id="id" value="${name}" minlength="4" maxlength="16"
+                <input type="text" name="name" id="name" value="${board.name}" minlength="4" maxlength="16"
                        pattern="^[a-z0-9]*$" readonly/>
+                <input type="hidden" name="id" id="id" value="${board.id}">
             </div>
 
             <div class="pure-control-group">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title" placeholder="Title" minlength="1" maxlength="30"
-                       pattern="[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ_!?@,.^~\s]*$" title="영문, 숫자, 밑줄, 공백, 한글만 입력할 수 있습니다." required/>
+                <input type="text" name="title" id="title" placeholder="Title" minlength="1" maxlength="30" value="${board.title}"
+                       pattern="[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ_\s!?,.@^~]*$" title="영문, 숫자, 밑줄, 공백, 한글만 입력할 수 있습니다." required/>
             </div>
 
             <div class="pure-control-group">
                 <label for="content">Content</label>
-                <textarea name="content" id="content" cols="30" rows="10" maxlength="900" required></textarea>
+                <textarea name="content" id="content" cols="30" rows="10" maxlength="900" required>${board.content}</textarea>
                 <input type="hidden" id="ck" value="no">
                 <button id="contBtn" type="button">내용 검사</button>
                 <div id="error-message"></div>
@@ -69,7 +70,7 @@
             const ck_content = $("#ck");
 
             const inputText = textarea.val();
-            const pattern = /^[a-zA-Z0-9_\s\n가-힣ㄱ-ㅎㅏ-ㅣ!?,.@^~]*$/;
+            const pattern = /^[a-zA-Z0-9_\s\n가-힣ㄱ-ㅎㅏ-ㅣ!?@^~,.]*$/;
 
             if (pattern.test(inputText)) {
                 errorMessage.text("내용이 제대로 작성되었습니다.");

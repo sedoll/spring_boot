@@ -27,7 +27,17 @@ public class BoardServiceImpl implements BoardService{
 
     // 게시글 작성
     @Override
-    public Integer boardInsert(Board board) {
+    public Integer insertBoard(Board board) {
         return boardMapper.insertBoard(board);
+    }
+
+    @Override
+    public int updatBoard(Board board) {
+        return boardMapper.updatBoard(board);
+    }
+
+    @Override
+    public int deleBoard(Integer id) {
+        return boardMapper.deleBoard(id);
     }
 }
