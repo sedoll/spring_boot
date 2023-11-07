@@ -1,0 +1,5 @@
+CREATE DATABASE tstore;
+
+USE tstore;
+
+CREATE TABLE

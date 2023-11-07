@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .antMatchers("/admin/**").hasAuthority("ADMIN") // Role 말고 Authority로 적용
                 .antMatchers("/emp/**").hasAnyAuthority("ADMIN", "EMP")
                 .mvcMatchers("/","/resource/**","/css/**", "/js/**", "/images/**").permitAll()
-                .anyRequest().authenticated();
+                .anyRequest().authenticated(); // 앞에서 선언한 모든 것들을 인증
 
         // login 설정
         http

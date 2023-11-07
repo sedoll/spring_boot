@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sample1</title>
+</head>
+<body>
+<h1>sample1</h1>
+<hr>
+<h2>names</h2>
+<div th:each="name : ${names}">
+  [[${name}]]
+</div>
+<br><br>
+<h2>sample</h2>
+<ul>
+    <li th:text="${sample.p1}"></li>
+    <li th:text="${sample.p2}"></li>
+    <li th:text="${sample.p3}"></li>
+    <li th:text="${sample.p4}"></li>
+</ul>
+</body>
+</html>
