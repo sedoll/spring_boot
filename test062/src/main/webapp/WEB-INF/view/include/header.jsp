@@ -21,6 +21,9 @@
             <li class="nav-item">
                 <a href="${path1}/common/boardList" class="nav-link">게시판</a>
             </li>
+            <li class="nav-item">
+                <a href="${path1}/common/productList" class="nav-link">중고거래</a>
+            </li>
 
             <%-- 로그인 하지 않은 경우 --%>
             <c:if test="${empty principal}">

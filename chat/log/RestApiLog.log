@@ -1548,3 +1548,27 @@ java.lang.IllegalStateException: The WebSocket session [0] has been closed and n
 2023-11-06 22:49:56.243 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2023-11-06 22:49:56.244 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
 2023-11-06 22:49:56.244 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 0 ms
+2023-11-07 09:01:50.470 INFO  [restartedMain] [com.chunjae.chat.ChatApplication] - Starting ChatApplication using Java 17.0.7 on FULL8-010 with PID 17544 (D:\spring_boot\chat\build\classes\java\main started by db400tea in D:\spring_boot\chat)
+2023-11-07 09:01:50.471 INFO  [restartedMain] [com.chunjae.chat.ChatApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-07 09:01:50.497 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-07 09:01:50.498 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-07 09:01:51.095 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-07 09:01:51.100 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-07 09:01:51.100 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-07 09:01:51.100 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-07 09:01:51.187 INFO  [restartedMain] [org.apache.jasper.servlet.TldScanner] - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-11-07 09:01:51.192 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-07 09:01:51.192 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 694 ms
+2023-11-07 09:01:51.420 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-07 09:01:51.494 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6a5f212d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@71026390, org.springframework.security.web.context.SecurityContextPersistenceFilter@743cf112, org.springframework.security.web.header.HeaderWriterFilter@4ad06a4e, org.springframework.security.web.authentication.logout.LogoutFilter@6d829c69, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4d34cd9a, org.springframework.security.web.session.ConcurrentSessionFilter@3f74e441, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@72ae0b90, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7fb13826, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@35952a01, org.springframework.security.web.session.SessionManagementFilter@4c60bccc, org.springframework.security.web.access.ExceptionTranslationFilter@3d951142, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5f7844bd]
+2023-11-07 09:01:51.579 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-07 09:01:51.587 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-07 09:01:51.601 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-07 09:01:51.607 INFO  [restartedMain] [com.chunjae.chat.ChatApplication] - Started ChatApplication in 1.305 seconds (JVM running for 1.672)
+2023-11-07 09:02:25.918 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-07 09:02:25.918 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-07 09:02:25.919 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-07 09:02:35.589 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-07 09:02:35.661 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-07 09:35:33.482 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-07 09:35:33.482 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.

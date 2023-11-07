@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jsp:include page="../include/head.jsp"/>
-    <title>게시판 목록</title>
+    <title>상품 목록</title>
 </head>
 <body>
 <header class="header">
@@ -20,7 +20,7 @@
 </header>
 <jsp:include page="../include/header.jsp"/>
 <div class="container">
-    <h2 style="text-align: center;">게시판 목록</h2>
+    <h2 style="text-align: center;">상품 목록</h2>
     <div class="search_from">
         <select name="select_filter" class="select_filter">
             <option value="0">번호</option>
@@ -33,34 +33,38 @@
     </div>
     <table class="table" id="myTable">
         <thead class="thead-light">
+        <thead>
         <tr>
-            <th scope="col">번호</th>
-            <th scope="col">제목</th>
-            <th scope="col">작성자</th>
-            <th scope="col">조회수</th>
-            <th scope="col">게시일</th>
-            <th scope="col">비고</th>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일</th>
+            <th>읽은횟수</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${boardList}" var="board" varStatus="status">
-            <tr>
-                <td scope="row">${board.id}</td>
-                <td><a href="${path0}/common/getBoard?id=${board.id}">${board.title}</a></td>
-                <td>${board.name}</td>
-                <td>${board.cnt}</td>
-                <td>${board.resdate}</td>
-                <td></td>
-            </tr>
-        </c:forEach>
+            <c:forEach var="product" items="${productList}">
+                <tr class="table-info">
+                    <td>${product.no}</td>
+                    <td><a href="${path0}/product/getFileboard?no=${product.no}">${product.title}</a></td>
+                    <td>${product.resdate}</td>
+                    <td>${product.cnt}
+                    </td>
+                    <td>
+<%--                        <c:if test="${not empty board.fileList}">--%>
+<%--                            <c:forEach items="${board.fileList}" varStatus="status">--%>
+<%--                                <img src="${path0}/resources/images/${board.fileList.get(status.index).savefile}" alt="디스크이미지" style="width:24px;height:24px;"/>--%>
+<%--                            </c:forEach>--%>
+<%--                        </c:if>--%>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
         </tbody>
     </table>
     <c:if test="${not empty principal}">
-        <a href="${path0}/board/boardInsert?name=${principal}">게시글 작성</a>
+        <a href="${path0}/product/fileUpload">판매하기</a>
     </c:if>
-</div>
-<div class="l-content">
-
 </div>
 <div class="footer l-box">
     <p>

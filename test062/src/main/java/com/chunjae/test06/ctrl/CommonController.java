@@ -1,10 +1,9 @@
 package com.chunjae.test06.ctrl;
 
 import com.chunjae.test06.biz.BoardServiceImpl;
+import com.chunjae.test06.biz.ProductServiceImpl;
 import com.chunjae.test06.biz.UserService;
-import com.chunjae.test06.entity.Board;
-import com.chunjae.test06.entity.Comment;
-import com.chunjae.test06.entity.Euser;
+import com.chunjae.test06.entity.*;
 import com.chunjae.test06.excep.NoSuchDataException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -31,10 +29,12 @@ public class CommonController {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private BoardServiceImpl boardService;
-
+    @Autowired
+    private ProductServiceImpl productService;
+    
+    // region 로그인
     // 로그인 창
     @GetMapping("/login")
     public String login(HttpSession session, Model model){
@@ -63,7 +63,9 @@ public class CommonController {
         }
         return "redirect:/";
     }
-
+    // endregion
+    
+    // region 회원가입
     //회원가입 폼 로딩
     @GetMapping("/join")
     public String joinFormLoad(){
@@ -82,7 +84,9 @@ public class CommonController {
         }
         return "redirect:/";
     }
-
+    // endregion
+    
+    // region ajax 검증
     //중복 id 검증(Ajax)
     @PostMapping("/idCheck")
     @ResponseBody
@@ -109,14 +113,13 @@ public class CommonController {
             return true;
         }
     }
+    // endregion
 
+    // region board 게시판
     // 게시글 목록 보기
     @GetMapping("boardList")
     public String boardList(Model model) throws Exception {
         List<Board> boardList = boardService.boardList();
-        if(boardList.isEmpty()) { // 데이터가 없는 경우를 위해 예외처리
-            throw new NoSuchFieldException("No Such List");
-        }
         model.addAttribute("boardList", boardList);
         return "board/boardList";
     }
@@ -135,4 +138,32 @@ public class CommonController {
         model.addAttribute("board", board);
         return "board/getBoard";
     }
+    // endregion
+
+    // region board 게시판
+    // 상품 목록 보기
+    @GetMapping("productList")
+    public String productList(Model model) throws Exception {
+        List<Product> productList = productService.productList();
+//        List<FileVO> fileboardList = productService.getFileList();
+//        log.info(fileboardList.toString());
+        model.addAttribute("productList", productList);
+        return "product/productList";
+    }
+
+    // 게시글 상세 보기
+    // 일치하는 데이터가 없으면 null 반환
+    @GetMapping("getFileProduct")
+    public String getFileboard(@RequestParam("pno") Integer postNo, Model model) throws Exception {
+        FileVO product = productService.getFilebord(postNo);
+        log.info(product.toString());
+        if(product==null) { // 회원이 없으면 예외처리, url로 직접 들어오는 것도 방지
+            throw new NoSuchFieldException("No Such Data");
+        }
+        model.addAttribute("fileboard", product);
+        return "getProduct";
+    }
+    // endregion
+
+    
 }

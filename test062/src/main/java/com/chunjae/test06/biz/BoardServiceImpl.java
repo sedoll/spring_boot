@@ -31,22 +31,26 @@ public class BoardServiceImpl implements BoardService{
     public Integer insertBoard(Board board) {
         return boardMapper.insertBoard(board);
     }
-
+    
+    // 게시글 수정
     @Override
     public int updatBoard(Board board) {
         return boardMapper.updatBoard(board);
     }
-
+    
+    // 게시글 삭제
     @Override
     public int deleBoard(Integer id) {
         return boardMapper.deleBoard(id);
     }
-
+    
+    // 댓글 목록
     @Override
     public List<Comment> CommentList(Integer par) {
         return boardMapper.commentList(par);
     }
-
+    
+    // 댓글 추가
     @Override
     public int inserBoardCom(Comment comment) {
         return boardMapper.inserBoardCom(comment);

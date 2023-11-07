@@ -18,13 +18,29 @@
 <input type="text" placeholder="보낼 메세지를 입력하세요." class="content">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <input type="hidden" id="roomId" value="${room.roomId}" />
-<button type="button" value="전송" class="sendBtn" onclick="sendMsg()">전송</button>
+<button type="button" value="전송" class="sendBtn" id="sendBtn" onclick="sendMsg()">전송</button>
 <button type="button" value="방나가기" class="quit" onclick="quit()">방 나가기 </button>
 <div>
     <span>메세지</span>
     <div class="msgArea"></div>
 </div>
+<script>
+    $(document).ready(function () {
+        var input = $("#sendBtn");
 
+        // Execute a function when the user presses a key on the keyboard
+        input.on("keypress", function(event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                $("#myBtn").click();
+            }
+        });
+    });
+</script>
+<%-- websocket, 채팅 부분 --%>
 <script>
     var socket = new WebSocket("ws://localhost:8085/ws/chat");
     var roomId = document.getElementById('roomId').value;

@@ -38,6 +38,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/common/**").permitAll() // "/login", "/join", "/idCheck", "/emailCheck", "/joinPro", "/updateForm", "/updateUserPro"
+                .antMatchers("/product/**").hasAnyAuthority("ADMIN", "EMP", "USER")
                 .antMatchers("/user/**").hasAnyAuthority("ADMIN", "EMP", "USER")
                 .antMatchers("/board/**").hasAnyAuthority("ADMIN", "EMP", "USER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN") // Role 말고 Authority로 적용
