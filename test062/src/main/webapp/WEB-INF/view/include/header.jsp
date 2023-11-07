@@ -57,10 +57,10 @@
             <c:if test="${authorities eq '[ADMIN]'}">
                 <li class="nav-item"><a href="${path1}/admin/admIndex" class="nav-link">관리자 페이지</a></li>
             </c:if>
-            <%-- admin인 경우에 보여지도록 설정, spring el --%>
-            <%--        <sec:authorize access="hasAuthority('ADMIN')">--%>
-            <%--            <li class="nav-item"><a href="${path1}/admin/admIndex" class="nav-link">관리자 페이지</a></li>--%>
-            <%--        </sec:authorize>--%>
+<%--             admin인 경우에 보여지도록 설정, spring el--%>
+<%--                    <sec:authorize access="hasAuthority('ADMIN')">--%>
+<%--                        <li class="nav-item"><a href="${path1}/admin/admIndex" class="nav-link">관리자 페이지</a></li>--%>
+<%--                    </sec:authorize>--%>
 
             <%-- emp인 경우에 보여지도록 설정, jstl el --%>
             <c:if test="${authorities eq '[EMP]'}">
@@ -76,9 +76,9 @@
                 <li class="nav-item"><a href="${path1}/user/userIndex" class="nav-link">마이 페이지</a></li>
             </c:if>
             <%-- emp인 경우에 보여지도록 설정  spring el--%>
-            <%--        <sec:authorize access="hasAuthority('EMP')">--%>
-            <%--            <li class="nav-item"><a href="${path1}/emp/empIndex" class="nav-link">직원 페이지</a></li>--%>
-            <%--        </sec:authorize>--%>
+<%--                    <sec:authorize access="hasAuthority('EMP')">--%>
+<%--                        <li class="nav-item"><a href="${path1}/emp/empIndex" class="nav-link">직원 페이지</a></li>--%>
+<%--                    </sec:authorize>--%>
         </ul>
     </div>
 </nav>

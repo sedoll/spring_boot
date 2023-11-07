@@ -11,7 +11,6 @@
 </head>
 <body>
 <jsp:include page="./include/header.jsp"/>
-<div class="banner"></div>
 <div class="container" style="width:1280px;margin:20px auto;">
     <h2 style="text-align: center;">로그인</h2>
     <form class="pure-form pure-form-aligned" action="${path0}/auth" method="post" style="width:600px;margin:15px auto;">
