@@ -14,7 +14,7 @@ public interface ProductService {
     public List<Product> productList();
 
     // 게시글 상세 보기
-    public Product getProduct(Integer no);
+    public Product getProduct(Integer no) throws Exception;
     
     // 게시글 작성
     public Integer insertProduct(Product product);
@@ -27,7 +27,6 @@ public interface ProductService {
     public void insertFileboard(FileVO fileboard) throws Exception;
     public List<FileVO> getFileList() throws Exception;
     public List<FileDTO> getFileGroupList(int postNo) throws Exception;
-    public FileVO getFilebord(int postNo) throws Exception;
     public FileVO getFileObject(int no) throws Exception;
     public void removeFileboard(int postNo) throws Exception;
     public void fileRemove(int no) throws Exception;

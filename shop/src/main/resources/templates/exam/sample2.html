@@ -1,12 +1,37 @@
-sample1.html<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$Title$</title>
+    <title>sample2</title>
 </head>
 <body>
-$END$
+<h1>Map</h1>
+<div th:text="${map}"></div>
+<hr>
+
+<h1>List</h1>
+<th:block th:each="l : ${list}">
+    <li th:text="${l}"></li>
+</th:block>
+<hr>
+
+<h1>Set</h1>
+<th:block th:each="s : ${set}">
+    <li th:text="${s}"></li>
+</th:block>
+<hr>
+
+<h1>script + thymeleaf</h1>
+<p>thymeleaf 에서 script를 사용할 경우 &lt script <strong style="color: red">th:inline="javascript"</strong> &gt 속성을 넣어줘야 한다. </p>
+<script th:inline="javascript">
+    let map2 = [[${map}]]
+    let list2 = [[${list}]]
+    let set2 = [[${set}]]
+    console.log(map2)
+    console.log(list2)
+    console.log(set2)
+</script>
 </body>
 </html>

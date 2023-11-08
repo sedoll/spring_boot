@@ -1,5 +1,5 @@
 $(document).ready( function () {
-    $('#myTable').DataTable({
+    $('#comment').DataTable({
         // sorting 화살표 제거
         "targets": 'no-sort',
         "bSort": false,
@@ -16,7 +16,7 @@ $(document).ready( function () {
             emptyTable: '작성된 댓글(이)가 없습니다.'
         }
     });
-    $('#myTable').css({
+    $('#comment').css({
         'border':'none',
     });
 } );

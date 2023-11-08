@@ -154,8 +154,8 @@ public class CommonController {
     // 게시글 상세 보기
     // 일치하는 데이터가 없으면 null 반환
     @GetMapping("getFileProduct")
-    public String getFileboard(@RequestParam("pno") Integer postNo, Model model) throws Exception {
-        FileVO product = productService.getFilebord(postNo);
+    public String getFileboard(@RequestParam("no") Integer no, Model model) throws Exception {
+        Product product = productService.getProduct(no);
         log.info(product.toString());
         if(product==null) { // 회원이 없으면 예외처리, url로 직접 들어오는 것도 방지
             throw new NoSuchFieldException("No Such Data");

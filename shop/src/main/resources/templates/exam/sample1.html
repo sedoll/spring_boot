@@ -9,10 +9,58 @@
 <body>
 <h1>sample1</h1>
 <hr>
-<h2>names</h2>
-<div th:each="name : ${names}">
-  [[${name}]]
+<h2>names, ul 태그 반복</h2>
+<ul th:each="name : ${names}">
+    <li>[[${name}]]</li>
+</ul>
+<br>
+
+<h3>th:block</h3>
+<ul>
+    <th:block th:each="name : ${names}">
+        <li th:text="${name}"></li>
+    </th:block>
+</ul>
+<br>
+
+<h3>names 그대로 출력</h3>
+<div th:text="${names}"></div>
+<br>
+
+<h3>반복할 요소에 직접 넣기, li 태그 반복</h3>
+<ul>
+    <li th:each="name : ${names}" th:text="${name}"></li>
+</ul>
+<hr>
+
+<h2>status</h2>
+<div th:each="name, status : ${names}">
+    <!-- 홀수 번째 인덱스의 값만 출력 -->
+    <div th:if="${status.odd}">ODD - [[${name}]]</div>
+
+    <!-- 짝수 번째 인덱스의 값만 출력 -->
+<!--    <div th:unless="${status.odd}">EVEN - [[${name}]]</div>-->
+    <div th:if="${status.even}">EVEN - [[${name}]]</div>
 </div>
+<hr>
+
+<h2>status + 삼항연산자</h2>
+<div th:each="name, status : ${names}">
+    <!-- 홀수 번째 인덱스의 값만 출력 -->
+    <div th:text="${status.odd} ? 'ODD - '+${name} : 'EVEN - '+${name}"></div>
+</div>
+<hr>
+
+<h2>switch 문</h2>
+<div th:each="name, status : ${names}">
+    <th:block th:switch="${status.index % 3}"> <!-- div 태그와 같음 -->
+        <div th:case="0">3n - [[${name}]]</div>
+        <div th:case="1">3n+1 - [[${name}]]</div>
+        <div th:case="2">3n+2 - [[${name}]]</div>
+    </th:block>
+</div>
+<hr>
+
 <br><br>
 <h2>sample</h2>
 <ul>

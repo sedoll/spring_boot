@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using to Thymeleaf Layout3 & Form</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <th:block th:insert="~{layout/head :: head}"/>
+    <style>
+        .comment { font-size:16px; color:#fff; }
+    </style>
+</head>
+<body>
+<th:block th:insert="~{layout/header :: header}"/>
+<div class="contents" style="clear:both;width:100%;padding-top:100px;">
+    <div class="splash-container" style="clear:both;padding:40px;padding-top:150px;">
+        <hr>
+        <h2 style="border-bottom:2px solid #333;" class="title">교재 등록</h2>
+        <p class="comment">새로 추가할 교재 정보를 입력하시기 바랍니다.</p>
+        <form id="form" th:object="${book}" method="post">
+            <!-- SecurityConfig 에서 csrf().disable()을 안해주는 경우 해당 코드를 사용해야 한다. -->
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th><label for="title">제목</label></th>
+                    <td><input type="text" id="title" th:field="${book.title}" placeholder="책 제목 입력"><br>
+                        <span class="err" th:if="${#fields.hasErrors('title')}" th:errors="${title}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="creator">저자</label></th>
+                    <td><input type="text" id="creator" th:field="${book.creator}" placeholder="저자 입력"><br>
+                        <span class="err" th:if="${#fields.hasErrors('creator')}" th:errors="${creator}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="publisher">출판사</label></th>
+                    <td><input type="text" id="publisher" th:field="${book.publisher}" placeholder="출판사 입력"><br>
+                        <span class="err" th:if="${#fields.hasErrors('publisher')}" th:errors="${publisher}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="publisher">출판일</label></th>
+                    <td><input type="date" id="pubDate" th:field="${book.pubDate}" placeholder="출판일 입력"><br>
+                        <span class="err" th:if="${#fields.hasErrors('pubDate')}" th:errors="${pubDate}"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="button" class="button" onclick="inputData()">등록</button>
+        </form>
+        <hr>
+        <h2 style="border-bottom:2px solid #333;" class="title">교재 목록</h2>
+        <hr>
+        <div class="list" id="list">
+            <table class="table" id="myTable">
+                <thead>
+                <tr>
+                    <th>연번</th>
+                    <th>제목</th>
+                    <th>저자</th>
+                    <th>출판사</th>
+                    <th>출판일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="book : ${bookList}">
+                    <td th:text="${book.seq}"></td>
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.creator}"></td>
+                    <td th:text="${book.publisher}"></td>
+                    <td th:text="${book.pubDate}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<th:block th:insert="~{layout/footer :: footer}"/>
+<script th:inline="javascript">
+    function inputData() {
+        var book = $("#form").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/ex/test5",
+            data: book,
+            cache: false
+        }).done(function (fragment) {
+            if ($(fragment).find($("#form").prevObject.length > 0)) {
+                $("#form").replaceWith(fragment);
+            } else {
+                $("#list").replaceWith(fragment);
+                $("input[type=text]").val("");
+                $(".err").text("");
+            }
+        });
+    }
+</script>
+<script th:src="@{/js/datatables.js}"></script>
+</body>
+</html>

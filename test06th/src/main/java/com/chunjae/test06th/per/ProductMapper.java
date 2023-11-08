@@ -11,7 +11,6 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
     List<Product> getProductList(); // 리스트 목록
-    Product getProduct(Integer id); // 상세
     int insertProduct(Product product); // 추가
     int updatProduct(Product product); // 수정
     int deleProduct(Integer id); // 삭제
@@ -24,7 +23,7 @@ public interface ProductMapper {
     public Integer fileInsert(FileDTO file) throws Exception;
     public List<FileVO> getFileList() throws Exception; // 리스트 목록
     public List<FileDTO> getFileGroupList(int postNo) throws Exception;
-    public FileVO getFilebord(int postNo) throws Exception;
+    public Product getProduct(Integer postNo) throws Exception;
     public FileVO getFileObject(int no) throws Exception;
     public void removeFileboard(int postNo) throws Exception;
     public void fileRemove(int no) throws Exception;

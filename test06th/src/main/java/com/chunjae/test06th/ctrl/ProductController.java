@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -52,8 +54,8 @@ public class ProductController {
     // 게시글 수정 폼 이동
     // 일치하는 데이터가 없으면 null 반환
     @GetMapping("productUpdate")
-    public String productUpdateForm(@RequestParam("id") Integer id, Model model) throws Exception {
-        Product product = productService.getProduct(id);
+    public String productUpdateForm(@RequestParam("no") Integer no, Model model) throws Exception {
+        Product product = productService.getProduct(no);
         model.addAttribute("product", product);
         return "product/productUpdate";
     }
@@ -143,9 +145,9 @@ public class ProductController {
         //req.getContextPath(); //현재 프로젝트 홈 경로 - /pro3_war
         //req.getServletPath();   //요청된 URL - /pro3_war/file/fileupload1
         String uploadPath = req.getSession().getServletContext().getRealPath("/"); // contextpath
-        req.getRealPath("/resource/upload");  //현재 프로젝트에 저장될 실제 경로
-        String devFolder = uploadPath + "/resource/upload";    //개발자용 컴퓨터에 업로드 디렉토리 지정
-        String uploadFolder = req.getRealPath("/resource/upload");
+        req.getRealPath("/static/upload");  //현재 프로젝트에 저장될 실제 경로
+        String devFolder = uploadPath + "/static/upload";    //개발자용 컴퓨터에 업로드 디렉토리 지정
+        String uploadFolder = req.getContextPath() + "/static/upload";
         File folder = new File(uploadFolder);
         if(!folder.exists())
             folder.mkdirs();
@@ -153,7 +155,7 @@ public class ProductController {
         log.info(" 현재 프로젝트 홈 : "+req.getContextPath());
         log.info(" dispatcher-servlet에서 지정한 경로 : "+uploadPath);
         log.info(" 요청 URL : "+req.getServletPath());
-        log.info(" 프로젝트 저장 경로 : "+req.getRealPath("/resource/upload"));
+        log.info(" 프로젝트 저장 경로 : "+req.getRealPath("/static/upload"));
 
         //여러 파일 반복 저장
         List<FileDTO> fileList = new ArrayList<>();
@@ -203,12 +205,49 @@ public class ProductController {
         return "redirect:/product/fileList";
     }
 
+    // getFileboard
+    // 판매 페이지 상세
+    @GetMapping("getProduct")
+    public String getFileboard(@RequestParam("no") int no, Model model,HttpServletRequest request) throws Exception {
+        FileVO fileboard = new FileVO();
+//        sqlSession.update("fileboard.countUp", postNo);
+        Product product = productService.getProduct(no);
+        List<FileDTO> fileList = productService.getFileGroupList(no);
+        fileboard.setFileBoard(product);
+        fileboard.setFileList(fileList);
+//        HttpSession session = request.getSession();
+//        Cookie[] cookieFromRequest = request.getCookies();
+//        String cookieValue = null;
+//        for(int i = 0 ; i<cookieFromRequest.length; i++) {
+//            // 요청정보로부터 쿠키를 가져온다.
+//            cookieValue = cookieFromRequest[0].getValue();  // 테스트라서 추가 데이터나 보안사항은 고려하지 않으므로 1번째 쿠키만 가져옴
+//        }
+//        // 쿠키 세션 입력
+//        if (session.getAttribute(no+":cookieFile") == null) {
+//            session.setAttribute(no+":cookieFile", no + ":" + cookieValue);
+//        } else {
+//            session.setAttribute(no+":cookieFile ex", session.getAttribute(no+":cookieFile"));
+//            if (!session.getAttribute(no+":cookieFile").equals(no + ":" + cookieValue)) {
+//                session.setAttribute(no+":cookieFile", no + ":" + cookieValue);
+//            }
+//        }
+//// 쿠키와 세션이 없는 경우 조회수 카운트
+//        if (!session.getAttribute(no+":cookieFile").equals(session.getAttribute(no+":cookieFile ex"))) {
+////            productService.countUp(no);
+//            fileboard.getFileBoard().setCnt(fileboard.getFileBoard().getCnt()+1);
+//        }
+        log.info(fileboard.toString());
+        model.addAttribute("product", fileboard.getFileBoard());
+        model.addAttribute("fileList", fileboard.getFileList());
+        return "product/getProduct";
+    }
+
     @GetMapping("removeFileboard")
-    public String removeFileboard(@RequestParam("pno") Integer postNo, HttpServletRequest req) throws Exception {
+    public String removeFileboard(@RequestParam("no") Integer postNo, HttpServletRequest req) throws Exception {
 
         //실제 파일 삭제 로직
         //파일 경로 지정
-        String path = req.getRealPath("/resource/upload");
+        String path = req.getRealPath("/static/upload");
         List<FileDTO> fileList = productService.getFileGroupList(postNo);
         for(FileDTO fileobj : fileList) {
             File file = new File(path + "/" + fileobj.getOriginfile());
@@ -223,14 +262,14 @@ public class ProductController {
 
     @GetMapping("modifyFileboard")
     public String modifyFileboard(@RequestParam("pno") Integer postNo, Model model) throws Exception {
-        FileVO fileboard = productService.getFilebord(postNo);
+        Product fileboard = productService.getProduct(postNo);
         model.addAttribute("fileboard", fileboard);
         return "/fileboard/modifyFileboard";
     }
 
     @PostMapping("modifyFileboard")
     public String modifyFileboard2(@RequestParam("pno") Integer postNo, MultipartHttpServletRequest files, HttpServletRequest req,Model model) throws Exception {
-        FileVO fileboard = productService.getFilebord(postNo);
+        FileVO fileboard = new FileVO();
 //        model.addAttribute("fileboard", fileboard);
         /////////////
         //파라미터 분리
@@ -253,13 +292,13 @@ public class ProductController {
         //req.getContextPath(); //현재 프로젝트 홈 경로 - /pro3_war
         //req.getServletPath();   //요청된 URL - /pro3_war/file/fileupload1
         String uploadPath = req.getSession().getServletContext().getRealPath("/"); // contextpath
-        String devFolder = uploadPath + "/resource/upload/";    //개발자용 컴퓨터에 업로드 디렉토리 지정
-        String uploadFolder = req.getRealPath("/resource/upload"); // 서버에 업로드
+        String devFolder = uploadPath + "/static/upload/";    //개발자용 컴퓨터에 업로드 디렉토리 지정
+        String uploadFolder = req.getRealPath("/static/upload"); // 서버에 업로드
         log.info("-----------------------------------");
         log.info(" 현재 프로젝트 홈 : "+req.getContextPath());
         log.info(" dispatcher-servlet에서 지정한 경로 : "+uploadPath);
         log.info(" 요청 URL : "+req.getServletPath());
-        log.info(" 프로젝트 저장 경로 : "+req.getRealPath("/resource/upload"));
+        log.info(" 프로젝트 저장 경로 : "+req.getRealPath("/static/upload"));
         //여러 파일 반복 저장
         List<FileDTO> fileList = new ArrayList<>();
         Iterator<String> it = files.getFileNames();
@@ -313,7 +352,7 @@ public class ProductController {
 
     @PostMapping("fileRemove")
     public String fileRemove(@RequestParam("no") Integer no, @RequestParam("pno") Integer postNo, HttpServletRequest req, Model model) throws Exception {
-        String path = req.getRealPath("/resource/upload");
+        String path = req.getRealPath("/static/upload");
         FileDTO fileobj = productService.getFile(no);
         File file = new File(path + "/" + fileobj.getOriginfile());
         if (file.exists()) { // 해당 파일이 존재하면

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판매글 상세</title>
+  <th:block th:replace="~{layout/head :: headFragment}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{layout/header :: headerFragment}"></th:block>
+<div class="container" style="width:1280px;margin:20px auto;">
+  <h2 style="text-align: center;">판매글 상세</h2>
+  <table class="table">
+    <tbody>
+    <tr>
+      <th>번호</th>
+      <td>[[${product.no}]]</td>
+    </tr>
+    <tr>
+      <th>작성자</th>
+      <td>[[${product.id}]]</td>
+    </tr>
+    <tr>
+      <th>제목</th>
+      <td>[[${product.title}]]</td>
+    </tr>
+    <tr>
+      <th>내용</th>
+      <td>[[${product.content}]]</td>
+    </tr>
+    <tr>
+      <th>조회수</th>
+      <td>[[${product.cnt}]]</td>
+    </tr>
+    <tr>
+      <th>게시일</th>
+      <td>[[${product.resdate}]]</td>
+    </tr>
+    <tr>
+      <th>비고</th>
+      <td>
+        <th:block th:if="${#authentication.principal eq product.id or #authentication.authorities eq '[ADMIN]'}">
+          <a th:href="@{/product/comUpdate(no=${product.no})}" class="button is-link is-small is-outlined is-rounded ">수정</a>
+          <a th:href="@{/product/comDelete(no=${product.no})}" class="button is-danger is-small is-outlined is-rounded">삭제</a>
+        </th:block>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2">이미지</th>
+    </tr>
+    <tr th:each="file : ${fileList}">
+      <div style="max-width: 300px">
+        <img th:src="~{/static/upload/${file.getSavefile()}}" alt="">
+      </div>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<th:block th:replace="layout/footer :: footerFragment"></th:block>
+</body>
+</html>

@@ -62,7 +62,7 @@ public class SecurityConfig {
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/");	// logout에 성공하면 /로 redirect
 
-        //cors 방지 해제
+        //cors, csrf 방지 해제
         http.csrf().disable().cors().disable();
 
         //중복 로그인 방지

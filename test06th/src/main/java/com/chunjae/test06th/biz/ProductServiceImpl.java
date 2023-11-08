@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService{
 
     // 게시글 상세 보기
     @Override
-    public Product getProduct(Integer no) {
+    public Product getProduct(Integer no) throws Exception {
         return productMapper.getProduct(no);
     }
 
@@ -77,11 +77,6 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<FileDTO> getFileGroupList(int postNo) throws Exception {
         return productMapper.getFileGroupList(postNo);
-    }
-
-    @Override
-    public FileVO getFilebord(int postNo) throws Exception {
-        return productMapper.getFilebord(postNo);
     }
 
     @Override

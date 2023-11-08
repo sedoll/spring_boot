@@ -10,7 +10,7 @@
         select * from product order by no desc
     </select>
     <!-- 게시글 상세 -->
-    <select id="getFile" resultType="com.chunjae.test06th.entity.Product">
+    <select id="getProduct" resultType="com.chunjae.test06th.entity.Product">
         select * from product where no = #{no}
     </select>
     <!-- 게시글작성 -->
@@ -46,7 +46,7 @@
         select * from fileobj order by uploaddate desc, no asc
     </select>
     <!-- 파일 목록 -->
-    <select id="fileGroupList" resultType="com.chunjae.test06th.entity.FileDTO">
+    <select id="getFileGroupList" resultType="com.chunjae.test06th.entity.FileDTO">
         select * from fileobj where pno=#{pno}
     </select>
     <!-- 파일 상세보기 -->

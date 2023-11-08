@@ -11,14 +11,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <jsp:include page="../include/head.html"/>
+    <jsp:include page="../layout/head.html"/>
     <title>상품 목록</title>
 </head>
 <body>
-<header class="header">
-
-</header>
-<jsp:include page="../include/header.html"/>
+<jsp:include page="../layout/header.html"/>
 <div class="container">
     <h2 style="text-align: center;">상품 목록</h2>
     <div class="search_from">

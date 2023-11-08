@@ -6,11 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <jsp:include page="../include/head.html"/>
+    <jsp:include page="../layout/head.html"/>
     <title>회원 수정</title>
 </head>
 <body>
-<jsp:include page="../include/header.html"/>
+<jsp:include page="../layout/header.html"/>
 <div class="banner">
     <h1 class="banner-head">
         <h2>회원 수정</h2>

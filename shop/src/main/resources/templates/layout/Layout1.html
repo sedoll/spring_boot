@@ -1,31 +1,25 @@
 <!DOCTYPE html>
-<!-- thymeleaf layout 사용 선언 -->
+<!-- thymeleaf loyout 선언 -->
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/Layout1.html}"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sample3</title>
+    <title>Layout1</title>
 </head>
 <body>
-<h1>sample3</h1>
+<h1>Layout1</h1>
 <header layout:fragment="header">
-    헤더
+  <h2>header</h2>
 </header>
 <div layout:fragment="contents">
-    컨텐츠
-    <th:block th:each="c : ${cate}">
-        <li th:text="${c}"></li>
-    </th:block>
+  <h2>contents</h2>
 </div>
 <footer layout:fragment="footer">
-    푸터
+  <h2>footer</h2>
 </footer>
-<script layout:fragment="script" th:inline="javascript">
-    const cateArr = [[${cate}]]
-    console.log(cateArr);
-</script>
-
+<th:block layout:fragment="script">
+  <h2>script</h2>
+</th:block>
 </body>
 </html>

@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 목록</title>
-    <th:block th:replace="include/head :: headFragment"></th:block>
+    <th:block th:replace="layout/head :: headFragment"></th:block>
 </head>
 <body>
-<th:block th:replace="include/header :: headerFragment"></th:block>
+<th:block th:replace="layout/header :: headerFragment"></th:block>
 <div class="container">
     <h2 style="text-align: center;">게시판 목록</h2>
     <div class="search_from">
@@ -47,7 +47,7 @@
         <a th:href="@{/board/boardInsert(name=${#authentication.principal})}" class="btn btn-primary">게시글 작성</a>
     </th:block>
 </div>
-<th:block th:replace="include/footer :: footerFragment"></th:block>
+<th:block th:replace="layout/footer :: footerFragment"></th:block>
 <script th:src="@{/js/datatables.js}"></script>
 </body>
 </html>

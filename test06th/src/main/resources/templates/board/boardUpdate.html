@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 글 수정</title>
-    <th:block th:replace="include/head :: headFragment"></th:block>
+    <th:block th:replace="layout/head :: headFragment"></th:block>
 </head>
 <body>
-<th:block th:replace="include/header :: headerFragment"></th:block>
+<th:block th:replace="layout/header :: headerFragment"></th:block>
 <div class="container">
     <h2 style="text-align: center;">게시판 글 수정</h2>
     <form th:action="@{/board/boardUpdate}" method="post" style="width:600px;margin:15px auto;"
@@ -38,7 +38,7 @@
         </div>
     </form>
 </div>
-<th:block th:replace="include/footer :: footerFragment"></th:block>
+<th:block th:replace="layout/footer :: footerFragment"></th:block>
 <script>
     $(document).ready(function() {
         $("#contBtn").click(function () {

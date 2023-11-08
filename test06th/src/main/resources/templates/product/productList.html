@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 목록</title>
+  <th:block th:replace="layout/head :: headFragment"></th:block>
+</head>
+<body>
+<th:block th:replace="layout/header :: headerFragment"></th:block>
+<div class="container">
+  <h2 style="text-align: center;">상품 목록</h2>
+  <div class="search_from">
+    <select name="select_filter" class="select_filter">
+      <option value="0">번호</option>
+      <option value="1">이름</option>
+      <option value="2">작성자</option>
+      <option value="3">조회수</option>
+      <option value="4">게시일</option>
+    </select>
+    <input type="text" name="search_filter" class="search_filter">
+  </div>
+  <table class="table" id="myTable">
+    <thead class="thead-light">
+    <thead>
+    <tr>
+      <th>번호</th>
+      <th>제목</th>
+      <th>작성일</th>
+      <th>읽은횟수</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${productList}">
+      <td>[[${product.no}]]</td>
+      <td><a th:href="@{/product/getProduct(no=${product.no})}">[[${product.title}]]</a></td>
+      <td>[[${product.resdate}]]</td>
+      <td>[[${product.cnt}]]</td>
+      <td>
+  <!--          <%&#45;&#45;                        <c:if test="${not empty board.fileList}">&#45;&#45;%>-->
+  <!--          <%&#45;&#45;                            <c:forEach items="${board.fileList}" varStatus="status">&#45;&#45;%>-->
+  <!--            <%&#45;&#45;                                <img src="${path0}/resources/images/${board.fileList.get(status.index).savefile}" alt="디스크이미지" style="width:24px;height:24px;"/>&#45;&#45;%>-->
+  <!--            <%&#45;&#45;                            </c:forEach>&#45;&#45;%>-->
+  <!--          <%&#45;&#45;                        </c:if>&#45;&#45;%>-->
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <th:block sec:authorize="isAuthenticated()">
+    <a th:href="@{/product/fileUpload}" class="btn btn-primary">판매하기</a>
+  </th:block>
+</div>
+<th:block th:replace="layout/footer :: footerFragment"></th:block>
+<script th:src="@{/js/datatables.js}"></script>
+</body>
+</html>

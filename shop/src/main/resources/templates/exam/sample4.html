@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- thymeleaf layout 사용 선언 -->
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sample4</title>
+    <th:block th:insert="~{layout/head :: head}"/>
+</head>
+<body>
+<!-- header 전체를 가져옴 -->
+<div th:insert="~{/layout/header :: header}"></div>
+<!-- logo 만 가져옴 -->
+<!--<div th:insert="~{/layout/header :: logo}"></div>-->
+<!-- gnb 만 가져옴 -->
+<!--<div th:insert="~{/layout/header :: gnb}"></div>-->
+<div style="height: 100vh">
+    <h1>sample4</h1>
+</div>
+<div th:insert="~{/layout/footer.html}"></div>
+</body>
+</html>

@@ -11,11 +11,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <jsp:include page="../include/head.html"/>
+    <jsp:include page="../layout/head.html"/>
     <title>판매하기</title>
 </head>
 <body>
-<jsp:include page="../include/header.html"/>
+<jsp:include page="../layout/header.html"/>
 <div class="banner"></div>
 <div class="container" style="width:1280px;margin:20px auto;">
     <h2 style="text-align: center;">판매하기 작성</h2>

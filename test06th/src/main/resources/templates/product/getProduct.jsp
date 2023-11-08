@@ -11,11 +11,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <jsp:include page="../include/head.html"/>
+    <jsp:include page="../layout/head.html"/>
     <title>게시판 상세</title>
 </head>
 <body>
-<jsp:include page="../include/header.html"/>
+<jsp:include page="../layout/header.html"/>
 <div class="container" style="width:1280px;margin:20px auto;">
     <div class="row content">
         <div class="col-sm-2 sidenav">
@@ -62,7 +62,7 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="table" id="myTable">
+            <table class="table" id="comment">
                 <thead>
                 <tr>
                     <th class="item1">작성자</th>
