@@ -86,31 +86,15 @@ public class ProductController {
             log.info("댓글 작성 실패");
             return "redirect:/";
         }
-    }   
+    }
     
-    // 댓글 수정 폼 이동
-    @GetMapping("comUpdate")
-    public String comUpdateGet(@RequestParam("id") Integer id, Model model) throws Exception {
-        return "/product/commentUpdate";
-    }
-
-    // 댓글 수정
-    @PostMapping("comUpdate")
-    public String comUpdatePost(@RequestParam("id") Integer id, Model model) throws Exception {
-        return "/product/commentUpdate";
-    }
-
-    // 댓글 삭제
-    @GetMapping("comDelete")
-    public String comDelete(@RequestParam("id") Integer id, Model model) throws Exception {
-        return "product/commentUpdate";
-    }
-
+    // 중고거래 추가 폼이동
     @GetMapping("fileUpload")
     public String fileUploadForm(){
         return "product/productInsert";
     }
-
+    
+    // 중고거래 추가
     @PostMapping("fileUpload")
     public String fileUpload1(MultipartHttpServletRequest files, HttpServletRequest req, Model model) throws Exception {
 
@@ -248,10 +232,12 @@ public class ProductController {
     }
 
     @GetMapping("modifyFileboard")
-    public String modifyFileboard(@RequestParam("pno") Integer postNo, Model model) throws Exception {
-        Product fileboard = productService.getProduct(postNo);
-        model.addAttribute("fileboard", fileboard);
-        return "/fileboard/modifyFileboard";
+    public String modifyFileboard(@RequestParam("no") Integer postNo, Model model) throws Exception {
+        Product board = productService.getProduct(postNo);
+        List<FileDTO> fileList = productService.getFileGroupList(postNo);
+        model.addAttribute("board", board);
+        model.addAttribute("fileList", fileList);
+        return "/product/productUpdate";
     }
 
     @PostMapping("modifyFileboard")
@@ -331,14 +317,13 @@ public class ProductController {
                     productService.removeFileAll(postNo);
                 }
             }
-//                productService.updateFileboard(fileboard);
+            productService.updateFileboard(fileboard);
         }
 
         fileboard.setFileList(fileList);
         fileboard.setFileBoard(board); //글 제목 내용
 //        productService.removeFileAll(postNo);
         productService.updateFileboard(fileboard);
-
         /////////////
         return "redirect:/product/getFileboard?pno="+postNo;
     }

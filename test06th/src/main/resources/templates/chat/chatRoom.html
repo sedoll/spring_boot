@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채팅</title>
+    <th:block th:replace="layout/head :: headFragment"></th:block>
+</head>
+<body>
+<th:block th:replace="layout/header :: headerFragment"></th:block>
+<div class="container">
+    <h2 style="text-align: center;">채팅</h2>
+    <input id="content" type="text" placeholder="보낼 메세지를 입력하세요." class="content">
+<!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />-->
+    <input type="hidden" id="id" th:value="${#authentication.principal}">
+    <input type="hidden" id="roomId" th:value="${room.roomId}" />
+    <button type="button" value="전송" class="sendBtn" id="sendBtn" onclick="sendMsg()">전송</button>
+    <button type="button" value="방나가기" class="quit" onclick="quit()">방 나가기 </button>
+    <div>
+        <span>메세지</span>
+        <div class="msgArea"></div>
+    </div>
+</div>
+<script th:inline="javascript">
+    // 채팅 보내기
+    $(document).ready(function () {
+        $("#sendBtn").click(()=> {
+            $("#content").val("");
+        })
+    });
+</script>
+
+<!-- websocket, 채팅 부분 -->
+<script th:inline="javascript">
+    let socket = new WebSocket("ws://localhost:8085/ws/chat");
+    let roomId = document.getElementById('roomId').value;
+    let id = document.getElementById('id').value;
+
+    socket.onopen = function (e) {
+        console.log('open server!')
+        enterRoom(socket);
+    };
+
+    socket.onclose = function (e) {
+        console.log('disconnet');
+    };
+
+    socket.onerror = function (e) {
+        console.log(e);
+    };
+
+    socket.onmessage = function (e) {
+        console.log(e.data);
+        let msgArea = document.querySelector('.msgArea');
+        let newMsg = document.createElement('div');
+        newMsg.innerText = e.data;
+        msgArea.append(newMsg);
+    };
+
+    function enterRoom(socket) {
+        var enterMsg = {
+            "type": "ENTER",
+            "roomId": roomId,
+            "sender": id,
+            "msg": ""
+        };
+        socket.send(JSON.stringify(enterMsg));
+    }
+
+    function sendMsg() {
+        let content = document.getElementById('content').value;
+        let talkMsg = {
+            "type": "TALK",
+            "roomId": roomId,
+            "sender": id,
+            "msg": content
+        };
+        socket.send(JSON.stringify(talkMsg));
+        // ajax 요청
+        $.ajax({
+            type: "POST",
+            url: "/chat/insertChat",
+            data: talkMsg,
+            cache: false,
+            success: function(result) {
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
+    }
+
+    function quit() {
+        var quitMsg = {
+            "type": "QUIT",
+            "roomId": roomId,
+            "sender": id,
+            "msg": ""
+        };
+        socket.send(JSON.stringify(quitMsg));
+        socket.close();
+        location.href = "/chat/chatList";
+    }
+</script>
+</body>
+</html>

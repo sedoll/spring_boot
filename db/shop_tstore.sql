@@ -11,3 +11,10 @@ CREATE TABLE book(
 );
 	
 select * from book;
+
+CREATE TABLE item(
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	itemName VARCHAR(255) NOT NULL,
+	price INT DEFAULT 1000,
+	quantity INT DEFAULT 1
+);

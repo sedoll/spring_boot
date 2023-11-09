@@ -159,3 +159,26 @@ CREATE TABLE fileobj (
 	filesize LONG,
 	uploaddate VARCHAR(100)
 );
+
+-- 채팅방
+CREATE TABLE chatroom(
+	room_id VARCHAR(200) PRIMARY key,
+	NAME VARCHAR(200),
+	buyer VARCHAR(20),
+	seller VARCHAR(20),
+	FOREIGN KEY(buyer) REFERENCES kuser(name) ON DELETE CASCADE,
+	FOREIGN KEY(seller) REFERENCES kuser(name) ON DELETE CASCADE
+);
+	
+-- 채팅 메세지
+CREATE TABLE chatmsg(
+	no BIGINT PRIMARY KEY AUTO_INCREMENT,
+	room_id VARCHAR(200) NOT NULL,
+	mtype VARCHAR(10) NOT NULL,
+	sender VARCHAR(20) NOT NULL,
+	message VARCHAR(1000) NOT NULL,
+	resdate DATETIME DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(sender) REFERENCES kuser(name) ON DELETE CASCADE,
+	FOREIGN KEY(room_id) REFERENCES chatroom(room_id) ON DELETE CASCADE
+);
+	
