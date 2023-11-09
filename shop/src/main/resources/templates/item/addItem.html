@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addItem</title>
+</head>
+<body>
+<h1>addItem</h1>
+<form th:action="@{/item/add}" method="post">
+    <div><input type="text" id="itemName" name="itemName" placeholder="name"></div>
+    <div><input type="number" id="price" name="price" placeholder="price"></div>
+    <div><input type="number" id="quantity" name="quantity" placeholder="quantity"></div>
+    <div><input type="submit" value="전송"></div>
+</form>
+</body>
+</html>

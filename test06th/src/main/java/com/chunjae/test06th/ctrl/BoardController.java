@@ -88,23 +88,31 @@ public class BoardController {
             log.info("댓글 작성 실패");
             return "redirect:/";
         }
-    }   
+    }
     
     // 댓글 수정 폼 이동
-    @GetMapping("comUpdate")
+    @GetMapping("commentUpdate")
     public String comUpdateGet(@RequestParam("id") Integer id, Model model) throws Exception {
-        return "/board/commentUpdate";
+        Comment com = boardService.getBoardCom(id);
+        model.addAttribute("com", com);
+        return "board/comUpdate";
     }
 
     // 댓글 수정
-    @PostMapping("comUpdate")
-    public String comUpdatePost(@RequestParam("id") Integer id, Model model) throws Exception {
-        return "/board/commentUpdate";
+    @PostMapping("commentUpdate")
+    public String comUpdatePost(@RequestParam("id") Integer id, @RequestParam("content") String content, Model model) throws Exception {
+        Comment comment = boardService.getBoardCom(id);
+        comment.setId(id);
+        comment.setContent(content);
+        int ck = boardService.upadetCom(comment);
+        return "redirect:/common/getBoard?id="+comment.getPar();
     }
 
     // 댓글 삭제
-    @GetMapping("comDelete")
+    @GetMapping("commentDelete")
     public String comDelete(@RequestParam("id") Integer id, Model model) throws Exception {
-        return "/board/commentUpdate";
+        Comment comment = boardService.getBoardCom(id);
+        int ck = boardService.deleCom(id);
+        return "redirect:/common/getBoard?id="+comment.getPar();
     }
 }

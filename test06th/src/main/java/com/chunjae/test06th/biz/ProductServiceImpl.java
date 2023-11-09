@@ -5,6 +5,7 @@ import com.chunjae.test06th.entity.FileDTO;
 import com.chunjae.test06th.entity.FileVO;
 import com.chunjae.test06th.entity.Product;
 import com.chunjae.test06th.per.ProductMapper;
+import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class ProductServiceImpl implements ProductService{
     // region 게시판 관련
     @Autowired
     private ProductMapper productMapper;
+
     // 게시글 목록 보기
     @Override
     public List<Product> productList() {
@@ -26,12 +28,6 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product getProduct(Integer no) throws Exception {
         return productMapper.getProduct(no);
-    }
-
-    // 게시글 작성
-    @Override
-    public Integer insertProduct(Product product) {
-        return productMapper.insertProduct(product);
     }
 
     @Override

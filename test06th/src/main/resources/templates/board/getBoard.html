@@ -49,7 +49,7 @@
         </tr>
         </tbody>
     </table>
-    <table class="table" id="myTable">
+    <table class="table" id="comment">
         <thead>
         <tr>
             <th class="item1">작성자</th>
@@ -65,8 +65,8 @@
                 <td class="item3" th:text="${lev.resdate}"></td>
                 <td class="item4">
                     <th:block th:if="${#authentication.principal eq lev.name or #authentication.authorities eq '[ADMIN]'}">
-                        <a th:href="@{/board/comUpdate(id=${lev.id})}" class="button is-link is-small is-outlined is-rounded ">수정</a>
-                        <a th:href="@{/board/comDelete(id=${lev.id})}" class="button is-danger is-small is-outlined is-rounded">삭제</a>
+                        <a th:href="@{/board/commentUpdate(id=${lev.id})}" class="button is-link is-small is-outlined is-rounded ">수정</a>
+                        <a th:href="@{/board/commentDelete(id=${lev.id})}" class="button is-danger is-small is-outlined is-rounded">삭제</a>
                     </th:block>
                 </td>
             </tr>
@@ -76,9 +76,9 @@
         <table class="tb3">
             <tbody>
             <tr>
-                <th:block sec:authorize="isAuthenticated()">
+                <th:block sec:authorize="isAuthenticated()" class="form-group">
                     <th class="has-text-centered" th:text="${#authentication.principal}"></th>
-                    <th><textarea name="content" id="content" cols="100" rows="5" placeholder="댓글 작성" maxlength="250" required ></textarea></th>
+                    <th><textarea name="content" id="content" class="form-control" cols="100" rows="5" placeholder="댓글 작성" maxlength="250" required ></textarea></th>
                     <th>
                         <input type="hidden" name="name" th:value="${#authentication.principal}">
                         <input type="hidden" name="par" th:value="${board.id}">

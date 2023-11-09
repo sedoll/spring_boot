@@ -29,12 +29,16 @@
     <insert id="inserBoardCom">
         INSERT INTO board_com values(default, #{name}, #{content}, default, #{par})
     </insert>
-    <!-- id(no) 로 Board 찾기 -->
-    <select id="getBoardById" resultType="com.chunjae.test06th.entity.Board">
-        select * from board where id = #{id}
+    <!-- 댓글 정보 -->
+    <select id="getBoardCom" resultType="com.chunjae.test06th.entity.Comment">
+        select * from board_com where id = #{id}
     </select>
-    <!-- name(실제 id) 로 Board 찾기 -->
-    <select id="getBoardByName" resultType="com.chunjae.test06th.entity.Board">
-        select * from board where name = #{name}
-    </select>
+    <!-- 댓글 수정 -->
+    <update id="upadetCom">
+        update board_com set content=#{content} where id=#{id}
+    </update>
+    <!-- 댓글 삭제 -->
+    <delete id="deleCom">
+        delete from board_com where id=#{id}
+    </delete>
 </mapper>

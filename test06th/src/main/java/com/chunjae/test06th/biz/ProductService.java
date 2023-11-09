@@ -15,9 +15,7 @@ public interface ProductService {
 
     // 게시글 상세 보기
     public Product getProduct(Integer no) throws Exception;
-    
-    // 게시글 작성
-    public Integer insertProduct(Product product);
+
     public int updatProduct(Product product); // 수정
     public int deleProduct(Integer no); // 삭제
 

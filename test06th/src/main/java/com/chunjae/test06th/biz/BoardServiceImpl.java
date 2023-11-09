@@ -55,4 +55,19 @@ public class BoardServiceImpl implements BoardService{
     public int inserBoardCom(Comment comment) {
         return boardMapper.inserBoardCom(comment);
     }
+
+    @Override
+    public Comment getBoardCom(Integer id) {
+        return boardMapper.getBoardCom(id);
+    }
+
+    @Override
+    public int upadetCom(Comment comment) {
+        return boardMapper.upadetCom(comment);
+    }
+
+    @Override
+    public int deleCom(Integer id) {
+        return boardMapper.deleCom(id);
+    }
 }

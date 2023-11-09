@@ -7,6 +7,7 @@ import com.chunjae.test06th.entity.FileVO;
 import com.chunjae.test06th.entity.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,20 +36,6 @@ public class ProductController {
     public String productInsertForm(@RequestParam("name") String name, Model model) throws Exception {
         model.addAttribute("name", name);
         return "product/productInsert";
-    }
-
-    // 게시글 입력
-    // 일치하는 데이터가 없으면 null 반환
-    @PostMapping ("productInsert")
-    public String productInsert(Product product, Model model) throws Exception {
-        Integer ck = productService.insertProduct(product);
-        if(ck == 1) {
-            log.info("게시글 작성 성공");
-            return "redirect:/common/productList";
-        } else {
-            log.info("게시글 작성 실패");
-            return "redirect:/";
-        }
     }
 
     // 게시글 수정 폼 이동
@@ -141,21 +128,20 @@ public class ProductController {
         board.setId((String) map.get("id"));
         board.setTitle((String) map.get("title"));
         board.setContent((String) map.get("content"));
-        //uploadPath; //dispatcher-servlet에서 지정한 경로
-        //req.getContextPath(); //현재 프로젝트 홈 경로 - /pro3_war
-        //req.getServletPath();   //요청된 URL - /pro3_war/file/fileupload1
-        String uploadPath = req.getSession().getServletContext().getRealPath("/"); // contextpath
-        req.getRealPath("/static/upload");  //현재 프로젝트에 저장될 실제 경로
-        String devFolder = uploadPath + "/static/upload";    //개발자용 컴퓨터에 업로드 디렉토리 지정
-        String uploadFolder = req.getContextPath() + "/static/upload";
+        // 현재 작업 디렉토리를 가져와서 상대 경로를 만듭니다.
+        String currentWorkingDir = System.getProperty("user.dir");
+        String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
+
+        // 상대 경로와 업로드 디렉토리를 합쳐서 최종 경로를 만듭니다.
+        String uploadFolder = currentWorkingDir + relativePath;;
         File folder = new File(uploadFolder);
         if(!folder.exists())
             folder.mkdirs();
         log.info("-----------------------------------");
-        log.info(" 현재 프로젝트 홈 : "+req.getContextPath());
-        log.info(" dispatcher-servlet에서 지정한 경로 : "+uploadPath);
+        log.info(" 현재 프로젝트 홈 : "+ req.getContextPath());
+        log.info(" 지정한 경로 : "+uploadFolder);
         log.info(" 요청 URL : "+req.getServletPath());
-        log.info(" 프로젝트 저장 경로 : "+req.getRealPath("/static/upload"));
+        log.info(" 프로젝트 저장 경로 : "+uploadFolder);
 
         //여러 파일 반복 저장
         List<FileDTO> fileList = new ArrayList<>();
@@ -168,32 +154,33 @@ public class ProductController {
             log.info("size : "+file.getSize());
             log.info("path : ");
 
-//            File devFile = new File(devFolder, file.getOriginalFilename()); //개발자용 컴퓨터에 해당파일 생성
+            if(!file.getOriginalFilename().equals("")) { // 빈 파일은 업로드 안함
+                
+                String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
+                String OriginalFilename = file.getOriginalFilename(); // 실제 파일 이름
+                log.info(OriginalFilename);
+                String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));
+                String saveFileName = randomUUID + Extension;
 
-            String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
-            String OriginalFilename = file.getOriginalFilename();
-            log.info(OriginalFilename);
-            String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));
-            String saveFileName = randomUUID + Extension;
+                FileDTO data = new FileDTO();
+                data.setSavefolder(uploadFolder);
+                data.setOriginfile(file.getOriginalFilename());
+                data.setSavefile(saveFileName);
+                data.setFilesize(file.getSize());
+                Date today = new Date();
+                data.setUploaddate(today.toString());
+                fileList.add(data);
 
-            FileDTO data = new FileDTO();
-            data.setSavefolder(uploadFolder);
-            data.setOriginfile(file.getOriginalFilename());
-            data.setSavefile(saveFileName);
-            data.setFilesize(file.getSize());
-            Date today = new Date();
-            data.setUploaddate(today.toString());
-            fileList.add(data);
+                File saveFile = new File(uploadFolder, saveFileName); //실제 파일 객체 생성
 
-            File saveFile = new File(uploadFolder, saveFileName); //실제 파일 객체 생성
-
-            try {
-                file.transferTo(saveFile);  //실제 디렉토리에 해당파일 저장
+                try {
+                    file.transferTo(saveFile);  //실제 디렉토리에 해당파일 저장
 //                file.transferTo(devFile); //개발자용 컴퓨터에 해당파일 저장
-            } catch(IllegalStateException e1){
-                log.info(e1.getMessage());
-            } catch(IOException e2){
-                log.info(e2.getMessage());
+                } catch(IllegalStateException e1){
+                    log.info(e1.getMessage());
+                } catch(IOException e2){
+                    log.info(e2.getMessage());
+                }
             }
         }
 
@@ -288,17 +275,17 @@ public class ProductController {
         board.setContent((String) map.get("content"));
 
 
-        //uploadPath; //dispatcher-servlet에서 지정한 경로
-        //req.getContextPath(); //현재 프로젝트 홈 경로 - /pro3_war
-        //req.getServletPath();   //요청된 URL - /pro3_war/file/fileupload1
-        String uploadPath = req.getSession().getServletContext().getRealPath("/"); // contextpath
-        String devFolder = uploadPath + "/static/upload/";    //개발자용 컴퓨터에 업로드 디렉토리 지정
-        String uploadFolder = req.getRealPath("/static/upload"); // 서버에 업로드
+        // 현재 작업 디렉토리를 가져와서 상대 경로를 만듭니다.
+        String currentWorkingDir = System.getProperty("user.dir");
+        String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
+
+        // 상대 경로와 업로드 디렉토리를 합쳐서 최종 경로를 만듭니다.
+        String uploadFolder = currentWorkingDir + relativePath;;
         log.info("-----------------------------------");
         log.info(" 현재 프로젝트 홈 : "+req.getContextPath());
-        log.info(" dispatcher-servlet에서 지정한 경로 : "+uploadPath);
+        log.info(" dispatcher-servlet에서 지정한 경로 : "+uploadFolder);
         log.info(" 요청 URL : "+req.getServletPath());
-        log.info(" 프로젝트 저장 경로 : "+req.getRealPath("/static/upload"));
+        log.info(" 프로젝트 저장 경로 : "+uploadFolder);
         //여러 파일 반복 저장
         List<FileDTO> fileList = new ArrayList<>();
         Iterator<String> it = files.getFileNames();
@@ -311,31 +298,38 @@ public class ProductController {
             log.info("size : "+file.getSize());
             log.info("path : ");
 
-            File saveFile = new File(uploadFolder, file.getOriginalFilename()); //실제 파일 객체 생성
-//            File devFile = new File(devFolder, file.getOriginalFilename()); //개발자용 컴퓨터에 해당파일 생성
+            if(!file.getOriginalFilename().equals("")) {
+                String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
+                String OriginalFilename = file.getOriginalFilename(); // 실제 파일 이름
+                log.info(OriginalFilename);
+                String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));
+                String saveFileName = randomUUID + Extension;
 
-            FileDTO data = new FileDTO();
-            data.setSavefolder(uploadFolder);
-            data.setOriginfile(file.getOriginalFilename());
-            data.setSavefile(saveFile.getPath());
-            data.setFilesize(file.getSize());
-            Date today = new Date();
-            data.setUploaddate(today.toString());
-            data.setPno(postNo);
-            fileList.add(data);
+                FileDTO data = new FileDTO();
+                data.setSavefolder(uploadFolder);
+                data.setOriginfile(file.getOriginalFilename());
+                data.setSavefile(saveFileName);
+                data.setFilesize(file.getSize());
+                Date today = new Date();
+                data.setUploaddate(today.toString());
+                data.setPno(postNo);
+                fileList.add(data);
 
-            try {
-                file.transferTo(saveFile);  //실제 디렉토리에 해당파일 저장
+                File saveFile = new File(uploadFolder, saveFileName); //실제 파일 객체 생성
+
+                try {
+                    file.transferTo(saveFile);  //실제 디렉토리에 해당파일 저장
 //                file.transferTo(devFile); //개발자용 컴퓨터에 해당파일 저장
-            } catch(IllegalStateException e1){
-                log.info(e1.getMessage());
-            } catch(IOException e2){
-                log.info(e2.getMessage());
-            }
+                } catch(IllegalStateException e1){
+                    log.info(e1.getMessage());
+                } catch(IOException e2){
+                    log.info(e2.getMessage());
+                }
 
 //                if (!fileList.isEmpty()) {
-            if (!file.getOriginalFilename().equals("")) {
-                productService.removeFileAll(postNo);
+                if (!file.getOriginalFilename().equals("")) {
+                    productService.removeFileAll(postNo);
+                }
             }
 //                productService.updateFileboard(fileboard);
         }
