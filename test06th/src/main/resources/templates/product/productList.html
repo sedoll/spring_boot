@@ -14,22 +14,19 @@
   <div class="search_from">
     <select name="select_filter" class="select_filter">
       <option value="0">번호</option>
-      <option value="1">이름</option>
-      <option value="2">작성자</option>
-      <option value="3">조회수</option>
-      <option value="4">게시일</option>
+      <option value="1">제목</option>
+      <option value="2">작성일</option>
+      <option value="3">읽은횟수</option>
     </select>
     <input type="text" name="search_filter" class="search_filter">
   </div>
   <table class="table" id="myTable">
     <thead class="thead-light">
-    <thead>
     <tr>
       <th>번호</th>
       <th>제목</th>
       <th>작성일</th>
       <th>읽은횟수</th>
-      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -38,13 +35,6 @@
       <td><a th:href="@{/product/getProduct(no=${product.no})}">[[${product.title}]]</a></td>
       <td>[[${product.resdate}]]</td>
       <td>[[${product.cnt}]]</td>
-      <td>
-  <!--          <%&#45;&#45;                        <c:if test="${not empty board.fileList}">&#45;&#45;%>-->
-  <!--          <%&#45;&#45;                            <c:forEach items="${board.fileList}" varStatus="status">&#45;&#45;%>-->
-  <!--            <%&#45;&#45;                                <img src="${path0}/resources/images/${board.fileList.get(status.index).savefile}" alt="디스크이미지" style="width:24px;height:24px;"/>&#45;&#45;%>-->
-  <!--            <%&#45;&#45;                            </c:forEach>&#45;&#45;%>-->
-  <!--          <%&#45;&#45;                        </c:if>&#45;&#45;%>-->
-      </td>
     </tr>
     </tbody>
   </table>
