@@ -1765,3 +1765,12 @@ org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property o
 2023-11-09 13:22:33.226 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
 2023-11-09 13:22:33.268 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
 2023-11-09 13:22:33.287 INFO  [http-nio-8085-exec-1] [c.chunjae.test06th.ctrl.CommonController] - Board(id=1, name=admin, title=111, content=1111, cnt=0, resdate=2023-11-09 13:08:40)
+2023-11-09 13:25:09.140 INFO  [http-nio-8085-exec-9] [c.chunjae.test06th.ctrl.CommonController] - Board(id=1, name=admin, title=111, content=1111, cnt=0, resdate=2023-11-09 13:08:40)
+2023-11-09 13:25:13.639 INFO  [http-nio-8085-exec-5] [c.chunjae.test06th.ctrl.BoardController] - 게시글 수정 성공
+2023-11-09 13:25:13.648 INFO  [http-nio-8085-exec-4] [c.chunjae.test06th.ctrl.CommonController] - Board(id=1, name=admin, title=111, content=1111555, cnt=0, resdate=2023-11-09 13:08:40)
+2023-11-09 13:25:15.220 INFO  [http-nio-8085-exec-7] [c.chunjae.test06th.ctrl.BoardController] - 게시글 삭제 성공
+2023-11-09 13:25:21.255 INFO  [http-nio-8085-exec-5] [c.chunjae.test06th.ctrl.BoardController] - 게시글 작성 성공
+2023-11-09 13:25:22.251 INFO  [http-nio-8085-exec-7] [c.chunjae.test06th.ctrl.CommonController] - Board(id=2, name=admin, title=1234, content=1234, cnt=0, resdate=2023-11-09 13:25:21)
+2023-11-09 13:25:26.487 INFO  [http-nio-8085-exec-1] [c.chunjae.test06th.ctrl.BoardController] - Comment(id=null, name=admin, content=45678, resdate=null, par=2)
+2023-11-09 13:25:26.501 INFO  [http-nio-8085-exec-1] [c.chunjae.test06th.ctrl.BoardController] - 댓글 작성 성공
+2023-11-09 13:25:26.507 INFO  [http-nio-8085-exec-8] [c.chunjae.test06th.ctrl.CommonController] - Board(id=2, name=admin, title=1234, content=1234, cnt=0, resdate=2023-11-09 13:25:21)
