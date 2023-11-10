@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>식단표</title>
+  <th:block th:replace="layout/head :: headFragment"></th:block>
+</head>
+<body>
+<th:block th:replace="layout/header :: headerFragment"></th:block>
+<div class="container">
+  <h2 style="text-align: center;">게시판 목록</h2>
+  <form th:action="@{/food/foodList}" class="form" method="post" onsubmit="">
+    <div class="input-group">
+      <input type="text" name="name" id="name" class="form-control" placeholder="학교 이름 입력" required autofocus>
+      <div class="input-group-append">
+        <input class="btn btn-primary" type="submit" value="확인"></div>
+    </div>
+  </form>
+  <hr>
+
+  <p class="is-size-3">이번 주 식단표</p>
+  <table>
+    <thead>
+    <tr th:each="day, status : ${mlsvList}">
+      <th>
+        [[${day}]]
+        <th:block th:if="${status.index == 0}">
+          (월)
+        </th:block>
+        <th:block th:if="${status.index == 1}">
+          (화)
+        </th:block>
+        <th:block th:if="${status.index == 2}">
+          (수)
+        </th:block>
+        <th:block th:if="${status.index == 3}">
+          (목)
+        </th:block>
+        <th:block th:if="${status.index == 4}">
+          (금)
+        </th:block>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr th:each="eat : ${ddishList}">
+        <td>[[${eat}]]</td>
+      </tr>
+      <tr th:each="cal : ${calList}">
+        <td>[[${cal}]]</td>
+      </tr>
+      <tr th:each="orplc : ${orplcList}">
+        <td>[[${orplc}]]</td>
+      </tr>
+      <tr th:each="ntr : ${ntrList}">
+        <td>[[${ntr}]]</td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          알레르기 유발 식재료 번호 : 1.난류, 2.우유, 3.메밀, 4.땅콩, 5.대두, 6.밀, 7.고등어, 8.게, 9.새우, 10.돼지고기, 11.복숭아, 12.토마토, 13.아황산류, 14.호두,
+          15.닭고기, 16.쇠고기, 17.오징어, 18.조개류(굴, 전복, 홍합 포함), 19.잣
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<th:block th:replace="layout/footer :: footerFragment"></th:block>
+<script th:src="@{/js/datatables.js}"></script>
+</body>
+</html>

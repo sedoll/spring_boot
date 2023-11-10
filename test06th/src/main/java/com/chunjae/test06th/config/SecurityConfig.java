@@ -36,7 +36,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/common/**").permitAll() // "/login", "/join", "/idCheck", "/emailCheck", "/joinPro", "/updateForm", "/updateUserPro"
+                .antMatchers("/common/**", "/food/**").permitAll() // "/login", "/join", "/idCheck", "/emailCheck", "/joinPro", "/updateForm", "/updateUserPro"
                 .antMatchers("/product/**").hasAnyAuthority("ADMIN", "EMP", "USER")
                 .antMatchers("/user/**").hasAnyAuthority("ADMIN", "EMP", "USER")
                 .antMatchers("/board/**").hasAnyAuthority("ADMIN", "EMP", "USER")

@@ -155,3 +155,13 @@ CREATE TABLE chatmsg(
 	FOREIGN KEY(sender) REFERENCES kuser(name) ON DELETE CASCADE,
 	FOREIGN KEY(room_id) REFERENCES chatroom(room_id) ON DELETE CASCADE
 );
+
+-- 학교 정보
+CREATE TABLE school(
+	eo_code VARCHAR(10),
+	eo_name VARCHAR(100),
+	sc_code VARCHAR(50),
+	sc_name VARCHAR(100)
+);
+
+SELECT * FROM school;
