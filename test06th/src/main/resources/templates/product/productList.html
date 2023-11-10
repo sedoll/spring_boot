@@ -32,7 +32,7 @@
     <tbody>
     <tr th:each="product : ${productList}">
       <td>[[${product.no}]]</td>
-      <td><a th:href="@{/product/getProduct(no=${product.no})}">[[${product.title}]]</a></td>
+      <td><a th:href="@{/common/getProduct(no=${product.no})}">[[${product.title}]]</a></td>
       <td>[[${product.resdate}]]</td>
       <td>[[${product.cnt}]]</td>
     </tr>

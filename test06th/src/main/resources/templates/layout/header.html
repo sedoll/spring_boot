@@ -34,7 +34,7 @@
                 <li class="nav-item active">아이디: <span th:text="${#authentication.principal}"></span></li>
                 <li class="nav-item active">직급: <span th:text="${#authentication.authorities}"></span></li>
                 <li class="nav-item">
-                    <a th:href="@{/chat/chatList}" class="nav-link">채팅</a>
+                    <a th:href="@{/chat/chatList(id=${#authentication.principal})}" class="nav-link">채팅</a>
                 </li>
                 <li class="nav-item">
                     <a th:href="@{/user/updateForm(name=${#authentication.principal})}" class="nav-link">수정하기</a>

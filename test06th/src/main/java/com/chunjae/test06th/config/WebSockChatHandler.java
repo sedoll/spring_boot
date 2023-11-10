@@ -3,7 +3,7 @@ package com.chunjae.test06th.config;
 import com.chunjae.test06th.biz.ChatService;
 import com.chunjae.test06th.entity.ChatMessage;
 import com.chunjae.test06th.entity.ChatRoom;
-import com.chunjae.test06th.utils.MessageType;
+import com.chunjae.test06th.entity.MessageType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

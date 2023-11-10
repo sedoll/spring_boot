@@ -46,17 +46,20 @@
         </th:block>
       </td>
     </tr>
-    <tr>
-      <th>채팅하기</th>
-      <td>
-        <form th:action="@{/chat/createRoom}" method="post">
-          <input type="hidden" name="buyer" id="buyer" th:value="${#authentication.principal}">
-          <input type="hidden" name="seller" id="seller" th:value="${product.id}">
-          <input type="text" name="name" placeholder="채팅방 이름" required>
-          <button type="submit" class="btn btn-primary" >채팅하기</button>
-        </form>
-      </td>
-    </tr>
+    <th:block sec:authorize="isAuthenticated()">
+      <tr>
+        <th>채팅하기</th>
+        <td>
+          <form th:action="@{/chat/createRoom}" method="post">
+            <input type="hidden" name="buyer" id="buyer" th:value="${#authentication.principal}">
+            <input type="hidden" name="seller" id="seller" th:value="${product.id}">
+            <input type="hidden" name="pno" id="pno" th:value="${product.no}">
+            <input type="hidden" name="name" th:value="${#authentication.principal + ' , ' + product.id + ' : ' + product.title}">
+            <button type="submit" class="btn btn-primary">판매자와 채팅</button>
+          </form>
+        </td>
+      </tr>
+    </th:block>
     </tbody>
   </table>
   <hr>

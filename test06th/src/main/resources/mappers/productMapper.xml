@@ -13,10 +13,6 @@
     <select id="getProduct" resultType="com.chunjae.test06th.entity.Product">
         select * from product where no = #{no}
     </select>
-    <!-- 게시글작성 -->
-    <insert id="insertFile">
-        INSERT INTO product values(default, #{name}, #{title}, #{content}, default, default)
-    </insert>
     <!-- 게시글수정 -->
     <update id="updatFile">
         UPDATE product SET title=#{title}, content=#{content} WHERE id = #{id}
@@ -109,7 +105,7 @@
     </select>
     <!-- 파일 자료 추가 -->
     <insert id="fileBoardInsert">
-        insert into product values(default, #{id}, #{title}, #{content}, default, default)
+        insert into product values(default, #{id}, #{title}, #{content}, default, default, default)
     </insert>
     <!-- 파일 자료 수정하기 -->
     <update id="fileboardEdit">

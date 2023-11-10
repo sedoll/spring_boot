@@ -2,6 +2,7 @@ package com.chunjae.test06th.biz;
 
 import com.chunjae.test06th.entity.ChatMessage;
 import com.chunjae.test06th.entity.ChatRoom;
+import com.chunjae.test06th.entity.ProductChat;
 import com.chunjae.test06th.per.ChatMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,8 @@ public class ChatService {
 
     private final ObjectMapper objectMapper;
     private Map<String, ChatRoom> chatRooms;
+    private Map<String, ProductChat> chatBuyerRooms;
+    private Map<String, ProductChat> chatSellerRooms;
     @Autowired
     private ChatMapper chatMapper;
 
@@ -27,7 +30,7 @@ public class ChatService {
         chatRooms = new LinkedHashMap<>();
     }
     
-    // 채팅방 목록
+    // 전체 채팅방 목록
     public List<ChatRoom> findAllRoom() {
         List<ChatRoom> chatRoomList = chatMapper.findAllRoom();
         for (ChatRoom cr: chatRoomList) {
@@ -55,13 +58,18 @@ public class ChatService {
         return chatRoom;
     }
 
+    // 채팅방의 채팅 내역 갖고오기
+    public List<ChatMessage> findChatById(String roomId) {
+        return chatMapper.findChatById(roomId);
+    }
+
     // 채팅 내역 저장
     public int insertChat(ChatMessage chatMessage) {
         return chatMapper.insertChat(chatMessage);
     }
 
-    // 입력된 채팅 불러오기
-    public ChatMessage findChatLatest(String roomId) {
-        return chatMapper.findChatLatest(roomId);
+    // 중복된 채팅방이 있는지 검사
+    public int findChatDist(ChatRoom chatRoom) {
+        return chatMapper.findChatDist(chatRoom);
     }
 }

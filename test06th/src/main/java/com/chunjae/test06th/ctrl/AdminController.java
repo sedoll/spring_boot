@@ -1,6 +1,8 @@
 package com.chunjae.test06th.ctrl;
 
+import com.chunjae.test06th.biz.ChatService;
 import com.chunjae.test06th.biz.UserService;
+import com.chunjae.test06th.entity.ChatRoom;
 import com.chunjae.test06th.entity.Euser;
 import com.chunjae.test06th.excep.NoSuchDataException;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,8 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ChatService chatService;
 
     // 관리자 유저목록 확인페이지
     @GetMapping("/userList")
@@ -62,5 +66,14 @@ public class AdminController {
         int cnt = userService.updateLevel(name, lev);
         model.addAttribute("msg", "등급을 변경하였습니다.");
         return "redirect:/";
+    }
+
+    // 전체 채팅창 목록
+    @GetMapping("chatList")
+    public String chatList(@RequestParam("id") String id, Model model){
+        List<ChatRoom> roomList = chatService.findAllRoom();
+        logger.info(roomList.toString());
+        model.addAttribute("roomList",roomList);
+        return "admin/chatList";
     }
 }

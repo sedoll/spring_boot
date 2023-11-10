@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -151,19 +152,42 @@ public class CommonController {
         return "product/productList";
     }
 
-    // 게시글 상세 보기
-    // 일치하는 데이터가 없으면 null 반환
-    @GetMapping("getFileProduct")
-    public String getFileboard(@RequestParam("no") Integer no, Model model) throws Exception {
+    // getFileboard
+    // 판매 페이지 상세
+    @GetMapping("getProduct")
+    public String getFileboard(@RequestParam("no") int no, Model model, HttpServletRequest request) throws Exception {
+        FileVO fileboard = new FileVO();
+//        sqlSession.update("fileboard.countUp", postNo);
         Product product = productService.getProduct(no);
-        log.info(product.toString());
-        if(product==null) { // 회원이 없으면 예외처리, url로 직접 들어오는 것도 방지
-            throw new NoSuchFieldException("No Such Data");
-        }
-        model.addAttribute("fileboard", product);
-        return "getProduct";
+        List<FileDTO> fileList = productService.getFileGroupList(no);
+        fileboard.setFileBoard(product);
+        fileboard.setFileList(fileList);
+//        HttpSession session = request.getSession();
+//        Cookie[] cookieFromRequest = request.getCookies();
+//        String cookieValue = null;
+//        for(int i = 0 ; i<cookieFromRequest.length; i++) {
+//            // 요청정보로부터 쿠키를 가져온다.
+//            cookieValue = cookieFromRequest[0].getValue();  // 테스트라서 추가 데이터나 보안사항은 고려하지 않으므로 1번째 쿠키만 가져옴
+//        }
+//        // 쿠키 세션 입력
+//        if (session.getAttribute(no+":cookieFile") == null) {
+//            session.setAttribute(no+":cookieFile", no + ":" + cookieValue);
+//        } else {
+//            session.setAttribute(no+":cookieFile ex", session.getAttribute(no+":cookieFile"));
+//            if (!session.getAttribute(no+":cookieFile").equals(no + ":" + cookieValue)) {
+//                session.setAttribute(no+":cookieFile", no + ":" + cookieValue);
+//            }
+//        }
+//// 쿠키와 세션이 없는 경우 조회수 카운트
+//        if (!session.getAttribute(no+":cookieFile").equals(session.getAttribute(no+":cookieFile ex"))) {
+////            productService.countUp(no);
+//            fileboard.getFileBoard().setCnt(fileboard.getFileBoard().getCnt()+1);
+//        }
+        log.info(fileboard.toString());
+        model.addAttribute("product", fileboard.getFileBoard());
+        model.addAttribute("fileList", fileboard.getFileList());
+        return "product/getProduct";
     }
-    // endregion
 
     
 }

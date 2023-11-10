@@ -90,7 +90,7 @@ CREATE TABLE product(
 	content VARCHAR(2000) COMMENT '내용',
 	cnt INT DEFAULT 0 COMMENT '조회수',
 	resdate DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '게시일',
-	act VARCHAR(20) DEFAULT 'DEAL' COMMENT '거래상태', -- DEAL(판매중), SALE(판매완료)
+	act VARCHAR(20) DEFAULT 'DEAL' COMMENT '거래상태', -- JOIN(판매중), DSBLD(판매완료)
 	FOREIGN KEY(id) REFERENCES kuser(name) ON DELETE 		
 		CASCADE
 );
@@ -129,13 +129,15 @@ create table black_list (
 )
 
 -- 중고상품에 따른 채팅방 활성화 상태
-create view pro_chat AS select 
-	pro.no 'pno' COMMENT '중고상품번호', 
-	pro.title 'title' COMMENT '중고상품제목',
-	chat.room_id 'room_id' COMMENT '채팅방번호',
-	chat.name 'name' COMMENT '채팅방이름', 
-	pro.act 'pact' COMMENT '중고상품활성화상태', -- JOIN(활성), DSBLD(비활성)
-	chat.act 'cact' COMMENT '채팅방활성화상태', -- JOIN(활성), DSBLD(비활성)
+edumoncreate view pro_chat AS select 
+	pro.no AS 'pno', -- 중고상품번호
+	pro.title 'title', -- 중고상품제목
+	chat.room_id 'room_id', -- 채팅방번호
+	chat.buyer 'buyer',
+	chat.seller 'seller',
+	chat.name 'name', -- 채팅방이름
+	pro.act 'pact', -- 중고상품활성화상태 JOIN(활성), DSBLD(비활성)
+	chat.act 'cact' -- 채팅방활성화상태 JOIN(활성), DSBLD(비활성)
 		FROM product pro RIGHT OUTER JOIN chatroom chat
 			ON pro.no = chat.pno;
 

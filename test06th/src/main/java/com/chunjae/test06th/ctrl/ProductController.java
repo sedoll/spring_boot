@@ -167,50 +167,11 @@ public class ProductController {
                 }
             }
         }
-
         FileVO fileboard = new FileVO();
         fileboard.setFileList(fileList);
         fileboard.setFileBoard(board);
         productService.insertFileboard(fileboard);
-
-        return "redirect:/product/fileList";
-    }
-
-    // getFileboard
-    // 판매 페이지 상세
-    @GetMapping("getProduct")
-    public String getFileboard(@RequestParam("no") int no, Model model,HttpServletRequest request) throws Exception {
-        FileVO fileboard = new FileVO();
-//        sqlSession.update("fileboard.countUp", postNo);
-        Product product = productService.getProduct(no);
-        List<FileDTO> fileList = productService.getFileGroupList(no);
-        fileboard.setFileBoard(product);
-        fileboard.setFileList(fileList);
-//        HttpSession session = request.getSession();
-//        Cookie[] cookieFromRequest = request.getCookies();
-//        String cookieValue = null;
-//        for(int i = 0 ; i<cookieFromRequest.length; i++) {
-//            // 요청정보로부터 쿠키를 가져온다.
-//            cookieValue = cookieFromRequest[0].getValue();  // 테스트라서 추가 데이터나 보안사항은 고려하지 않으므로 1번째 쿠키만 가져옴
-//        }
-//        // 쿠키 세션 입력
-//        if (session.getAttribute(no+":cookieFile") == null) {
-//            session.setAttribute(no+":cookieFile", no + ":" + cookieValue);
-//        } else {
-//            session.setAttribute(no+":cookieFile ex", session.getAttribute(no+":cookieFile"));
-//            if (!session.getAttribute(no+":cookieFile").equals(no + ":" + cookieValue)) {
-//                session.setAttribute(no+":cookieFile", no + ":" + cookieValue);
-//            }
-//        }
-//// 쿠키와 세션이 없는 경우 조회수 카운트
-//        if (!session.getAttribute(no+":cookieFile").equals(session.getAttribute(no+":cookieFile ex"))) {
-////            productService.countUp(no);
-//            fileboard.getFileBoard().setCnt(fileboard.getFileBoard().getCnt()+1);
-//        }
-        log.info(fileboard.toString());
-        model.addAttribute("product", fileboard.getFileBoard());
-        model.addAttribute("fileList", fileboard.getFileList());
-        return "product/getProduct";
+        return "redirect:/common/productList";
     }
 
     @GetMapping("removeFileboard")

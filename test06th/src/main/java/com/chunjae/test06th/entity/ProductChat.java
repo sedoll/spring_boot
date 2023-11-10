@@ -6,15 +6,16 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
-public class Product {
+public class ProductChat {
     private Integer no;
-    private String id;
     private String title;
-    private String content;
-    private Integer cnt;
-    private String resdate;
-    private String act;
+    private String roomId;
+    private String buyer;
+    private String seller;
+    private String name;
+    private String pact;
+    private String cact;
 }

@@ -1,6 +1,5 @@
 package com.chunjae.test06th.entity;
 
-import com.chunjae.test06th.utils.MessageType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
