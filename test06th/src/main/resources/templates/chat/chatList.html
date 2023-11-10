@@ -14,17 +14,32 @@
     <th:block sec:authorize="isAuthenticated()">
         <div class="search_from">
             <select name="select_filter" class="select_filter">
-                <option value="0">방 이름</option>
+                <option value="0">상품이름</option>
+                <option value="1">구매자</option>
+                <option value="2">판매자</option>
             </select>
             <input type="text" name="search_filter" class="search_filter">
         </div>
         <table class="table" id="myTable">
-            <thead>
-                <tr><th>채팅방</th></tr>
+            <thead class="thead-light">
+                <tr>
+                    <th>상품이름</th>
+                    <th>구매자</th>
+                    <th>판매자</th>
+                </tr>
             </thead>
             <tbody>
                 <tr th:each="room : ${roomList}">
-                    <td><a th:href="@{/chat/chatRoom(roomId=${room.roomId})}">[[${room.name}]]</a></td>
+                    <th:block th:if="${room.act eq 'JOIN' and (#authentication.principal eq room.buyer or #authentication.principal eq room.seller or #authentication.authorities eq '[ADMIN]')}">
+                        <td><a th:href="@{/chat/chatRoom(roomId=${room.roomId})}">[[${room.name}]]</a></td>
+                        <td>[[${room.buyer}]]</td>
+                        <td>[[${room.seller}]]</td>
+                    </th:block>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>

@@ -37,10 +37,8 @@ public class ChatController {
     public String createRoom(Model model, ChatRoom chatRoom, HttpServletResponse res, String username) throws Exception {
         int ck = chatService.findChatDist(chatRoom); // 채팅방이 존재하는지 안하는지 검사
         if(ck == 0) {
-            ChatRoom room = chatService.createRoom(chatRoom);
-            model.addAttribute("room",room);
-            model.addAttribute("username",username);
-            return "chat/chatRoom";  //만든사람이 채팅방 1빠로 들어가게 됩니다
+            int ck2 = chatService.createRoom(chatRoom);
+            return "redirect:/chat/chatList";  //만든사람이 채팅방 1빠로 들어가게 됩니다
         } else {
             res.setContentType("text/html;charset=UTF-8");
             PrintWriter out = res.getWriter();
@@ -54,10 +52,9 @@ public class ChatController {
     // 채팅방 들어가기
     @GetMapping("chatRoom")
     public String chatRoom(Model model, @RequestParam String roomId) throws Exception{
-        ChatRoom room = chatService.findRoomById(roomId);
         List<ChatMessage> chatMsg = chatService.findChatById(roomId);
         model.addAttribute("chat", chatMsg);
-        model.addAttribute("room",room);   //현재 방에 들어오기위해서 필요한데...... 접속자 수 등등은 실시간으로 보여줘야 돼서 여기서는 못함
+        model.addAttribute("roomId",roomId);   //현재 방에 들어오기위해서 필요한데...... 접속자 수 등등은 실시간으로 보여줘야 돼서 여기서는 못함
         return "chat/chatRoom";
     }
     

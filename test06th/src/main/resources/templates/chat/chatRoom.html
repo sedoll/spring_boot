@@ -22,7 +22,7 @@
         <input type="text" class="form-control" id="content" placeholder="보낼 메세지를 입력하세요." aria-label="Recipient's username" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <input type="hidden" id="id" th:value="${#authentication.principal}">
-            <input type="hidden" id="roomId" th:value="${room.roomId}" />
+            <input type="hidden" id="roomId" th:value="${roomId}" />
             <button type="button" value="전송" class="btn btn btn-outline-primary" id="sendBtn" onclick="sendMsg()">전송</button>
             <button type="button" value="방나가기" class="btn btn-outline-danger" onclick="quit()">방 나가기 </button>
         </div>
@@ -33,8 +33,7 @@
             <th:block th:each="msg : ${chat}">
                 <div>[[${msg.sender}]] : [[${msg.message}]]</div>
             </th:block>
-            <div class="msgArea" th:each="msg : ${chat}">
-            </div>
+            <div class="msgArea"></div>
         </div>
     </div>
 </div>

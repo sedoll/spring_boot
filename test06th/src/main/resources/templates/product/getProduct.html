@@ -54,7 +54,7 @@
             <input type="hidden" name="buyer" id="buyer" th:value="${#authentication.principal}">
             <input type="hidden" name="seller" id="seller" th:value="${product.id}">
             <input type="hidden" name="pno" id="pno" th:value="${product.no}">
-            <input type="hidden" name="name" th:value="${#authentication.principal + ' , ' + product.id + ' : ' + product.title}">
+            <input type="hidden" name="name" th:value="${product.title}">
             <button type="submit" class="btn btn-primary">판매자와 채팅</button>
           </form>
         </td>

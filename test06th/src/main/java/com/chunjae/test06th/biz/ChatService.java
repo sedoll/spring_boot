@@ -45,7 +45,7 @@ public class ChatService {
     }
     
     // 채팅방 만들기
-    public ChatRoom createRoom(ChatRoom chatRoom) {
+    public int createRoom(ChatRoom chatRoom) {
         String randomId = UUID.randomUUID().toString();
         ChatRoom chatRoom2 = ChatRoom.builder()
                 .roomId(randomId)
@@ -55,7 +55,7 @@ public class ChatService {
         chatRoom.setRoomId(randomId);
         int ck = chatMapper.createRoom(chatRoom);
 
-        return chatRoom;
+        return ck;
     }
 
     // 채팅방의 채팅 내역 갖고오기
