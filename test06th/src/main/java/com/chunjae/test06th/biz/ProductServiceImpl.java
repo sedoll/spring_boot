@@ -35,22 +35,13 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.updatProduct(product);
     }
 
+    // 중고게시글 및 묶여있는 파일 삭제
     @Override
-    public int deleProduct(Integer no) {
-        return productMapper.deleProduct(no);
+    public int removeFileboard(int postNo) throws Exception {
+        int ck = productMapper.fileboardDelete(postNo);
+        int ck2 = productMapper.fileDelete(postNo);
+        return ck+ck2;
     }
-
-    @Override
-    public List<Comment> CommentList(Integer par) {
-        return productMapper.commentList(par);
-    }
-
-    @Override
-    public int inserProductCom(Comment comment) {
-        return productMapper.inserProductCom(comment);
-    }
-    // endregion
-
 
     // region 파일 관련
     @Override
@@ -78,11 +69,6 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public FileVO getFileObject(int no) throws Exception {
         return null;
-    }
-
-    @Override
-    public void removeFileboard(int postNo) throws Exception {
-        productMapper.removeFileboard(postNo);
     }
 
     @Override

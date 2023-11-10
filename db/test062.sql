@@ -91,9 +91,12 @@ CREATE TABLE product(
 	cnt INT DEFAULT 0 COMMENT '조회수',
 	resdate DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '게시일',
 	act VARCHAR(20) DEFAULT 'DEAL' COMMENT '거래상태', -- JOIN(판매중), DSBLD(판매완료)
+	addr VARCHAR(50) NOT NULL COMMENT '서울특별시 구로구',
 	FOREIGN KEY(id) REFERENCES kuser(name) ON DELETE 		
 		CASCADE
 );
+
+ALTER TABLE product ADD COLUMN addr VARCHAR(50) NOT NULL;
 	
 -- 자료실 db
 CREATE TABLE fileobj (

@@ -41,9 +41,9 @@
             <th>비고</th>
             <td>
                 <!-- 아이디가 일치하거나 관리자인 경우 -->
-                <th:block th:if="${#authentication.principal eq board.name or #authentication.authorities eq '[ADMIN]'}">
-                    <a th:href="@{/board/boardUpdate(id=${board.id})}">수정</a>
-                    <a th:href="@{/board/boardDelete(id=${board.id})}">삭제</a>
+                <th:block th:if="${#authentication.principal eq board.name or #authorization.expression('hasAuthority(''ADMIN'')')}">
+                    <a class="btn btn-primary" th:href="@{/board/boardUpdate(id=${board.id})}">수정</a>
+                    <a class="btn btn-danger" th:href="@{/board/boardDelete(id=${board.id})}">삭제</a>
                 </th:block>
             </td>
         </tr>
@@ -64,9 +64,9 @@
                 <td class="item2" th:text="${lev.content}"></td>
                 <td class="item3" th:text="${lev.resdate}"></td>
                 <td class="item4">
-                    <th:block th:if="${#authentication.principal eq lev.name or #authentication.authorities eq '[ADMIN]'}">
-                        <a th:href="@{/board/commentUpdate(id=${lev.id})}" class="button is-link is-small is-outlined is-rounded ">수정</a>
-                        <a th:href="@{/board/commentDelete(id=${lev.id})}" class="button is-danger is-small is-outlined is-rounded">삭제</a>
+                    <th:block th:if="${#authentication.principal eq lev.name or #authorization.expression('hasAuthority(''ADMIN'')')}">
+                        <a th:href="@{/board/commentUpdate(id=${lev.id})}" class="btn btn-primary">수정</a>
+                        <a th:href="@{/board/commentDelete(id=${lev.id})}" class="btn btn-danger">삭제</a>
                     </th:block>
                 </td>
             </tr>

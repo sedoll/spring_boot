@@ -21,14 +21,6 @@
     <delete id="deleFile">
         DELETE from product where id = #{id}
     </delete>
-    <!-- 댓글 목록 -->
-    <select id="commentList" resultType="com.chunjae.test06th.entity.Comment">
-        select * from board_com where par = #{par}
-    </select>
-    <!-- 댓글 작성 -->
-    <insert id="inserProductCom">
-        INSERT INTO board_com values(default, #{name}, #{content}, default, #{par})
-    </insert>
     <!-- id(no) 로 Product 찾기 -->
     <select id="getProductById" resultType="com.chunjae.test06th.entity.Product">
         select * from board where id = #{id}
@@ -103,9 +95,9 @@
     <select id="latestFileboard" resultType="com.chunjae.test06th.entity.Product">
         select * from product order by no desc limit 0,1
     </select>
-    <!-- 파일 자료 추가 -->
+    <!-- 중고 판매 게시글 추가 -->
     <insert id="fileBoardInsert">
-        insert into product values(default, #{id}, #{title}, #{content}, default, default, default)
+        insert into product values(default, #{id}, #{title}, #{content}, default, default, default, #{addr})
     </insert>
     <!-- 파일 자료 수정하기 -->
     <update id="fileboardEdit">

@@ -61,33 +61,6 @@ public class ProductController {
         }
     }
     
-    // 게시글 삭제
-    @GetMapping("productDelete")
-    public String productDelete(@RequestParam("id") Integer id, Model model) throws Exception {
-        Integer ck = productService.deleProduct(id);
-        if(ck == 1) {
-            log.info("게시글 삭제 성공");
-            return "redirect:/common/productList";
-        } else {
-            log.info("게시글 삭제 실패");
-            return "redirect:/";
-        }
-    }
-
-    // 댓글 작성
-    @PostMapping("commentInsert")
-    public String insertComment(Comment comment) throws Exception {
-        log.info(comment.toString());
-        Integer ck = productService.inserProductCom(comment);
-        if(ck == 1) {
-            log.info("댓글 작성 성공");
-            return "redirect:/common/getProduct?id="+comment.getPar();
-        } else {
-            log.info("댓글 작성 실패");
-            return "redirect:/";
-        }
-    }
-    
     // 중고거래 추가 폼이동
     @GetMapping("fileUpload")
     public String fileUploadForm(){
@@ -112,6 +85,7 @@ public class ProductController {
         board.setId((String) map.get("id"));
         board.setTitle((String) map.get("title"));
         board.setContent((String) map.get("content"));
+        board.setAddr((String) map.get("addr"));
         // 현재 작업 디렉토리를 가져와서 상대 경로를 만듭니다.
         String currentWorkingDir = System.getProperty("user.dir");
         String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
@@ -173,13 +147,20 @@ public class ProductController {
         productService.insertFileboard(fileboard);
         return "redirect:/common/productList";
     }
-
-    @GetMapping("removeFileboard")
-    public String removeFileboard(@RequestParam("no") Integer postNo, HttpServletRequest req) throws Exception {
+    
+    // 중고상품게시글 및 묶여있던 파일 삭제
+    @GetMapping("productDelete")
+    public String productDelete(@RequestParam("no") Integer postNo, HttpServletRequest req) throws Exception {
 
         //실제 파일 삭제 로직
         //파일 경로 지정
-        String path = req.getRealPath("/static/upload");
+        // 현재 작업 디렉토리를 가져와서 상대 경로를 만듭니다.
+        String currentWorkingDir = System.getProperty("user.dir");
+        String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
+
+        // 상대 경로와 업로드 디렉토리를 합쳐서 최종 경로를 만듭니다.
+        String path = currentWorkingDir + relativePath;;
+//        String path = req.getRealPath("/static/upload");
         List<FileDTO> fileList = productService.getFileGroupList(postNo);
         for(FileDTO fileobj : fileList) {
             File file = new File(path + "/" + fileobj.getOriginfile());
@@ -188,8 +169,8 @@ public class ProductController {
             }
         }
         //데이터베이스의 파일 자료실과 파일의 내용 삭제
-        productService.removeFileboard(postNo);
-        return "redirect:filelist1";
+        int ck = productService.removeFileboard(postNo);
+        return "redirect:/common/productList";
     }
 
     @GetMapping("modifyFileboard")

@@ -10,11 +10,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Product {
-    private Integer no;
-    private String id;
-    private String title;
-    private String content;
-    private Integer cnt;
-    private String resdate;
-    private String act;
+    private Integer no;         // 상품 번호
+    private String id;          // 작성자
+    private String title;       // 제목
+    private String content;     // 내용
+    private Integer cnt;        // 조회수
+    private String resdate;     // 게시일
+    private String act;         // 거래상태
+    private String addr;        // 거래장소 주소
 }

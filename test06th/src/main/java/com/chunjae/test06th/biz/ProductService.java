@@ -17,16 +17,12 @@ public interface ProductService {
     public Product getProduct(Integer no) throws Exception;
 
     public int updatProduct(Product product); // 수정
-    public int deleProduct(Integer no); // 삭제
-
-    public List<Comment> CommentList(Integer par); // 댓글 리스트 목록
-    public int inserProductCom(Comment comment); // 댓글 입력
 
     public void insertFileboard(FileVO fileboard) throws Exception;
     public List<FileVO> getFileList() throws Exception;
     public List<FileDTO> getFileGroupList(int postNo) throws Exception;
     public FileVO getFileObject(int no) throws Exception;
-    public void removeFileboard(int postNo) throws Exception;
+    public int removeFileboard(int postNo) throws Exception; // product, file 삭제
     public void fileRemove(int no) throws Exception;
     public FileDTO getFile(int no) throws Exception;
     public void updateFileboard(FileVO fileboard) throws Exception;
