@@ -168,3 +168,5 @@ CREATE TABLE school(
 );
 
 SELECT * FROM school;
+
+SELECT * FROM school WHERE sc_name LIKE CONCAT('%','신구로', '%') limit 1

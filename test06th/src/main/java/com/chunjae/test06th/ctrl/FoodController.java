@@ -3,12 +3,15 @@ package com.chunjae.test06th.ctrl;
 import com.chunjae.test06th.biz.FoodService;
 import com.chunjae.test06th.entity.School;
 import com.chunjae.test06th.utils.Week;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -18,6 +21,7 @@ import java.util.List;
 public class FoodController {
     @Autowired
     private FoodService foodService;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("foodList")		// board/list.do
     public String boardList(Model model) throws Exception {
@@ -25,12 +29,9 @@ public class FoodController {
     }
 
     @PostMapping("foodList")		// board/list.do
-    public String getBoardList(HttpServletRequest request, Model model) {
+    public String getBoardList(@RequestParam("name") String sc_name, Model model) {
         try {
-            String sc_name = request.getParameter("name");
             System.out.println(sc_name);
-            School dto = foodService.getSchool(sc_name);
-            System.out.println(dto.toString());
 
             List<String> ddishList; // 식단
             List<String> mlsvList; // 날짜
@@ -40,11 +41,19 @@ public class FoodController {
 
             Week week = new Week();
 
-            List<String> date = week.getDate();
+            List<String> date = week.getDate(); // 날짜 정보 갖고오기
+
+            School dto = foodService.getSchool(sc_name);
+            logger.info(dto.toString());
+            System.out.println(dto.toString());
 
             String codeS = dto.getSc_code();
             String codeK = dto.getEo_code();
             String schoolName = dto.getSc_name();
+
+//            String codeS = "7041136";
+//            String codeK = "B10";
+//            String schoolName = "서울신구로초등학교";
 
             int minValue = 1;
             int maxValue = 5;
