@@ -16,7 +16,7 @@
         <legend>게시판 글 작성</legend>
         <div class="form-group">
             <label for="id">Id</label>
-            <input type="text" class="form-control bg-secondary text-white" name="name" id="id" th:value="${name}" minlength="4" maxlength="16"
+            <input type="text" class="form-control bg-secondary text-white" name="id" id="id" th:value="${#authentication.principal}" minlength="4" maxlength="16"
                    pattern="^[a-z0-9]*$" readonly/>
         </div>
 

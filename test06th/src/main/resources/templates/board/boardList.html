@@ -34,15 +34,15 @@
         </thead>
         <tbody>
         <tr th:each="board : ${boardList}">
+            <td th:text="${board.no}"></td>
+            <td><a th:href="@{/common/getBoard(no=${board.no})}" th:text="${board.title}"></a></td>
             <td th:text="${board.id}"></td>
-            <td><a th:href="@{/common/getBoard(id=${board.id})}" th:text="${board.title}"></a></td>
-            <td th:text="${board.name}"></td>
             <td th:text="${board.cnt}"></td>
             <td th:text="${board.resdate}"></td>
             <td>
-                <th:block th:if="${#authentication.principal eq board.name or #authorization.expression('hasAuthority(''ADMIN'')')}">
-                    <a th:href="@{/board/boardUpdate(id=${board.id})}" class="btn btn-primary">수정</a>
-                    <a th:href="@{/board/boardDelete(id=${board.id})}" class="btn btn-danger">삭제</a>
+                <th:block th:if="${#authentication.principal eq board.id or #authorization.expression('hasAuthority(''ADMIN'')')}">
+                    <a th:href="@{/board/boardUpdate(no=${board.no})}" class="btn btn-primary">수정</a>
+                    <a th:href="@{/board/boardDelete(no=${board.no})}" class="btn btn-danger">삭제</a>
                 </th:block>
             </td>
         </tr>

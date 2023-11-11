@@ -16,7 +16,7 @@
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div class="form-group">
             <label for="content">Content</label>
-            <input type="hidden" name="id" id="id" th:value="${com.id}" >
+            <input type="hidden" name="no" id="no" th:value="${com.no}" >
             <textarea name="content" class="form-control" id="content" placeholder="내용 입력" rows="8" cols="100" maxlength="280" required>[[${com.content}]]</textarea>
             <input type="hidden" id="ck" value="no">
             <div id="error-message"></div>
