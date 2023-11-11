@@ -15434,3 +15434,194 @@ java.sql.SQLSyntaxErrorException: (conn=581) Table 'edumon.board_com' doesn't ex
 2023-11-11 21:22:33.098 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
 2023-11-11 21:23:05.423 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
 2023-11-11 21:23:05.426 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-11 22:33:02.941 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-11 22:33:02.948 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 27556 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-11 22:33:02.956 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-11 22:33:03.179 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-11 22:33:03.179 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-11 22:33:04.188 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-11 22:33:04.194 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:33:04.195 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-11 22:33:04.195 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-11 22:33:04.282 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-11 22:33:04.282 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1102 ms
+2023-11-11 22:33:04.714 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-11 22:33:04.835 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4052c942, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@16997222, org.springframework.security.web.context.SecurityContextPersistenceFilter@5634d4fe, org.springframework.security.web.header.HeaderWriterFilter@731d7488, org.springframework.security.web.csrf.CsrfFilter@55e36eee, org.springframework.security.web.authentication.logout.LogoutFilter@2cbfe3b4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2a6f9e54, org.springframework.security.web.session.ConcurrentSessionFilter@3fe2003, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3de5e575, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@527dd142, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@757edda4, org.springframework.security.web.session.SessionManagementFilter@323f057f, org.springframework.security.web.access.ExceptionTranslationFilter@7e8f171d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7fba0df3]
+2023-11-11 22:33:05.033 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-11 22:33:05.068 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-11 22:33:05.078 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.413 seconds (JVM running for 3.2)
+2023-11-11 22:47:41.991 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-11 22:47:41.991 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 21784 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-11 22:47:41.994 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-11 22:47:42.202 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-11 22:47:42.203 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-11 22:47:43.153 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-11 22:47:43.160 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:47:43.161 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-11 22:47:43.162 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-11 22:47:43.256 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-11 22:47:43.256 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1053 ms
+2023-11-11 22:47:43.691 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-11 22:47:43.820 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2a6f9e54, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3dcbd9ec, org.springframework.security.web.context.SecurityContextPersistenceFilter@3fe2003, org.springframework.security.web.header.HeaderWriterFilter@24fc7512, org.springframework.security.web.csrf.CsrfFilter@7e80439a, org.springframework.security.web.authentication.logout.LogoutFilter@2515968c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6dbf5184, org.springframework.security.web.session.ConcurrentSessionFilter@77d3fd75, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@66913ccf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5634d4fe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@41c9b416, org.springframework.security.web.session.SessionManagementFilter@6227f6e1, org.springframework.security.web.access.ExceptionTranslationFilter@72362f7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@61d65333]
+2023-11-11 22:47:44.012 WARN  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - Unable to start LiveReload server
+2023-11-11 22:47:44.025 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:47:44.027 WARN  [restartedMain] [o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8085 is already in use
+2023-11-11 22:47:44.032 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Pausing ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:47:44.033 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Stopping service [Tomcat]
+2023-11-11 22:47:44.038 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Stopping ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:47:44.039 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Destroying ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:47:44.046 INFO  [restartedMain] [o.s.b.a.l.ConditionEvaluationReportLoggingListener] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-11-11 22:47:44.069 ERROR [restartedMain] [o.s.b.d.LoggingFailureAnalysisReporter] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8085 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8085 or configure this application to listen on another port.
+
+2023-11-11 22:54:59.634 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 33672 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-11 22:54:59.632 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-11 22:54:59.635 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-11 22:54:59.857 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-11 22:54:59.857 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-11 22:55:00.811 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-11 22:55:00.817 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:55:00.818 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-11 22:55:00.819 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-11 22:55:00.903 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-11 22:55:00.903 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1045 ms
+2023-11-11 22:55:01.318 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-11 22:55:01.424 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1d9c3c47, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32e66f92, org.springframework.security.web.context.SecurityContextPersistenceFilter@35c71ea8, org.springframework.security.web.header.HeaderWriterFilter@72362f7, org.springframework.security.web.csrf.CsrfFilter@55b10107, org.springframework.security.web.authentication.logout.LogoutFilter@455a19d9, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7fba0df3, org.springframework.security.web.session.ConcurrentSessionFilter@323f057f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3fe2003, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6b2e4d5c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2a6f9e54, org.springframework.security.web.session.SessionManagementFilter@24fc7512, org.springframework.security.web.access.ExceptionTranslationFilter@2bf4a02a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@14229484]
+2023-11-11 22:55:01.620 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-11 22:55:01.633 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:55:01.650 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-11 22:55:01.659 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.309 seconds (JVM running for 3.178)
+2023-11-11 22:55:07.777 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-11 22:55:07.778 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-11 22:55:07.778 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 0 ms
+2023-11-11 22:55:35.146 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 28212 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-11 22:55:35.146 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-11 22:55:35.148 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-11 22:55:35.339 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-11 22:55:35.339 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-11 22:55:36.270 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-11 22:55:36.277 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:55:36.278 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-11 22:55:36.278 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-11 22:55:36.364 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-11 22:55:36.364 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1024 ms
+2023-11-11 22:55:36.775 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-11 22:55:36.884 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6fb5d8aa, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@77b63a67, org.springframework.security.web.context.SecurityContextPersistenceFilter@455a19d9, org.springframework.security.web.header.HeaderWriterFilter@46828097, org.springframework.security.web.csrf.CsrfFilter@2a877598, org.springframework.security.web.authentication.logout.LogoutFilter@779890f7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@747d8ccf, org.springframework.security.web.session.ConcurrentSessionFilter@57f0c40a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2515968c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@778475c5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7a826394, org.springframework.security.web.session.SessionManagementFilter@68953777, org.springframework.security.web.access.ExceptionTranslationFilter@527dd142, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@55df7c5f]
+2023-11-11 22:55:37.081 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-11 22:55:37.094 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:55:37.110 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-11 22:55:37.121 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.206 seconds (JVM running for 2.954)
+2023-11-11 22:55:40.481 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-11 22:55:40.481 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-11 22:55:40.482 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-11 22:59:51.312 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-11 22:59:51.313 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 36948 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-11 22:59:51.314 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-11 22:59:51.498 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-11 22:59:51.499 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-11 22:59:52.506 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-11 22:59:52.512 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:59:52.513 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-11 22:59:52.514 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-11 22:59:52.606 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-11 22:59:52.606 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1107 ms
+2023-11-11 22:59:53.051 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-11 22:59:53.167 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@54af86b3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64273f93, org.springframework.security.web.context.SecurityContextPersistenceFilter@701e3810, org.springframework.security.web.header.HeaderWriterFilter@d5d45a1, org.springframework.security.web.csrf.CsrfFilter@8d9d019, org.springframework.security.web.authentication.logout.LogoutFilter@40e78d3b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1fc780a1, org.springframework.security.web.session.ConcurrentSessionFilter@103385b9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@710394b0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@251cd9b1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@26154e0a, org.springframework.security.web.session.SessionManagementFilter@40673b25, org.springframework.security.web.access.ExceptionTranslationFilter@35bc6af5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@768d359a]
+2023-11-11 22:59:53.360 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-11 22:59:53.372 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-11 22:59:53.391 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-11 22:59:53.401 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.321 seconds (JVM running for 3.202)
+2023-11-11 23:01:08.351 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-11 23:01:08.352 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 32300 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-11 23:01:08.353 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-11 23:01:08.533 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-11 23:01:08.533 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-11 23:01:09.425 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-11 23:01:09.431 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-11 23:01:09.432 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-11 23:01:09.432 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-11 23:01:09.519 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-11 23:01:09.519 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 986 ms
+2023-11-11 23:01:09.926 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-11 23:01:10.039 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3189853a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@14229484, org.springframework.security.web.context.SecurityContextPersistenceFilter@4793a74f, org.springframework.security.web.header.HeaderWriterFilter@507120bc, org.springframework.security.web.csrf.CsrfFilter@18c54b59, org.springframework.security.web.authentication.logout.LogoutFilter@221e7cd7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7a2b6a11, org.springframework.security.web.session.ConcurrentSessionFilter@385f05f7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a877598, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24fc7512, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38db61e4, org.springframework.security.web.session.SessionManagementFilter@2c40497f, org.springframework.security.web.access.ExceptionTranslationFilter@29837b5b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@76c3b0df]
+2023-11-11 23:01:10.234 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-11 23:01:10.247 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-11 23:01:10.265 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-11 23:01:10.274 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.15 seconds (JVM running for 2.849)
+2023-11-11 23:01:18.164 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-11 23:01:18.164 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-11 23:01:18.165 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-11 23:08:10.055 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-11 23:08:10.056 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 13992 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-11 23:08:10.057 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-11 23:08:10.238 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-11 23:08:10.238 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-11 23:08:11.157 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-11 23:08:11.163 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-11 23:08:11.164 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-11 23:08:11.164 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-11 23:08:11.258 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-11 23:08:11.258 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1020 ms
+2023-11-11 23:08:11.684 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-11 23:08:11.793 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3c959545, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5dc713c0, org.springframework.security.web.context.SecurityContextPersistenceFilter@6e30899d, org.springframework.security.web.header.HeaderWriterFilter@5ac4f957, org.springframework.security.web.csrf.CsrfFilter@2bbfb2a2, org.springframework.security.web.authentication.logout.LogoutFilter@6227f6e1, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1f137194, org.springframework.security.web.session.ConcurrentSessionFilter@55b10107, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@55e36eee, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@29837b5b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@b79dc09, org.springframework.security.web.session.SessionManagementFilter@7910cf53, org.springframework.security.web.access.ExceptionTranslationFilter@11b0cf4e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@794ce458]
+2023-11-11 23:08:11.987 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-11 23:08:12.000 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-11 23:08:12.017 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-11 23:08:12.026 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.226 seconds (JVM running for 3.039)
+2023-11-11 23:08:15.408 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-11 23:08:15.408 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-11 23:08:15.409 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-11 23:08:18.072 INFO  [http-nio-8085-exec-6] [c.chunjae.test06th.ctrl.CommonController] - **************** name :123456
+2023-11-11 23:08:18.084 INFO  [http-nio-8085-exec-6] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-11 23:08:18.149 INFO  [http-nio-8085-exec-6] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-11 23:08:21.774 INFO  [http-nio-8085-exec-7] [c.chunjae.test06th.ctrl.CommonController] - **************** name :1234565
+2023-11-11 23:08:34.864 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-11 23:08:34.867 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-11 23:15:47.345 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-11 23:15:47.345 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 26488 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-11 23:15:47.347 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-11 23:15:47.540 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-11 23:15:47.541 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-11 23:15:48.468 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-11 23:15:48.474 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-11 23:15:48.475 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-11 23:15:48.475 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-11 23:15:48.559 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-11 23:15:48.559 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1018 ms
+2023-11-11 23:15:48.970 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-11 23:15:49.080 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@32e66f92, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a6f9e54, org.springframework.security.web.context.SecurityContextPersistenceFilter@77d3fd75, org.springframework.security.web.header.HeaderWriterFilter@4793a74f, org.springframework.security.web.csrf.CsrfFilter@5f09e522, org.springframework.security.web.authentication.logout.LogoutFilter@7ca5ccdf, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1c8d8bc7, org.springframework.security.web.session.ConcurrentSessionFilter@340edb1c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7f99e192, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3fe2003, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3dcbd9ec, org.springframework.security.web.session.SessionManagementFilter@2a877598, org.springframework.security.web.access.ExceptionTranslationFilter@443d2685, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3189853a]
+2023-11-11 23:15:49.269 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-11 23:15:49.282 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-11 23:15:49.300 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-11 23:15:49.310 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.214 seconds (JVM running for 2.911)
+2023-11-11 23:15:54.248 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-11 23:15:54.249 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-11 23:15:54.249 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 0 ms
+2023-11-11 23:16:03.022 INFO  [http-nio-8085-exec-9] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-11 23:16:03.095 INFO  [http-nio-8085-exec-9] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-11 23:16:06.699 INFO  [http-nio-8085-exec-3] [com.chunjae.test06th.ctrl.ChatController] - []
+2023-11-11 23:16:11.623 INFO  [http-nio-8085-exec-9] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=3, id=oh1234, title=5678, content=456876, cnt=0, resdate=2023-11-11 20:49:51, act=DEAL, addr=인천광역시 부평구), fileList=[FileDTO(no=3, pno=3, savefolder=E:\git\spring_boot\test06th\src\main\resources\static\upload, originfile=T0310.png, savefile=89639c06-f077-4e6f-9140-6fba436edfd6.png, filesize=175934, uploaddate=Sat Nov 11 20:49:51 KST 2023)])
+2023-11-11 23:16:14.603 INFO  [http-nio-8085-exec-3] [com.chunjae.test06th.ctrl.ChatController] - [ChatRoom(roomId=3beb4847-ad7b-4883-93df-31ee8e82936c, name=5678, buyer=admin, seller=oh1234, pno=3, act=JOIN, sessions=[])]
+2023-11-11 23:16:22.228 INFO  [http-nio-8085-exec-1] [com.chunjae.test06th.ctrl.ChatController] - [ChatRoom(roomId=3beb4847-ad7b-4883-93df-31ee8e82936c, name=5678, buyer=admin, seller=oh1234, pno=3, act=JOIN, sessions=[])]
+2023-11-11 23:16:45.613 INFO  [http-nio-8085-exec-7] [com.chunjae.test06th.ctrl.ChatController] - [ChatRoom(roomId=3beb4847-ad7b-4883-93df-31ee8e82936c, name=5678, buyer=admin, seller=oh1234, pno=3, act=JOIN, sessions=[])]
+2023-11-11 23:17:06.438 INFO  [http-nio-8085-exec-5] [com.chunjae.test06th.ctrl.ChatController] - [ChatRoom(roomId=3beb4847-ad7b-4883-93df-31ee8e82936c, name=5678, buyer=admin, seller=oh1234, pno=3, act=JOIN, sessions=[])]
+2023-11-11 23:17:07.077 INFO  [http-nio-8085-exec-7] [com.chunjae.test06th.ctrl.ChatController] - [ChatRoom(roomId=3beb4847-ad7b-4883-93df-31ee8e82936c, name=5678, buyer=admin, seller=oh1234, pno=3, act=JOIN, sessions=[])]
+2023-11-11 23:17:07.085 INFO  [http-nio-8085-exec-8] [com.chunjae.test06th.ctrl.ChatController] - [ChatRoom(roomId=3beb4847-ad7b-4883-93df-31ee8e82936c, name=5678, buyer=admin, seller=oh1234, pno=3, act=JOIN, sessions=[])]
+2023-11-11 23:17:16.914 INFO  [http-nio-8085-exec-10] [com.chunjae.test06th.ctrl.ChatController] - [ChatRoom(roomId=3beb4847-ad7b-4883-93df-31ee8e82936c, name=5678, buyer=admin, seller=oh1234, pno=3, act=JOIN, sessions=[])]
+2023-11-11 23:17:17.646 INFO  [http-nio-8085-exec-3] [com.chunjae.test06th.ctrl.ChatController] - [ChatRoom(roomId=3beb4847-ad7b-4883-93df-31ee8e82936c, name=5678, buyer=admin, seller=oh1234, pno=3, act=JOIN, sessions=[])]
+2023-11-11 23:17:17.652 INFO  [http-nio-8085-exec-4] [com.chunjae.test06th.ctrl.ChatController] - [ChatRoom(roomId=3beb4847-ad7b-4883-93df-31ee8e82936c, name=5678, buyer=admin, seller=oh1234, pno=3, act=JOIN, sessions=[])]
+2023-11-11 23:19:56.103 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-11 23:19:56.106 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.

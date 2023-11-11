@@ -82,6 +82,7 @@
 
     // 채팅방에 들어오는 경우
     function enterRoom(socket) {
+        // Retrieve the CSRF token from the hidden input field
         var enterMsg = {
             "type": "ENTER",
             "roomId": roomId,
@@ -93,6 +94,9 @@
 
     // 채팅방 메세지 보내는 경우
     function sendMsg() {
+        // csrf 토큰 정보 가져오기
+        const token = $("meta[name='_csrf']").attr("content")
+        const header = $("meta[name='_csrf_header']").attr("content");
         let content = document.getElementById('content').value;
         let talkMsg = {
             "type": "TALK",
@@ -111,7 +115,10 @@
             },
             error: function (err) {
                 console.log(err)
-            }
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header, token);
+            },
         });
     }
 

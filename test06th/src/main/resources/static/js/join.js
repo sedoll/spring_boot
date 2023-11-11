@@ -5,13 +5,16 @@ $(document).ready(function(){
             $("#id").focus();
             return;
         }
-        var test = { name : $("#id").val() }; //전송되어질 데이터를 객체로 묶음
+        const token = $("meta[name='_csrf']").attr("content")
+        const header = $("meta[name='_csrf_header']").attr("content");
+        var test = {name : $("#id").val()}//전송되어질 데이터를 객체로 묶음
         $.ajax({
             url:"/common/idCheck",	//아이디가 전송되어질 곳
             type:"post",		//전송방식
             data:JSON.stringify(test),
             dataType:"json",
             contentType: "application/json",
+            cache: false,
             success:function(result){
                 console.log(result);
                 var idChk = result;	//true 또는 false를 받음
@@ -25,7 +28,10 @@ $(document).ready(function(){
                 } else if(idChk==""){
                     $("#msg").html("<strong>아이디가 확인되지 않았습니다. 다시 시도해주시기 바랍니다.</strong>");
                 }
-            }
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header, token);
+            },
         });
     });
     $("#emailCheckBtn").click(function(){
@@ -34,12 +40,16 @@ $(document).ready(function(){
             $("#email").focus();
             return;
         }
-        var params = {	email : $("#email").val()	} //전송되어질 데이터를 객체로 묶음
+        // Retrieve the CSRF token from the hidden input field
+        const token = $("meta[name='_csrf']").attr("content")
+        const header = $("meta[name='_csrf_header']").attr("content");
+        var params = {email: $("#email").val()} //전송되어질 데이터를 객체로 묶음
         $.ajax({
             url:"/common/emailCheck",	//아이디가 전송되어질 곳
             type:"post",		//전송방식
             dataType:"json",	//데이터 반환 방식
             data:params,		//전송방식이 post인 경우 객체로 묶어서 전송
+            cache: false,
             success:function(result){
                 console.log(result);
                 var emailChk = result;	//true 또는 false를 받음
@@ -53,7 +63,10 @@ $(document).ready(function(){
                 } else if(emailChk==""){
                     $("#msg2").html("<strong>이메일이 확인되지 않았습니다. 다시 시도해주시기 바랍니다.</strong>");
                 }
-            }
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header, token);
+            },
         });
     });
 
