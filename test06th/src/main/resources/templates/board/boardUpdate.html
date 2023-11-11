@@ -12,6 +12,7 @@
     <h2 style="text-align: center;">게시판 글 수정</h2>
     <form th:action="@{/board/boardUpdate}" method="post" style="width:600px;margin:15px auto;"
           onsubmit="return textCheck(this)">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div class="form-group">
             <label for="id">Id</label>
             <input type="text" class="form-control bg-secondary text-white" name="name" id="name" th:value="${board.name}" minlength="4" maxlength="16"

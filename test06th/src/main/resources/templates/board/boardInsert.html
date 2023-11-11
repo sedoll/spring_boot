@@ -12,6 +12,7 @@
     <h2 style="text-align: center;">게시판 글작성</h2>
     <form th:action="@{/board/boardInsert}" method="post" style="width:600px;margin:15px auto;"
           onsubmit="return textCheck(this)">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <legend>게시판 글 작성</legend>
         <div class="form-group">
             <label for="id">Id</label>

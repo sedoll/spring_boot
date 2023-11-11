@@ -46,24 +46,24 @@ public class CommonController {
     }
 
     //아이디 로그인
-    @PostMapping("/loginByName")
-    public String loginByNamePro(@RequestParam("name") String name, @RequestParam("password") String password, HttpSession session, Model model){
-        Euser user = userService.getByName(name);
-        if(user!=null){
-            if(user.getPassword().equals(password)){
-                model.addAttribute("msg", "로그인 성공");
-                session.setAttribute("sname", user.getName());
-                session.setAttribute("slevel", user.getLev());
-            } else {
-                model.addAttribute("msg", "비밀번호 오류 로그인 실패");
-                session.invalidate();
-            }
-        } else {
-            model.addAttribute("msg", "해당 아이디를 가진 회원이 존재하지 않습니다.");
-            session.invalidate();
-        }
-        return "redirect:/";
-    }
+//    @PostMapping("/loginByName")
+//    public String loginByNamePro(@RequestParam("name") String name, @RequestParam("password") String password, HttpSession session, Model model){
+//        Euser user = userService.getByName(name);
+//        if(user!=null){
+//            if(user.getPassword().equals(password)){
+//                model.addAttribute("msg", "로그인 성공");
+//                session.setAttribute("sname", user.getName());
+//                session.setAttribute("slevel", user.getLev());
+//            } else {
+//                model.addAttribute("msg", "비밀번호 오류 로그인 실패");
+//                session.invalidate();
+//            }
+//        } else {
+//            model.addAttribute("msg", "해당 아이디를 가진 회원이 존재하지 않습니다.");
+//            session.invalidate();
+//        }
+//        return "redirect:/";
+//    }
     // endregion
     
     // region 회원가입

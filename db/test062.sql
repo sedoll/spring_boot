@@ -2,14 +2,17 @@ create DATABASE edumon;
 
 USE edumon;
 
-CREATE TABLE kuser(
+CREATE TABLE euser(
 	id int PRIMARY KEY AUTO_INCREMENT COMMENT '회원번호',
 	name VARCHAR(20) NOT NULL COMMENT '회원아이디',
 	password VARCHAR(300) NOT NULL COMMENT '비밀번호',
 	username VARCHAR(50) NOT NULL COMMENT '회원이름',
 	email VARCHAR(100) NOT NULL COMMENT '이메일',
-	address VARCHAR(300) COMMENT '주소',
+	addr1 VARCHAR(300) COMMENT '기본주소',
+	addr2 VARCHAR(300) COMMENT '주소상세',
+	postcode varchar(10) COMMENT '우편번호',
 	tel VARCHAR(20) COMMENT '전화번호',
+	birth DATE DEFAULT CURRENT_TIME COMMENT '생일', 
 	regdate DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '가입일',
 	lev VARCHAR(20) DEFAULT 'USER' COMMENT '회원등급',
 	act VARCHAR(20) DEFAULT 'JOIN' COMMENT '활성화상태', -- JOIN(활성), DSBLD(비활성)
@@ -17,24 +20,24 @@ CREATE TABLE kuser(
 );
 
 -- 더미 데이터
-INSERT INTO kuser VALUES (DEFAULT, 'kim', '1234', '김', 'kim@gmail.com', '가산동', '010-1004-1004', DEFAULT, DEFAULT, DEFAULT);
-INSERT INTO kuser VALUES (DEFAULT, 'lee', '1234', '오', 'oh@gmail.com', '신림동', '010-7979-2848', DEFAULT, DEFAULT, DEFAULT);
-INSERT INTO kuser VALUES (DEFAULT, 'admin', '1234', '박세훈', 'park@gmail.com', '구로', '010-2424-7942', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO euser VALUES (DEFAULT, 'kim1', '1234', '김', 'kim@gmail.com', '서울시 금천구', '가산동','11100', '010-1004-1004', '1985-01-11', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO euser VALUES (DEFAULT, 'lee1', '1234', '오', 'oh@gmail.com', '서울시 관악구', '신림동' ,'22222' , '010-7979-2848', '1999-06-28', DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO euser VALUES (DEFAULT, 'admin', '1234', '박세훈', 'park@gmail.com', '서울시 관악구', '신림동' ,'22222' , '010-2424-7942', '1990-11-22', DEFAULT, DEFAULT, DEFAULT);
 
-UPDATE kuser SET lev='ADMIN' WHERE NAME='admin';
-UPDATE kuser SET lev='EMP' WHERE NAME='lee';
+UPDATE euser SET lev='ADMIN' WHERE NAME='admin';
+UPDATE euser SET lev='EMP' WHERE NAME='lee';
 
-SELECT * FROM kuser;
+SELECT * FROM euser;
 
-UPDATE kuser SET PASSWORD='$2a$10$N4HrCSDECM/wNWqBGhzDMOrLN1Aw9WRHtmEqxuBK9sWJ3K97Jqau6' WHERE PASSWORD='1234';
+UPDATE euser SET PASSWORD='$2a$10$N4HrCSDECM/wNWqBGhzDMOrLN1Aw9WRHtmEqxuBK9sWJ3K97Jqau6' WHERE PASSWORD='1234';
 
 COMMIT;
 
 
 
-DROP TABLE kuser;
+DROP TABLE euser;
 
-DESC kuser;
+DESC euser;
 
 
 -- 게시판
@@ -47,7 +50,7 @@ CREATE TABLE board(
 	content VARCHAR(1000) COMMENT '글내용',
 	cnt INT DEFAULT 0 COMMENT '조회수',
 	resdate DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '게시일',
-	FOREIGN KEY(name) REFERENCES kuser(name) ON DELETE 		
+	FOREIGN KEY(name) REFERENCES euser(name) ON DELETE 		
 		CASCADE
 );
 
@@ -74,10 +77,10 @@ CREATE TABLE board_com(
 	CONTENT VARCHAR(300) NOT NULL COMMENT '댓글내용',
 	resdate DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '게시일',
 	par INT COMMENT '게시판 번호',
-	FOREIGN KEY(name) REFERENCES kuser(name) ON DELETE 		
+	FOREIGN KEY(name) REFERENCES euser(name) ON DELETE 		
 		CASCADE,
 	FOREIGN KEY(par) REFERENCES board(id) ON DELETE 		
-		CASCADE,
+		CASCADE
 );
 
 -- 중고 상품 테이블
@@ -92,7 +95,7 @@ CREATE TABLE product(
 	resdate DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '게시일',
 	act VARCHAR(20) DEFAULT 'DEAL' COMMENT '거래상태', -- JOIN(판매중), DSBLD(판매완료)
 	addr VARCHAR(50) NOT NULL COMMENT '서울특별시 구로구',
-	FOREIGN KEY(id) REFERENCES kuser(name) ON DELETE 		
+	FOREIGN KEY(id) REFERENCES euser(name) ON DELETE 		
 		CASCADE
 );
 
@@ -117,8 +120,8 @@ CREATE TABLE chatroom(
 	seller VARCHAR(20) COMMENT '판매자',
 	pno int COMMENT '중고상품번호',
 	act VARCHAR(20) DEFAULT 'JOIN' COMMENT '활성화상태', -- JOIN(활성), DSBLD(비활성)
-	FOREIGN KEY(buyer) REFERENCES kuser(name) ON DELETE CASCADE,
-	FOREIGN KEY(seller) REFERENCES kuser(name) ON DELETE CASCADE,
+	FOREIGN KEY(buyer) REFERENCES euser(name) ON DELETE CASCADE,
+	FOREIGN KEY(seller) REFERENCES euser(name) ON DELETE CASCADE,
 	FOREIGN KEY(pno) REFERENCES product(no) ON DELETE CASCADE
 );
 
@@ -127,9 +130,9 @@ create table black_list (
 	no BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '차단번호',
 	sbscr varchar(20) NOT NULL COMMENT '등록자',
 	black varchar(20) NOT NULL COMMENT '차단아이디',
-	FOREIGN KEY(sbscr) REFERENCES kuser(name) ON DELETE CASCADE,
-	FOREIGN KEY(black) REFERENCES kuser(name) ON DELETE CASCADE,
-)
+	FOREIGN KEY(sbscr) REFERENCES euser(name) ON DELETE CASCADE,
+	FOREIGN KEY(black) REFERENCES euser(name) ON DELETE CASCADE,
+);
 
 -- 중고상품에 따른 채팅방 활성화 상태
 edumoncreate view pro_chat AS select 
@@ -152,7 +155,7 @@ CREATE TABLE chatmsg(
 	sender VARCHAR(20) NOT NULL COMMENT '보내는이',
 	message VARCHAR(1000) NOT NULL COMMENT '내용',
 	resdate DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '작성일',
-	FOREIGN KEY(sender) REFERENCES kuser(name) ON DELETE CASCADE,
+	FOREIGN KEY(sender) REFERENCES euser(name) ON DELETE CASCADE,
 	FOREIGN KEY(room_id) REFERENCES chatroom(room_id) ON DELETE CASCADE
 );
 

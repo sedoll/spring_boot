@@ -11,7 +11,7 @@
     <div class="container" style="width:1280px;margin:20px auto;">
         <h2 style="text-align: center;">로그인</h2>
         <form class="pure-form pure-form-aligned" th:action="@{/auth}" method="post" style="width:600px;margin:15px auto;">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <div class="form-group">
                 <label for="aligned-name">아이디</label>
                 <input type="text" class="form-control pure-form-stacked" name="name" id="aligned-name" placeholder="Id" pattern="^[a-z0-9]*$" minlength="4" maxlength="16" required/>

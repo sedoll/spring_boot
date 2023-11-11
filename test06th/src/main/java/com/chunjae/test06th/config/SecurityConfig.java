@@ -63,7 +63,8 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/");	// logout에 성공하면 /로 redirect
 
         //cors, csrf 방지 해제
-        http.csrf().disable().cors().disable();
+//        http.csrf().disable();
+        http.cors().disable(); // 이거 방지 안해주면 이미지 안뜸
 
         //중복 로그인 방지
         http.sessionManagement()

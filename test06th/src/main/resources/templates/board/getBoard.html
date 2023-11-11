@@ -73,6 +73,7 @@
         </tbody>
     </table>
     <form th:action="@{/board/commentInsert}" id="login_frm" class="frm" method="post" onsubmit="return comment(this)">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <table class="tb3">
             <tbody>
             <tr>
