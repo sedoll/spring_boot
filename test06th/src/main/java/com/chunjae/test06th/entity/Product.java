@@ -14,6 +14,7 @@ public class Product {
     private String id;          // 작성자
     private String title;       // 제목
     private String content;     // 내용
+    private Integer price;      // 가격
     private Integer cnt;        // 조회수
     private String resdate;     // 게시일
     private String act;         // 거래상태

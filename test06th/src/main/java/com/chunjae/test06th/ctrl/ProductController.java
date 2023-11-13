@@ -72,28 +72,17 @@ public class ProductController {
     
     // 중고거래 추가
     @PostMapping("fileUpload")
-    public String fileUpload(MultipartHttpServletRequest files, HttpServletRequest req, Model model) throws Exception {
+    public String fileUpload(@RequestParam("files") List<MultipartFile> files,
+                             @RequestParam Map<String, String> params,
+                             HttpServletRequest req,
+                             Model model) throws Exception {
 
-        //파라미터 분리
-        Enumeration<String> e = files.getParameterNames();
-        Map map = new HashMap();
-        while (e.hasMoreElements()) {
-            String name = e.nextElement();
-            String value = files.getParameter(name);
-            map.put(name, value);
-        }
-
-        String str = req.getContextPath();
-        log.info("req.getContextPath() : " + str);
-        log.info("req.getServletPath() : " + req.getServletPath());
-        log.info("req.getRealPath(\"/resources/upload\") : "+req.getRealPath("/resources/upload") );
-
-        //제목 및 내용 분리
+        // Create the 'board' object
         Product board = new Product();
-        board.setId((String) map.get("id"));
-        board.setTitle((String) map.get("title"));
-        board.setContent((String) map.get("content"));
-        board.setAddr((String) map.get("addr"));
+        board.setId(params.get("id"));
+        board.setTitle(params.get("title"));
+        board.setContent(params.get("content"));
+        board.setAddr(params.get("addr"));
 //        // 현재 작업 디렉토리를 가져와서 상대 경로를 만듭니다.
 //        String currentWorkingDir = System.getProperty("user.dir");
 //        String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
@@ -111,23 +100,16 @@ public class ProductController {
 
         //여러 파일 반복 저장
         List<FileDTO> fileList = new ArrayList<>();
-        Iterator<String> it = files.getFileNames();
-        while(it.hasNext()){
-            String paramfName = it.next();
-            MultipartFile file = files.getFile(paramfName);
-            log.info("-----------------------------------");
-            log.info("name : "+file.getOriginalFilename());
-            log.info("size : "+file.getSize());
-            log.info("path : ");
+        // 파일 리스트를 순회하며 각 파일 처리
+        for (MultipartFile file : files) {
+            if (!file.getOriginalFilename().isEmpty()) {
+                // 파일 처리 로직 시작
+                String randomUUID = UUID.randomUUID().toString();  // 파일 이름 중복 방지를 위한 랜덤 UUID 생성
+                String OriginalFilename = file.getOriginalFilename();  // 실제 파일 이름
+                String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));  // 파일 확장자 추출
+                String saveFileName = randomUUID + Extension;  // 저장할 파일 이름 생성
 
-            if(!file.getOriginalFilename().equals("")) { // 빈 파일은 업로드 안함
-
-                String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
-                String OriginalFilename = file.getOriginalFilename(); // 실제 파일 이름
-                log.info(OriginalFilename);
-                String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));
-                String saveFileName = randomUUID + Extension;
-
+                // ... (기존 파일 처리 로직)
                 FileDTO data = new FileDTO();
                 data.setSavefolder(uploadFolder);
                 data.setOriginfile(file.getOriginalFilename());
@@ -137,18 +119,17 @@ public class ProductController {
                 data.setUploaddate(today.toString());
                 fileList.add(data);
 
-                File saveFile = new File(uploadFolder, saveFileName); //실제 파일 객체 생성
-
+                // 파일 저장
+                File saveFile = new File(uploadFolder, saveFileName);
                 try {
-                    file.transferTo(saveFile);  //실제 디렉토리에 해당파일 저장
-//                file.transferTo(devFile); //개발자용 컴퓨터에 해당파일 저장
-                } catch(IllegalStateException e1){
-                    log.info(e1.getMessage());
-                } catch(IOException e2){
-                    log.info(e2.getMessage());
+                    file.transferTo(saveFile);
+                } catch (IllegalStateException | IOException e) {
+                    e.printStackTrace();
+                    // 예외 처리
                 }
             }
         }
+
         FileVO fileboard = new FileVO();
         fileboard.setFileList(fileList);
         fileboard.setFileBoard(board);
