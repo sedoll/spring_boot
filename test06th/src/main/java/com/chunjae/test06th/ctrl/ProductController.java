@@ -5,6 +5,12 @@ import com.chunjae.test06th.entity.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Slf4j
@@ -24,11 +34,27 @@ import java.util.*;
 @RequestMapping("/product/*")
 public class ProductController {
 
-//    @Value("${org.zerock.upload.path}")
-//    private String uploadFolder;
+    @Value("${spring.servlet.multipart.location}")
+    String uploadFolder;
 
     @Autowired
     private ProductServiceImpl productService;
+
+    @GetMapping("image")
+    public ResponseEntity<Resource> download(@ModelAttribute FileDTO dto) throws IOException {
+        Path path = Paths.get(uploadFolder + "/" + dto.getSavefile());
+        String contentType = Files.probeContentType(path);
+        // header를 통해서 다운로드 되는 파일의 정보를 설정한다.
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentDisposition(ContentDisposition.builder("attachment")
+                .filename(dto.getOriginfile(), StandardCharsets.UTF_8)
+                .build());
+        headers.add(HttpHeaders.CONTENT_TYPE, contentType);
+
+        Resource resource = new InputStreamResource(Files.newInputStream(path));
+        return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+    }
+
 
     // 게시글 입력 폼 이동
     // 일치하는 데이터가 없으면 null 반환
@@ -68,12 +94,12 @@ public class ProductController {
         board.setTitle((String) map.get("title"));
         board.setContent((String) map.get("content"));
         board.setAddr((String) map.get("addr"));
-        // 현재 작업 디렉토리를 가져와서 상대 경로를 만듭니다.
-        String currentWorkingDir = System.getProperty("user.dir");
-        String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
-
-        // 상대 경로와 업로드 디렉토리를 합쳐서 최종 경로를 만듭니다.
-        String uploadFolder = currentWorkingDir + relativePath;;
+//        // 현재 작업 디렉토리를 가져와서 상대 경로를 만듭니다.
+//        String currentWorkingDir = System.getProperty("user.dir");
+//        String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
+//
+//        // 상대 경로와 업로드 디렉토리를 합쳐서 최종 경로를 만듭니다.
+//        String uploadFolder = currentWorkingDir + relativePath;;
         File folder = new File(uploadFolder);
         if(!folder.exists())
             folder.mkdirs();
@@ -186,11 +212,11 @@ public class ProductController {
         board.setContent((String) map.get("content"));
 
         // 현재 작업 디렉토리를 가져와서 상대 경로를 만듭니다.
-        String currentWorkingDir = System.getProperty("user.dir");
-        String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
-
-//         상대 경로와 업로드 디렉토리를 합쳐서 최종 경로를 만듭니다.
-        String uploadFolder = currentWorkingDir + relativePath;
+//        String currentWorkingDir = System.getProperty("user.dir");
+//        String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
+//
+////         상대 경로와 업로드 디렉토리를 합쳐서 최종 경로를 만듭니다.
+//        String uploadFolder = currentWorkingDir + relativePath;
         log.info("-----------------------------------");
         log.info(" 현재 프로젝트 홈 : "+req.getContextPath());
         log.info(" dispatcher-servlet에서 지정한 경로 : "+uploadFolder);

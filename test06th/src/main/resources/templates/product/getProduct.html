@@ -68,7 +68,7 @@
   <th:block th:each="file : ${fileList}">
     <div style="max-width: 300px">
       <!-- thymeleaf 에서 이미지 출력하는 법 -->
-      <img th:src="@{~/upload/} + ${file.getSavefile()}" alt="">
+      <img th:src="${'/product/image?savefile='+file.getSavefile()+'&originfile='+file.getOriginfile()}" alt="">
     </div>
   </th:block>
 </div>
