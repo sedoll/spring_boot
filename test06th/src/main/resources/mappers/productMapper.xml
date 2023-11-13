@@ -13,9 +13,9 @@
     <select id="getProduct" resultType="com.chunjae.test06th.entity.Product">
         select * from product where no = #{no}
     </select>
-    <!-- 게시글수정 -->
-    <update id="updatFile">
-        UPDATE product SET title=#{title}, content=#{content} WHERE id = #{id}
+    <!-- 게시글 수정 -->
+    <update id="productUpdate">
+        UPDATE product SET title=#{title}, content=#{content} WHERE no = #{no}
     </update>
     <!-- 게시판 삭제 -->
     <delete id="deleFile">

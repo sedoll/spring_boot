@@ -13445,3 +13445,549 @@ java.lang.IllegalArgumentException: Invalid character found in the request targe
 2023-11-13 20:46:23.480 INFO  [http-nio-8085-exec-3] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
 2023-11-13 20:46:23.547 INFO  [http-nio-8085-exec-3] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
 2023-11-13 20:46:24.548 INFO  [http-nio-8085-exec-7] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=777, content=7777, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[FileDTO(no=18, pno=9, savefolder=c:\upload, originfile=T0883.png, savefile=31c86def-9700-46cf-91a7-6f3e34452f3f.png, filesize=167596, uploaddate=Mon Nov 13 20:46:23 KST 2023), FileDTO(no=19, pno=9, savefolder=c:\upload, originfile=T1882.png, savefile=64404a62-95c7-4d51-afd7-9148d080d95a.png, filesize=197256, uploaddate=Mon Nov 13 20:46:23 KST 2023)])
+2023-11-13 21:07:07.669 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:07:07.672 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-13 21:07:49.255 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-13 21:07:49.255 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 15520 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-13 21:07:49.256 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-13 21:07:49.435 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-13 21:07:49.435 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-13 21:07:50.316 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-13 21:07:50.322 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:07:50.323 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-13 21:07:50.323 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-13 21:07:50.408 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-13 21:07:50.408 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 972 ms
+2023-11-13 21:07:50.812 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-13 21:07:50.923 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@60982c3f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@654de51c, org.springframework.security.web.context.SecurityContextPersistenceFilter@50b90861, org.springframework.security.web.header.HeaderWriterFilter@6305b1a3, org.springframework.security.web.csrf.CsrfFilter@4e67df91, org.springframework.security.web.authentication.logout.LogoutFilter@73d25bc1, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@48b9ad35, org.springframework.security.web.session.ConcurrentSessionFilter@1386a467, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d4fd95f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6fba78b4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@33cd7162, org.springframework.security.web.session.SessionManagementFilter@4ca3b58d, org.springframework.security.web.access.ExceptionTranslationFilter@1602f99f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@749cdd05]
+2023-11-13 21:07:51.115 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-13 21:07:51.127 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:07:51.145 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-13 21:07:51.154 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.165 seconds (JVM running for 2.909)
+2023-11-13 21:07:55.897 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13 21:07:55.897 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-13 21:07:55.898 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-13 21:07:55.940 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-13 21:07:56.006 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-13 21:08:00.635 INFO  [http-nio-8085-exec-6] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:08:00.635 INFO  [http-nio-8085-exec-6] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:08:00.635 INFO  [http-nio-8085-exec-6] [c.c.test06th.ctrl.ProductController] -  dispatcher-servlet에서 지정한 경로 : c:\upload
+2023-11-13 21:08:00.636 INFO  [http-nio-8085-exec-6] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/productUpdate
+2023-11-13 21:08:00.636 INFO  [http-nio-8085-exec-6] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:08:00.653 INFO  [http-nio-8085-exec-6] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=777, content=7777, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[])
+2023-11-13 21:08:39.878 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:08:39.878 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:08:39.878 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  dispatcher-servlet에서 지정한 경로 : c:\upload
+2023-11-13 21:08:39.878 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/productUpdate
+2023-11-13 21:08:39.878 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:08:39.919 INFO  [http-nio-8085-exec-3] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=777, content=7777, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[FileDTO(no=20, pno=9, savefolder=c:\upload, originfile=T0763.png, savefile=d873368b-a54b-4fd9-b8d9-0a790f3578b9.png, filesize=141641, uploaddate=Mon Nov 13 21:08:39 KST 2023), FileDTO(no=21, pno=9, savefolder=c:\upload, originfile=T0764.png, savefile=5975cfac-5c99-4177-bc80-397cdec6f9e8.png, filesize=181670, uploaddate=Mon Nov 13 21:08:39 KST 2023), FileDTO(no=22, pno=9, savefolder=c:\upload, originfile=T0883.png, savefile=86dcf607-d5a2-4460-b0f1-92f4ce2620b2.png, filesize=167596, uploaddate=Mon Nov 13 21:08:39 KST 2023), FileDTO(no=23, pno=9, savefolder=c:\upload, originfile=T1882.png, savefile=d35edcc6-18cd-4036-b5e1-5eff0c6ed7a2.png, filesize=197256, uploaddate=Mon Nov 13 21:08:39 KST 2023)])
+2023-11-13 21:09:18.908 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:09:18.911 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-13 21:09:22.420 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-13 21:09:22.420 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 19528 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-13 21:09:22.422 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-13 21:09:22.606 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-13 21:09:22.607 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-13 21:09:23.589 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-13 21:09:23.596 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:09:23.598 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-13 21:09:23.598 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-13 21:09:23.681 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-13 21:09:23.682 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1075 ms
+2023-11-13 21:09:24.086 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-13 21:09:24.196 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6a40b1ec, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@76ef175c, org.springframework.security.web.context.SecurityContextPersistenceFilter@39444b57, org.springframework.security.web.header.HeaderWriterFilter@570b932a, org.springframework.security.web.csrf.CsrfFilter@62052e3d, org.springframework.security.web.authentication.logout.LogoutFilter@580c3ab7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@38f488f0, org.springframework.security.web.session.ConcurrentSessionFilter@6305b1a3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@595d81a8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@88348d3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@357f20a4, org.springframework.security.web.session.SessionManagementFilter@72ad1955, org.springframework.security.web.access.ExceptionTranslationFilter@fa327e2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@635b8868]
+2023-11-13 21:09:24.388 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-13 21:09:24.400 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:09:24.418 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-13 21:09:24.427 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.263 seconds (JVM running for 2.918)
+2023-11-13 21:09:28.488 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13 21:09:28.489 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-13 21:09:28.489 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 0 ms
+2023-11-13 21:09:28.540 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-13 21:09:28.612 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-13 21:09:28.646 INFO  [http-nio-8085-exec-1] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=777, content=7777, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[FileDTO(no=20, pno=9, savefolder=c:\upload, originfile=T0763.png, savefile=d873368b-a54b-4fd9-b8d9-0a790f3578b9.png, filesize=141641, uploaddate=Mon Nov 13 21:08:39 KST 2023), FileDTO(no=21, pno=9, savefolder=c:\upload, originfile=T0764.png, savefile=5975cfac-5c99-4177-bc80-397cdec6f9e8.png, filesize=181670, uploaddate=Mon Nov 13 21:08:39 KST 2023), FileDTO(no=22, pno=9, savefolder=c:\upload, originfile=T0883.png, savefile=86dcf607-d5a2-4460-b0f1-92f4ce2620b2.png, filesize=167596, uploaddate=Mon Nov 13 21:08:39 KST 2023), FileDTO(no=23, pno=9, savefolder=c:\upload, originfile=T1882.png, savefile=d35edcc6-18cd-4036-b5e1-5eff0c6ed7a2.png, filesize=197256, uploaddate=Mon Nov 13 21:08:39 KST 2023)])
+2023-11-13 21:09:33.307 INFO  [http-nio-8085-exec-9] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:09:33.307 INFO  [http-nio-8085-exec-9] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:09:33.307 INFO  [http-nio-8085-exec-9] [c.c.test06th.ctrl.ProductController] -  dispatcher-servlet에서 지정한 경로 : c:\upload
+2023-11-13 21:09:33.307 INFO  [http-nio-8085-exec-9] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/productUpdate
+2023-11-13 21:09:33.307 INFO  [http-nio-8085-exec-9] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:09:33.319 INFO  [http-nio-8085-exec-9] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=777, content=7777, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[])
+2023-11-13 21:11:16.158 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:11:16.161 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-13 21:11:19.680 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-13 21:11:19.680 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 4072 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-13 21:11:19.682 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-13 21:11:19.880 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-13 21:11:19.880 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-13 21:11:20.784 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-13 21:11:20.790 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:11:20.791 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-13 21:11:20.791 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-13 21:11:20.874 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-13 21:11:20.874 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 994 ms
+2023-11-13 21:11:21.279 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-13 21:11:21.398 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@33cd7162, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a177896, org.springframework.security.web.context.SecurityContextPersistenceFilter@5d4fd95f, org.springframework.security.web.header.HeaderWriterFilter@4ca3b58d, org.springframework.security.web.csrf.CsrfFilter@12ff8407, org.springframework.security.web.authentication.logout.LogoutFilter@114693f2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@a5464e1, org.springframework.security.web.session.ConcurrentSessionFilter@426e152f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@77d88f22, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@50992407, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3bcf563f, org.springframework.security.web.session.SessionManagementFilter@77826d75, org.springframework.security.web.access.ExceptionTranslationFilter@6305b1a3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@76ef175c]
+2023-11-13 21:11:21.606 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-13 21:11:21.620 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:11:21.639 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-13 21:11:21.649 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.235 seconds (JVM running for 2.906)
+2023-11-13 21:11:24.467 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13 21:11:24.467 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-13 21:11:24.468 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-13 21:11:24.519 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-13 21:11:24.597 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-13 21:11:31.382 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:11:31.382 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:11:31.382 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  dispatcher-servlet에서 지정한 경로 : c:\upload
+2023-11-13 21:11:31.382 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/productUpdate
+2023-11-13 21:11:31.383 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:11:31.383 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] - files.size() : 1
+2023-11-13 21:11:31.383 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] - files : [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@4c8c5947]
+2023-11-13 21:11:31.383 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] - files.isEmpty() : false
+2023-11-13 21:11:31.427 INFO  [http-nio-8085-exec-3] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=77788, content=777788, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[FileDTO(no=24, pno=9, savefolder=c:\upload, originfile=T1882.png, savefile=d805ec27-5056-458c-86ea-ed824907ea9f.png, filesize=197256, uploaddate=Mon Nov 13 21:11:31 KST 2023)])
+2023-11-13 21:11:50.284 INFO  [http-nio-8085-exec-8] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:11:50.284 INFO  [http-nio-8085-exec-8] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:11:50.284 INFO  [http-nio-8085-exec-8] [c.c.test06th.ctrl.ProductController] -  dispatcher-servlet에서 지정한 경로 : c:\upload
+2023-11-13 21:11:50.284 INFO  [http-nio-8085-exec-8] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/productUpdate
+2023-11-13 21:11:50.284 INFO  [http-nio-8085-exec-8] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:11:50.284 INFO  [http-nio-8085-exec-8] [c.c.test06th.ctrl.ProductController] - files.size() : 1
+2023-11-13 21:11:50.284 INFO  [http-nio-8085-exec-8] [c.c.test06th.ctrl.ProductController] - files : [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@51fbc865]
+2023-11-13 21:11:50.284 INFO  [http-nio-8085-exec-8] [c.c.test06th.ctrl.ProductController] - files.isEmpty() : false
+2023-11-13 21:11:50.296 INFO  [http-nio-8085-exec-8] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=77788, content=777788, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[])
+2023-11-13 21:13:20.980 INFO  [http-nio-8085-exec-4] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:13:20.980 INFO  [http-nio-8085-exec-4] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:13:20.980 INFO  [http-nio-8085-exec-4] [c.c.test06th.ctrl.ProductController] -  dispatcher-servlet에서 지정한 경로 : c:\upload
+2023-11-13 21:13:20.981 INFO  [http-nio-8085-exec-4] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/productUpdate
+2023-11-13 21:13:20.981 INFO  [http-nio-8085-exec-4] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:13:20.981 INFO  [http-nio-8085-exec-4] [c.c.test06th.ctrl.ProductController] - files.size() : 1
+2023-11-13 21:13:20.981 INFO  [http-nio-8085-exec-4] [c.c.test06th.ctrl.ProductController] - files : [org.springframework.web.multipart.support.StandardMultipartHttpServletRequest$StandardMultipartFile@52efbd41]
+2023-11-13 21:13:20.981 INFO  [http-nio-8085-exec-4] [c.c.test06th.ctrl.ProductController] - files.isEmpty() : false
+2023-11-13 21:13:20.988 INFO  [http-nio-8085-exec-4] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=77788, content=777788, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[])
+2023-11-13 21:19:48.677 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:19:48.680 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-13 21:19:52.424 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-13 21:19:52.425 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 20208 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-13 21:19:52.427 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-13 21:19:52.605 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-13 21:19:52.606 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-13 21:19:53.502 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-13 21:19:53.508 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:19:53.509 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-13 21:19:53.509 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-13 21:19:53.591 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-13 21:19:53.592 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 986 ms
+2023-11-13 21:19:54.056 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-13 21:19:54.173 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6df89f4a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4f40a6d4, org.springframework.security.web.context.SecurityContextPersistenceFilter@44179a9c, org.springframework.security.web.header.HeaderWriterFilter@71e9c263, org.springframework.security.web.csrf.CsrfFilter@527dd142, org.springframework.security.web.authentication.logout.LogoutFilter@1386a467, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@742ac61f, org.springframework.security.web.session.ConcurrentSessionFilter@74b32d45, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6a403c28, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@779890f7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2fbaa823, org.springframework.security.web.session.SessionManagementFilter@69a78818, org.springframework.security.web.access.ExceptionTranslationFilter@2cbfe3b4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@289b3afc]
+2023-11-13 21:19:54.367 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-13 21:19:54.380 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:19:54.398 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-13 21:19:54.407 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.233 seconds (JVM running for 2.882)
+2023-11-13 21:20:02.991 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13 21:20:02.991 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-13 21:20:02.992 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-13 21:20:03.040 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-13 21:20:03.109 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-13 21:20:03.139 INFO  [http-nio-8085-exec-1] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=77788, content=777788, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[])
+2023-11-13 21:20:11.572 INFO  [http-nio-8085-exec-5] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:20:11.572 INFO  [http-nio-8085-exec-5] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:20:11.572 INFO  [http-nio-8085-exec-5] [c.c.test06th.ctrl.ProductController] -  dispatcher-servlet에서 지정한 경로 : c:\upload
+2023-11-13 21:20:11.572 INFO  [http-nio-8085-exec-5] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/productUpdate
+2023-11-13 21:20:11.572 INFO  [http-nio-8085-exec-5] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:20:11.615 INFO  [http-nio-8085-exec-5] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=77788, content=777788, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[FileDTO(no=25, pno=9, savefolder=c:\upload, originfile=T0764.png, savefile=e2995466-e4fe-4016-a57c-84e94a837bbf.png, filesize=181670, uploaddate=Mon Nov 13 21:20:11 KST 2023), FileDTO(no=26, pno=9, savefolder=c:\upload, originfile=T0883.png, savefile=e54e4acb-52df-4262-a28b-e6c08a3ed74f.png, filesize=167596, uploaddate=Mon Nov 13 21:20:11 KST 2023), FileDTO(no=27, pno=9, savefolder=c:\upload, originfile=T1882.png, savefile=afff086f-3213-481d-b5ef-ebe2a5cac238.png, filesize=197256, uploaddate=Mon Nov 13 21:20:11 KST 2023)])
+2023-11-13 21:20:17.594 INFO  [http-nio-8085-exec-2] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:20:17.594 INFO  [http-nio-8085-exec-2] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:20:17.594 INFO  [http-nio-8085-exec-2] [c.c.test06th.ctrl.ProductController] -  dispatcher-servlet에서 지정한 경로 : c:\upload
+2023-11-13 21:20:17.594 INFO  [http-nio-8085-exec-2] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/productUpdate
+2023-11-13 21:20:17.594 INFO  [http-nio-8085-exec-2] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:20:17.603 INFO  [http-nio-8085-exec-2] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=77788, content=777788, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[])
+2023-11-13 21:20:58.387 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:20:58.390 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-13 21:21:01.777 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-13 21:21:01.778 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 40684 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-13 21:21:01.779 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-13 21:21:01.965 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-13 21:21:01.966 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-13 21:21:02.865 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-13 21:21:02.871 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:21:02.873 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-13 21:21:02.873 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-13 21:21:02.957 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-13 21:21:02.957 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 991 ms
+2023-11-13 21:21:03.377 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-13 21:21:03.496 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@24dbf5d7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6ee7819e, org.springframework.security.web.context.SecurityContextPersistenceFilter@fa327e2, org.springframework.security.web.header.HeaderWriterFilter@4e67df91, org.springframework.security.web.csrf.CsrfFilter@68953777, org.springframework.security.web.authentication.logout.LogoutFilter@763a3b8d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4f40a6d4, org.springframework.security.web.session.ConcurrentSessionFilter@29a34e5e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@570b932a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@64a7ae14, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1466c7d1, org.springframework.security.web.session.SessionManagementFilter@12ff8407, org.springframework.security.web.access.ExceptionTranslationFilter@69a78818, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6a1e6ea9]
+2023-11-13 21:21:03.693 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-13 21:21:03.707 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:21:03.726 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-13 21:21:03.735 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.214 seconds (JVM running for 2.873)
+2023-11-13 21:21:06.419 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13 21:21:06.419 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-13 21:21:06.420 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-13 21:21:06.472 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-13 21:21:06.541 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-13 21:21:06.572 INFO  [http-nio-8085-exec-1] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=77788, content=777788, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[])
+2023-11-13 21:21:14.978 INFO  [http-nio-8085-exec-5] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:21:14.978 INFO  [http-nio-8085-exec-5] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:21:14.979 INFO  [http-nio-8085-exec-5] [c.c.test06th.ctrl.ProductController] -  dispatcher-servlet에서 지정한 경로 : c:\upload
+2023-11-13 21:21:14.979 INFO  [http-nio-8085-exec-5] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/productUpdate
+2023-11-13 21:21:14.979 INFO  [http-nio-8085-exec-5] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:21:15.017 INFO  [http-nio-8085-exec-6] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=77799, content=777788, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[FileDTO(no=28, pno=9, savefolder=c:\upload, originfile=T0764.png, savefile=d74d1522-e4d1-4f29-8925-79e8909179e9.png, filesize=181670, uploaddate=Mon Nov 13 21:21:14 KST 2023), FileDTO(no=29, pno=9, savefolder=c:\upload, originfile=T0883.png, savefile=22d6f65d-55e7-4a1c-90aa-a74911d55167.png, filesize=167596, uploaddate=Mon Nov 13 21:21:14 KST 2023), FileDTO(no=30, pno=9, savefolder=c:\upload, originfile=T1882.png, savefile=5c78bfa4-4b7c-4ad0-a8ce-c460173f778e.png, filesize=197256, uploaddate=Mon Nov 13 21:21:14 KST 2023)])
+2023-11-13 21:21:21.873 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:21:21.874 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:21:21.874 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  dispatcher-servlet에서 지정한 경로 : c:\upload
+2023-11-13 21:21:21.874 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/productUpdate
+2023-11-13 21:21:21.874 INFO  [http-nio-8085-exec-3] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:21:21.883 INFO  [http-nio-8085-exec-3] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=77799, content=777777, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[FileDTO(no=28, pno=9, savefolder=c:\upload, originfile=T0764.png, savefile=d74d1522-e4d1-4f29-8925-79e8909179e9.png, filesize=181670, uploaddate=Mon Nov 13 21:21:14 KST 2023), FileDTO(no=29, pno=9, savefolder=c:\upload, originfile=T0883.png, savefile=22d6f65d-55e7-4a1c-90aa-a74911d55167.png, filesize=167596, uploaddate=Mon Nov 13 21:21:14 KST 2023), FileDTO(no=30, pno=9, savefolder=c:\upload, originfile=T1882.png, savefile=5c78bfa4-4b7c-4ad0-a8ce-c460173f778e.png, filesize=197256, uploaddate=Mon Nov 13 21:21:14 KST 2023)])
+2023-11-13 21:23:07.859 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:23:07.862 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-13 21:23:11.266 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-13 21:23:11.267 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 980 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-13 21:23:11.269 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-13 21:23:11.446 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-13 21:23:11.446 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-13 21:23:12.327 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-13 21:23:12.333 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:23:12.334 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-13 21:23:12.334 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-13 21:23:12.420 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-13 21:23:12.420 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 973 ms
+2023-11-13 21:23:12.824 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-13 21:23:12.940 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@635b8868, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31e21eec, org.springframework.security.web.context.SecurityContextPersistenceFilter@72ad1955, org.springframework.security.web.header.HeaderWriterFilter@4d8ff15, org.springframework.security.web.csrf.CsrfFilter@e26ec0e, org.springframework.security.web.authentication.logout.LogoutFilter@50992407, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6ee7819e, org.springframework.security.web.session.ConcurrentSessionFilter@3c4159f6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f0c3964, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1602f99f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@13980f4e, org.springframework.security.web.session.SessionManagementFilter@44179a9c, org.springframework.security.web.access.ExceptionTranslationFilter@12ff8407, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6df89f4a]
+2023-11-13 21:23:13.131 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-13 21:23:13.144 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:23:13.162 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-13 21:23:13.171 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.15 seconds (JVM running for 2.938)
+2023-11-13 21:23:17.468 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13 21:23:17.468 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-13 21:23:17.470 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-13 21:23:17.526 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-13 21:23:17.605 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-13 21:23:17.641 INFO  [http-nio-8085-exec-1] [c.chunjae.test06th.ctrl.CommonController] - FileVO(fileBoard=Product(no=9, id=admin, title=77799, content=777777, price=null, cnt=0, resdate=2023-11-13 20:46:23, act=DEAL, addr=제주도 남제주군), fileList=[FileDTO(no=28, pno=9, savefolder=c:\upload, originfile=T0764.png, savefile=d74d1522-e4d1-4f29-8925-79e8909179e9.png, filesize=181670, uploaddate=Mon Nov 13 21:21:14 KST 2023), FileDTO(no=29, pno=9, savefolder=c:\upload, originfile=T0883.png, savefile=22d6f65d-55e7-4a1c-90aa-a74911d55167.png, filesize=167596, uploaddate=Mon Nov 13 21:21:14 KST 2023), FileDTO(no=30, pno=9, savefolder=c:\upload, originfile=T1882.png, savefile=5c78bfa4-4b7c-4ad0-a8ce-c460173f778e.png, filesize=197256, uploaddate=Mon Nov 13 21:21:14 KST 2023)])
+2023-11-13 21:25:49.043 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:25:49.045 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-13 21:25:51.809 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-13 21:25:51.809 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 34028 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-13 21:25:51.811 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-13 21:25:51.984 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-13 21:25:51.985 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-13 21:25:52.896 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-13 21:25:52.902 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:25:52.903 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-13 21:25:52.903 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-13 21:25:52.993 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-13 21:25:52.993 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1008 ms
+2023-11-13 21:25:53.413 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-13 21:25:53.519 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1051cf6a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d08191, org.springframework.security.web.context.SecurityContextPersistenceFilter@71a2e11c, org.springframework.security.web.header.HeaderWriterFilter@455a19d9, org.springframework.security.web.csrf.CsrfFilter@7f99e192, org.springframework.security.web.authentication.logout.LogoutFilter@6305b1a3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@757cadbc, org.springframework.security.web.session.ConcurrentSessionFilter@71e9c263, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@47cd33ae, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@12ff8407, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b23ebeb, org.springframework.security.web.session.SessionManagementFilter@2515968c, org.springframework.security.web.access.ExceptionTranslationFilter@794916c5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7a826394]
+2023-11-13 21:25:53.725 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-13 21:25:53.742 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:25:53.763 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-13 21:25:53.774 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.198 seconds (JVM running for 3.114)
+2023-11-13 21:25:56.342 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13 21:25:56.343 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-13 21:25:56.343 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 0 ms
+2023-11-13 21:25:56.391 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-13 21:25:56.460 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-13 21:26:20.897 ERROR [http-nio-8085-exec-8] [o.a.c.c.C.[.[.[/].[dispatcherServlet]] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.chunjae.test06th.per.ProductMapper.fileDelete] with root cause
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.chunjae.test06th.per.ProductMapper.fileDelete
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229)
+	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
+	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
+	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
+	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at jdk.proxy3/jdk.proxy3.$Proxy75.fileDelete(Unknown Source)
+	at com.chunjae.test06th.biz.ProductServiceImpl.removeFileboard(ProductServiceImpl.java:44)
+	at com.chunjae.test06th.ctrl.ProductController.productDelete(ProductController.java:157)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:529)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:147)
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:125)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:223)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:217)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:94)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:168)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-11-13 21:28:20.248 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:28:20.251 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-13 21:28:23.722 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 31084 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-13 21:28:23.722 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-13 21:28:23.725 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-13 21:28:23.906 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-13 21:28:23.907 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-13 21:28:24.820 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-13 21:28:24.826 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:28:24.827 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-13 21:28:24.828 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-13 21:28:24.914 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-13 21:28:24.915 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1008 ms
+2023-11-13 21:28:25.336 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-13 21:28:25.451 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@38f488f0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6bc502df, org.springframework.security.web.context.SecurityContextPersistenceFilter@6305b1a3, org.springframework.security.web.header.HeaderWriterFilter@779890f7, org.springframework.security.web.csrf.CsrfFilter@14db45ec, org.springframework.security.web.authentication.logout.LogoutFilter@6aad04ac, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@13980f4e, org.springframework.security.web.session.ConcurrentSessionFilter@4f0c3964, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ca3b58d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@39444b57, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@749cdd05, org.springframework.security.web.session.SessionManagementFilter@3c4159f6, org.springframework.security.web.access.ExceptionTranslationFilter@29a34e5e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6ee7819e]
+2023-11-13 21:28:25.652 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-13 21:28:25.665 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:28:25.684 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-13 21:28:25.693 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.23 seconds (JVM running for 2.897)
+2023-11-13 21:28:30.328 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13 21:28:30.328 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-13 21:28:30.329 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-13 21:28:30.370 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-13 21:28:30.440 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-13 21:28:33.255 ERROR [http-nio-8085-exec-7] [o.a.c.c.C.[.[.[/].[dispatcherServlet]] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.chunjae.test06th.per.ProductMapper.fileDelete] with root cause
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.chunjae.test06th.per.ProductMapper.fileDelete
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:229)
+	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53)
+	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:96)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
+	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:36)
+	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:94)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at jdk.proxy3/jdk.proxy3.$Proxy75.fileDelete(Unknown Source)
+	at com.chunjae.test06th.biz.ProductServiceImpl.removeFileboard(ProductServiceImpl.java:44)
+	at com.chunjae.test06th.ctrl.ProductController.productDelete(ProductController.java:150)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:529)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:147)
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:125)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:223)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:217)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:94)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:168)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-11-13 21:30:15.498 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:30:15.501 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-13 21:30:18.991 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-13 21:30:18.991 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 39408 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-13 21:30:18.993 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-13 21:30:19.183 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-13 21:30:19.183 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-13 21:30:20.103 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-13 21:30:20.109 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:30:20.110 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-13 21:30:20.110 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-13 21:30:20.198 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-13 21:30:20.198 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1014 ms
+2023-11-13 21:30:20.614 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-13 21:30:20.724 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@69be0078, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@48cc1611, org.springframework.security.web.context.SecurityContextPersistenceFilter@733f8a6a, org.springframework.security.web.header.HeaderWriterFilter@88348d3, org.springframework.security.web.csrf.CsrfFilter@44179a9c, org.springframework.security.web.authentication.logout.LogoutFilter@1ad4b3dd, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1a177896, org.springframework.security.web.session.ConcurrentSessionFilter@6fba78b4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7c6e0423, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@654ebeb5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@9f3df99, org.springframework.security.web.session.SessionManagementFilter@770b8aa7, org.springframework.security.web.access.ExceptionTranslationFilter@77826d75, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@46621689]
+2023-11-13 21:30:20.921 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-13 21:30:20.935 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:30:20.954 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-13 21:30:20.964 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.251 seconds (JVM running for 2.898)
+2023-11-13 21:30:22.963 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13 21:30:22.963 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-13 21:30:22.964 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-13 21:30:23.011 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-13 21:30:23.077 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-13 21:32:12.322 INFO  [http-nio-8085-exec-7] [c.c.test06th.ctrl.ProductController] - -----------------------------------
+2023-11-13 21:32:12.323 INFO  [http-nio-8085-exec-7] [c.c.test06th.ctrl.ProductController] -  현재 프로젝트 홈 : 
+2023-11-13 21:32:12.323 INFO  [http-nio-8085-exec-7] [c.c.test06th.ctrl.ProductController] -  지정한 경로 : c:\upload
+2023-11-13 21:32:12.323 INFO  [http-nio-8085-exec-7] [c.c.test06th.ctrl.ProductController] -  요청 URL : /product/fileUpload
+2023-11-13 21:32:12.323 INFO  [http-nio-8085-exec-7] [c.c.test06th.ctrl.ProductController] -  프로젝트 저장 경로 : c:\upload
+2023-11-13 21:32:27.444 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:32:27.447 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2023-11-13 21:37:05.574 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Starting Test06thApplication using Java 17.0.7 on DESKTOP-B8115SN with PID 29868 (E:\git\spring_boot\test06th\build\classes\java\main started by donha in E:\git\spring_boot\test06th)
+2023-11-13 21:37:05.574 INFO  [background-preinit] [o.h.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.5.Final
+2023-11-13 21:37:05.576 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - No active profile set, falling back to 1 default profile: "default"
+2023-11-13 21:37:05.778 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-13 21:37:05.778 INFO  [restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-13 21:37:06.674 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8085 (http)
+2023-11-13 21:37:06.680 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:37:06.681 INFO  [restartedMain] [org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2023-11-13 21:37:06.681 INFO  [restartedMain] [org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.82]
+2023-11-13 21:37:06.766 INFO  [restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2023-11-13 21:37:06.766 INFO  [restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 987 ms
+2023-11-13 21:37:07.198 INFO  [restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping] - Adding welcome page template: index
+2023-11-13 21:37:07.310 INFO  [restartedMain] [o.s.s.web.DefaultSecurityFilterChain] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@32fa4247, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e8e70fc, org.springframework.security.web.context.SecurityContextPersistenceFilter@4fb6896b, org.springframework.security.web.header.HeaderWriterFilter@6a67e9b7, org.springframework.security.web.csrf.CsrfFilter@afc95a0, org.springframework.security.web.authentication.logout.LogoutFilter@66d9988d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7d283c18, org.springframework.security.web.session.ConcurrentSessionFilter@64f0027f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@10397cd8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5327ac8c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@394baa58, org.springframework.security.web.session.SessionManagementFilter@37705a27, org.springframework.security.web.access.ExceptionTranslationFilter@17cd33f1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@72a5594b]
+2023-11-13 21:37:07.507 INFO  [restartedMain] [o.s.b.d.a.OptionalLiveReloadServer] - LiveReload server is running on port 35729
+2023-11-13 21:37:07.520 INFO  [restartedMain] [o.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8085"]
+2023-11-13 21:37:07.538 INFO  [restartedMain] [o.s.b.w.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8085 (http) with context path ''
+2023-11-13 21:37:07.548 INFO  [restartedMain] [com.chunjae.test06th.Test06thApplication] - Started Test06thApplication in 2.28 seconds (JVM running for 4.186)
+2023-11-13 21:37:24.668 INFO  [http-nio-8085-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13 21:37:24.668 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2023-11-13 21:37:24.669 INFO  [http-nio-8085-exec-1] [o.s.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2023-11-13 21:37:24.710 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2023-11-13 21:37:24.787 INFO  [http-nio-8085-exec-1] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2023-11-13 21:37:56.690 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2023-11-13 21:37:56.694 INFO  [SpringApplicationShutdownHook] [com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.

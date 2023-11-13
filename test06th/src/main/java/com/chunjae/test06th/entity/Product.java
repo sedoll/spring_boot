@@ -12,6 +12,7 @@ import lombok.ToString;
 public class Product {
     private Integer no;         // 상품 번호
     private String id;          // 작성자
+    private String cate;        // 분류
     private String title;       // 제목
     private String content;     // 내용
     private Integer price;      // 가격
