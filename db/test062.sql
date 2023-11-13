@@ -131,19 +131,19 @@ create table black_list (
 	sbscr varchar(20) NOT NULL COMMENT '등록자',
 	black varchar(20) NOT NULL COMMENT '차단아이디',
 	FOREIGN KEY(sbscr) REFERENCES euser(name) ON DELETE CASCADE,
-	FOREIGN KEY(black) REFERENCES euser(name) ON DELETE CASCADE,
+	FOREIGN KEY(black) REFERENCES euser(name) ON DELETE CASCADE
 );
 
 -- 중고상품에 따른 채팅방 활성화 상태
-edumoncreate view pro_chat AS select 
-	pro.no AS 'pno', -- 중고상품번호
-	pro.title 'title', -- 중고상품제목
-	chat.room_id 'room_id', -- 채팅방번호
-	chat.buyer 'buyer',
-	chat.seller 'seller',
-	chat.name 'name', -- 채팅방이름
-	pro.act 'pact', -- 중고상품활성화상태 JOIN(활성), DSBLD(비활성)
-	chat.act 'cact' -- 채팅방활성화상태 JOIN(활성), DSBLD(비활성)
+create view pro_chat AS select 
+	pro.no as 'pno', -- 중고상품번호
+	pro.title as 'title', -- 중고상품제목
+	chat.room_id as 'room_id', -- 채팅방번호
+	chat.buyer as 'buyer',
+	chat.seller as 'seller',
+	chat.name as 'name', -- 채팅방이름
+	pro.act as 'pact', -- 중고상품활성화상태 JOIN(활성), DSBLD(비활성)
+	chat.act as 'cact' -- 채팅방활성화상태 JOIN(활성), DSBLD(비활성)
 		FROM product pro RIGHT OUTER JOIN chatroom chat
 			ON pro.no = chat.pno;
 
@@ -161,12 +161,19 @@ CREATE TABLE chatmsg(
 
 -- 학교 정보
 CREATE TABLE school(
-	eo_code VARCHAR(10),
-	eo_name VARCHAR(100),
-	sc_code VARCHAR(50),
-	sc_name VARCHAR(100)
+	eocode VARCHAR(10),
+	eoname VARCHAR(100),
+	sccode VARCHAR(50),
+	scname VARCHAR(100)
 );
+
+alter table school change eo_code eocode VARCHAR(10);
+alter table school change eo_name eoname VARCHAR(100);
+alter table school change sc_code sccode VARCHAR(50);
+alter table school change sc_name scname VARCHAR(100);
+
 
 SELECT * FROM school;
 
-SELECT * FROM school WHERE sc_name LIKE CONCAT('%','신구로', '%') limit 1
+SELECT * FROM school WHERE sc_name LIKE '%신구로%' limit 1
+SELECT * FROM school WHERE sc_name LIKE CONCAT('%', '신구로초', '%') limit 1

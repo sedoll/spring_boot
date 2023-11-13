@@ -2,10 +2,12 @@ package com.chunjae.test06th.config;
 
 import com.chunjae.test06th.biz.UserService;
 import com.chunjae.test06th.biz.UserServiceImpl;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -43,7 +45,7 @@ public class SecurityConfig {
                 .antMatchers("/chat/**").hasAnyAuthority("ADMIN", "EMP", "USER")
                 .antMatchers("/admin/**").hasAuthority("ADMIN") // Role 말고 Authority로 적용
                 .antMatchers("/emp/**").hasAnyAuthority("ADMIN", "EMP")
-                .mvcMatchers("/css/**", "/js/**", "/images/**", "/upload/**").permitAll()
+                .mvcMatchers("/css/**", "/js/**", "/img/**", "/upload/**").permitAll()
                 .anyRequest().authenticated(); // 앞에서 선언한 모든 것들을 인증
 
         // login 설정
@@ -97,5 +99,11 @@ public class SecurityConfig {
     @Bean
     public static ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
         return new ServletListenerRegistrationBean<>(new HttpSessionEventPublisher());
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers(PathRequest
+                .toStaticResources().atCommonLocations());
     }
 }

@@ -1,10 +1,21 @@
 $(document).ready(function(){
     $("#idCheckBtn").click(function(){
+
         if($("#id").val()==""){
             alert("아이디를 입력하지 않으셨습니다.");
             $("#id").focus();
-            return;
+            return false;
         }
+
+        // 정규표현식 패턴
+        let pattern = /^(?=.*[a-z].*[a-z])(?=.*[0-9].*[0-9])[a-z0-9]*$/;
+        // 유효성 검사
+        if (!pattern.test($("#id").val())) {
+            alert("아이디는 영어와 숫자가 최소 2자리 이상씩 포함되어야 합니다.");
+            $("#id").focus();
+            return false;
+        }
+
         const token = $("meta[name='_csrf']").attr("content")
         const header = $("meta[name='_csrf_header']").attr("content");
         var test = {name : $("#id").val()}//전송되어질 데이터를 객체로 묶음
@@ -38,8 +49,18 @@ $(document).ready(function(){
         if($("#email").val()==""){
             alert("이메일을 입력하지 않으셨습니다.");
             $("#email").focus();
-            return;
+            return false;
         }
+
+        // 정규표현식 패턴
+        let pattern = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*[a-zA-Z]$/;
+        // 유효성 검사
+        if (!pattern.test($("#email").val())) {
+            alert("이메일 형식이 옳바르지 않습니다.");
+            $("#email").focus();
+            return false;
+        }
+
         // Retrieve the CSRF token from the hidden input field
         const token = $("meta[name='_csrf']").attr("content")
         const header = $("meta[name='_csrf_header']").attr("content");

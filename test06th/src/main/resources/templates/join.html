@@ -38,21 +38,21 @@
             <legend>회원 가입 정보를 입력하시기 바랍니다.</legend>
             <div class="pure-control-group">
                 <label for="id">Id</label>
-                <input type="text" name="name" id="id" minlength="4" maxlength="16" placeholder="id"
-                       pattern="^[a-z0-9]*$" required/>
+                <input type="text" name="name" id="id" minlength="4" maxlength="16" placeholder="영어소문자, 숫자 각각 최소 2개 포함"
+                       pattern="^(?=.*[a-z].*[a-z])(?=.*[0-9].*[0-9])[a-z0-9]*$" required/>
                 <button type="button" id="idCheckBtn" class="pure-button pure-button-primary">아이디 중복 체크</button>
                 <input type="hidden" name="idCheck" id="idCheck" value="false">
                 <div id="msg"></div>
             </div>
             <div class="pure-control-group">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Password"
-                       pattern="^\d{4,}(?:[a-z@^*]*)?$" required/>
+                <input type="password" name="password" id="password" minlength="6" maxlength="18" placeholder="영어소문자, 숫자, _ 포함 6~18"
+                       pattern="^([a-z0-9_]){6,18}$" required/>
             </div>
             <div class="pure-control-group">
                 <label for="password2">Password Confirm</label>
-                <input type="password" name="password2" id="password2" placeholder="Password Confirm"
-                       pattern="^\d{4,}(?:[a-z@^*]*)?$" required/>
+                <input type="password" name="password2" id="password2" minlength="6" maxlength="18" placeholder="비밀번호 확인"
+                       pattern="^([a-z0-9_]){6,18}$" required/>
             </div>
             <div class="pure-control-group">
                 <label for="username">Username</label>
@@ -62,7 +62,7 @@
             <div class="pure-control-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" placeholder="Email"
-                       pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}" maxlength="100" required/>
+                       pattern="^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]${2,3}" maxlength="100" required/>
                 <button type="button" id="emailCheckBtn" class="pure-button pure-button-primary" >이메일 중복 체크</button>
                 <input type="hidden" name="emailCheck" id="emailCheck" value="false">
                 <div id="msg2"></div>

@@ -38,7 +38,7 @@
       <td>[[${product.cnt}]]</td>
       <td>
         <th:block th:if="${#authentication.principal eq product.id or #authorization.expression('hasAuthority(''ADMIN'')')}">
-          <a th:href="@{/product/comUpdate(no=${product.no})}" class="btn btn-primary">수정</a>
+          <a th:href="@{/product/productUpdate(no=${product.no})}" class="btn btn-primary">수정</a>
           <a th:href="@{/product/productDelete(no=${product.no})}" class="btn btn-danger">삭제</a>
         </th:block>
       </td>

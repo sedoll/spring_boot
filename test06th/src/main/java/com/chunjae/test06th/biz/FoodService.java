@@ -21,8 +21,10 @@ public class FoodService {
     @Autowired
     private FoodMapper foodMapper;
 
-    public School getSchool(String sc_name) {
-        return foodMapper.getSchool(sc_name);
+    public School getSchool(String scname) {
+        System.out.println("data: %"+scname+"%");
+        System.out.println("mapper: " + foodMapper.getSchool("%"+scname+"%"));
+        return foodMapper.getSchool(scname);
     }
 
     private List<String> ddishList = new ArrayList<>(); // 식단

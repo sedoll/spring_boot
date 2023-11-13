@@ -30,11 +30,6 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.getProduct(no);
     }
 
-    @Override
-    public int updatProduct(Product product) {
-        return productMapper.updatProduct(product);
-    }
-
     // 중고게시글 및 묶여있는 파일 삭제
     @Override
     public int removeFileboard(int postNo) throws Exception {
@@ -72,8 +67,8 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public void fileRemove(int no) throws Exception {
-        productMapper.fileRemove(no);
+    public int fileRemove(int no) throws Exception {
+        return productMapper.fileRemove(no);
     }
 
     @Override
@@ -83,7 +78,12 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void updateFileboard(FileVO fileboard) throws Exception {
-        productMapper.updateFileboard(fileboard);
+        Product board = fileboard.getFileBoard();
+        List<FileDTO> fileList = fileboard.getFileList();
+        productMapper.fileboardUpdate(board);
+        for(FileDTO file:fileList) {
+            productMapper.fileUpdate(file);
+        }
     }
     @Override
     public void removeFileAll(int postNo) throws Exception {

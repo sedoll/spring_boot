@@ -38,7 +38,7 @@
         select * from fileobj where pno=#{pno}
     </select>
     <!-- 파일 상세보기 -->
-    <select id="fileDetail" resultType="com.chunjae.test06th.entity.FileDTO">
+    <select id="getFile" resultType="com.chunjae.test06th.entity.FileDTO">
         select * from fileobj where no=#{no}
     </select>
     <!-- 파일 수 카운트 -->
@@ -58,11 +58,11 @@
         </choose>
     </insert>
     <!-- 글번호가 같은 파일 제거 -->
-    <delete id="fileDelete">
+    <delete id="removeFileAll">
         delete from fileobj where pno=#{pno}
     </delete>
     <!-- 하나의 파일만 제거 -->
-    <delete id="fileObjDelete">
+    <delete id="fileRemove">
         delete from fileobj where no=#{no}
     </delete>
     <!-- 파일 자료 수정하기 -->
@@ -70,11 +70,11 @@
     <!--		update fileobj set saveFolder=#{saveFolder}, originFile=#{originFile}, saveFile=#{saveFile}, fileSize=#{fileSize}, uploadDate=#{uploadDate} where pno=#{pno}-->
     <!--	</update>-->
     <update id="fileboardUpdate">
-        update fileboard set title=#{title}, content=#{content} where pno=#{pno}
+        update product set title=#{title}, content=#{content} where no=#{no}
     </update>
     <insert id="fileUpdate">
         <choose>
-            <when test="originFile != null and originFile.trim() != ''">
+            <when test="originfile != null and originfile.trim() != ''">
                 insert into fileobj values (default, #{pno}, #{savefolder}, #{originfile}, #{savefile}, #{filesize}, #{uploaddate})
             </when>
             <otherwise>

@@ -3,6 +3,7 @@ package com.chunjae.test06th.ctrl;
 import com.chunjae.test06th.biz.FoodService;
 import com.chunjae.test06th.entity.School;
 import com.chunjae.test06th.utils.Week;
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,10 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/food/*")
+@Log4j2
 public class FoodController {
     @Autowired
     private FoodService foodService;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("foodList")		// board/list.do
     public String boardList(Model model) throws Exception {
@@ -44,12 +45,12 @@ public class FoodController {
             List<String> date = week.getDate(); // 날짜 정보 갖고오기
 
             School dto = foodService.getSchool(sc_name);
-            logger.info(dto.toString());
+            log.info(dto.toString());
             System.out.println(dto.toString());
 
-            String codeS = dto.getSc_code();
-            String codeK = dto.getEo_code();
-            String schoolName = dto.getSc_name();
+            String codeS = dto.getSccode();
+            String codeK = dto.getEocode();
+            String schoolName = dto.getScname();
 
 //            String codeS = "7041136";
 //            String codeK = "B10";

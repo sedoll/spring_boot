@@ -11,13 +11,14 @@
 <th:block th:replace="layout/header :: headerFragment"></th:block>
 <div class="l-content" style="width:1280px;margin:20px auto;">
     <h2 style="text-align: center;">판매 글 수정</h2>
-    <form th:action="@{/board/boardUpdate}" method="post" style="width:600px;margin:15px auto;"
-          onsubmit="return textCheck(this)">
+    <form th:action="@{/product/productUpdate}" method="post" style="width:600px;margin:15px auto;"
+          onsubmit="return textCheck(this)" enctype="multipart/form-data">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div class="form-group">
             <label for="id">Id</label>
+            <input type="hidden" name="pno" th:value="${board.getNo()}">
             <input type="text" class="form-control bg-secondary text-white" name="name" id="name"
-                   th:value="${board.name}" minlength="4" maxlength="16"
+                   th:value="${board.id}" minlength="4" maxlength="16"
                    pattern="^[a-z0-9]*$" readonly/>
             <input type="hidden" name="id" id="id" value="${board.id}">
         </div>
@@ -35,16 +36,56 @@
             <input type="hidden" id="ck" value="no">
             <div id="error-message"></div>
         </div>
+
         <div class="form-group">
-            <th:block th:each="file : ${fileList}">
-                <label th:for="filelink${status.count}">file</label>
-                <a th:href="@{/resources/upload/${file.originFile}}" title="${file.fileSize}" th:id="filelink${status.count}" download>[[${file.originFile}]]</a>
-                <button type="button" class="remove_btn${status.count}" style="display:inline-block;padding:0;background-color: black;color:#fff;width:18px;height:18px;font-size:12px;line-height:18px;text-align:center;border-radius:10px;" data1="${file.no}" data2="${file.postNo}">x</button><br>
+            <th:block th:each="file, status : ${fileList}">
+                <label th:for="${status.index}">file</label>
+                <div>
+                    <span th:id="'file'+${status.count}" th:text="${file.getOriginfile()}"></span>
+                    <button type="button" th:class="'remove_btn'+${status.count}" style="display:inline-block;padding:0;background-color: black;color:#fff;width:18px;height:18px;font-size:12px;line-height:18px;text-align:center;border-radius:10px;" th:data1="${file.getNo()}" th:data2="${file.getPno()}">x</button><br>
+                </div>
             </th:block>
             <th:block th:if="${fileList == null}">
                 첨부된 파일이 없습니다.
             </th:block>
         </div>
+
+        <div class="form-group">
+            <label for="file1" id="file-js-example1">
+                <span style="padding:5px;margin:5px">파일 : </span>
+                <input type="file" class="form-control" name="file1" id="file1" onchange="addFile(this);" multiple>
+                <div class="file-list"></div>
+<!--                <span class="file-cta">-->
+<!--                    <span class="file-icon">-->
+<!--                        <i class="fas fa-upload"></i>-->
+<!--                    </span>-->
+<!--                </span>-->
+            </label>
+        </div>
+        <br>
+<!--        <div class="form-group">-->
+<!--            <label for="file2" id="file-js-example2">-->
+<!--                <span style="padding:5px;margin:5px">파일2 : </span>-->
+<!--                <input type="file" class="form-control" name="file2" id="file2">-->
+<!--                <span class="file-cta">-->
+<!--                    <span class="file-icon">-->
+<!--                        <i class="fas fa-upload"></i>-->
+<!--                    </span>-->
+<!--                </span>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <div class="form-group">-->
+<!--            <label for="file3" id="file-js-example3">-->
+<!--                <span style="padding:5px;margin:5px">파일3 : </span>-->
+<!--                <input type="file" class="form-control" name="file3" id="file3">-->
+<!--                <span class="file-cta">-->
+<!--                    <span class="file-icon">-->
+<!--                        <i class="fas fa-upload"></i>-->
+<!--                    </span>-->
+<!--                </span>-->
+<!--            </label>-->
+<!--        </div>-->
 
         <div class="form-group">
             <button id="contBtn" type="button" class="btn btn-secondary">내용 검사</button>
@@ -56,26 +97,30 @@
 <th:block th:replace="layout/footer :: footerFragment"></th:block>
 <script>
     $(document).ready(function () {
-        $(".remove_btn").click(function () {
+        $(".remove_btn1").click(function () {
             var tar = {
                 no: parseInt($(this).attr("data1")),
-                postNo: parseInt($(this).attr("data2"))
+                pno: parseInt($(this).attr("data2"))
             };
+
+            const token = $("meta[name='_csrf']").attr("content")
+            const header = $("meta[name='_csrf_header']").attr("content");
             $.ajax({
                 url: "/product/fileRemove", //요청URL
                 type: "post",    //요청 전송방식
                 dataType: "json",
                 data: tar,
-                success: function () {
+                success: function (result) {
                     console.log("파일 삭제 성공");
                     $("#filelink1").remove();
-                    $(".remove_btn1").remove()
+                    $(".remove_btn1").remove();
                 },
-                error: function () {
+                error: function (result) {
                     console.log("파일 삭제 실패");
-                    $("#filelink1").remove();
-                    $(".remove_btn1").remove()
-                }
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(header, token);
+                },
             });
         });
         $("#contBtn").click(function () {
@@ -103,6 +148,77 @@
             f.content.focus();
             return false;
         }
+    }
+
+
+    var fileNo = 0;
+    var filesArr = new Array();
+
+    /* 첨부파일 추가 */
+    function addFile(obj){
+        var maxFileCnt = 5;   // 첨부파일 최대 개수
+        var attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
+        var remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
+        var curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
+
+        // 첨부파일 개수 확인
+        if (curFileCnt > remainFileCnt) {
+            alert("첨부파일은 최대 " + maxFileCnt + "개 까지 첨부 가능합니다.");
+        }
+
+        for (var i = 0; i < Math.min(curFileCnt, remainFileCnt); i++) {
+
+            const file = obj.files[i];
+
+            // 첨부파일 검증
+            if (validation(file)) {
+                // 파일 배열에 담기
+                var reader = new FileReader();
+                reader.onload = function () {
+                    filesArr.push(file);
+                };
+                reader.readAsDataURL(file)
+
+                // 목록 추가
+                let htmlData = '';
+                htmlData += '<div id="file' + fileNo + '" class="filebox">';
+                htmlData += '   <p class="name">' + file.name + '</p>';
+                htmlData += '   <a class="delete" onclick="deleteFile(' + fileNo + ');"><i class="far fa-minus-square"></i></a>';
+                htmlData += '</div>';
+                $('.file-list').append(htmlData);
+                fileNo++;
+            } else {
+                continue;
+            }
+        }
+        // 초기화
+        document.querySelector("input[type=file]").value = "";
+    }
+
+    /* 첨부파일 검증 */
+    function validation(obj){
+        const fileTypes = ['application/pdf', 'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 'application/haansofthwp', 'application/x-hwp'];
+        if (obj.name.length > 100) {
+            alert("파일명이 100자 이상인 파일은 제외되었습니다.");
+            return false;
+        } else if (obj.size > (10 * 1024 * 1024)) {
+            alert("최대 파일 용량인 10MB를 초과한 파일은 제외되었습니다.");
+            return false;
+        } else if (obj.name.lastIndexOf('.') == -1) {
+            alert("확장자가 없는 파일은 제외되었습니다.");
+            return false;
+        } else if (!fileTypes.includes(obj.type)) {
+            alert("첨부가 불가능한 파일은 제외되었습니다.");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /* 첨부파일 삭제 */
+    function deleteFile(num) {
+        document.querySelector("#file" + num).remove();
+        filesArr[num].is_delete = true;
     }
 </script>
 </body>

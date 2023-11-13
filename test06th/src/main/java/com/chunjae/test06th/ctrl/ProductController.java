@@ -1,10 +1,7 @@
 package com.chunjae.test06th.ctrl;
 
 import com.chunjae.test06th.biz.ProductServiceImpl;
-import com.chunjae.test06th.entity.Comment;
-import com.chunjae.test06th.entity.FileDTO;
-import com.chunjae.test06th.entity.FileVO;
-import com.chunjae.test06th.entity.Product;
+import com.chunjae.test06th.entity.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +24,9 @@ import java.util.*;
 @RequestMapping("/product/*")
 public class ProductController {
 
+//    @Value("${org.zerock.upload.path}")
+//    private String uploadFolder;
+
     @Autowired
     private ProductServiceImpl productService;
 
@@ -37,29 +37,6 @@ public class ProductController {
         model.addAttribute("name", name);
         return "product/productInsert";
     }
-
-    // 게시글 수정 폼 이동
-    // 일치하는 데이터가 없으면 null 반환
-    @GetMapping("productUpdate")
-    public String productUpdateForm(@RequestParam("no") Integer no, Model model) throws Exception {
-        Product product = productService.getProduct(no);
-        model.addAttribute("product", product);
-        return "product/productUpdate";
-    }
-
-    // 게시글 수정
-    // 일치하는 데이터가 없으면 null 반환
-    @PostMapping ("productUpdate")
-    public String productUpdate(Product product, Model model) throws Exception {
-        Integer ck = productService.updatProduct(product);
-        if(ck == 1) {
-            log.info("게시글 수정 성공");
-            return "redirect:/common/getProduct?id="+product.getId();
-        } else {
-            log.info("게시글 수정 실패");
-            return "redirect:/";
-        }
-    }
     
     // 중고거래 추가 폼이동
     @GetMapping("fileUpload")
@@ -69,7 +46,7 @@ public class ProductController {
     
     // 중고거래 추가
     @PostMapping("fileUpload")
-    public String fileUpload1(MultipartHttpServletRequest files, HttpServletRequest req, Model model) throws Exception {
+    public String fileUpload(MultipartHttpServletRequest files, HttpServletRequest req, Model model) throws Exception {
 
         //파라미터 분리
         Enumeration<String> e = files.getParameterNames();
@@ -79,6 +56,11 @@ public class ProductController {
             String value = files.getParameter(name);
             map.put(name, value);
         }
+
+        String str = req.getContextPath();
+        log.info("req.getContextPath() : " + str);
+        log.info("req.getServletPath() : " + req.getServletPath());
+        log.info("req.getRealPath(\"/resources/upload\") : "+req.getRealPath("/resources/upload") );
 
         //제목 및 내용 분리
         Product board = new Product();
@@ -113,7 +95,7 @@ public class ProductController {
             log.info("path : ");
 
             if(!file.getOriginalFilename().equals("")) { // 빈 파일은 업로드 안함
-                
+
                 String randomUUID = UUID.randomUUID().toString(); // 파일 이름 중복 방지를 위한 랜덤 설정
                 String OriginalFilename = file.getOriginalFilename(); // 실제 파일 이름
                 log.info(OriginalFilename);
@@ -148,7 +130,7 @@ public class ProductController {
         return "redirect:/common/productList";
     }
     
-    // 중고상품게시글 및 묶여있던 파일 삭제
+    // 중고상품게시글 및 묶여있던 파일 통합 삭제
     @GetMapping("productDelete")
     public String productDelete(@RequestParam("no") Integer postNo, HttpServletRequest req) throws Exception {
 
@@ -172,8 +154,9 @@ public class ProductController {
         int ck = productService.removeFileboard(postNo);
         return "redirect:/common/productList";
     }
-
-    @GetMapping("modifyFileboard")
+    
+    // 거래글 수정폼 이동
+    @GetMapping("productUpdate")
     public String modifyFileboard(@RequestParam("no") Integer postNo, Model model) throws Exception {
         Product board = productService.getProduct(postNo);
         List<FileDTO> fileList = productService.getFileGroupList(postNo);
@@ -181,12 +164,12 @@ public class ProductController {
         model.addAttribute("fileList", fileList);
         return "/product/productUpdate";
     }
-
-    @PostMapping("modifyFileboard")
-    public String modifyFileboard2(@RequestParam("pno") Integer postNo, MultipartHttpServletRequest files, HttpServletRequest req,Model model) throws Exception {
+    
+    // 중고거래글 수정
+    @PostMapping("productUpdate")
+    public String modifyFileboard2(@RequestParam("pno") Integer postNo, MultipartHttpServletRequest files, HttpServletRequest req, Model model) throws Exception {
         FileVO fileboard = new FileVO();
-//        model.addAttribute("fileboard", fileboard);
-        /////////////
+
         //파라미터 분리
         Enumeration<String> e = files.getParameterNames();
         Map map = new HashMap();
@@ -202,13 +185,12 @@ public class ProductController {
         board.setTitle((String) map.get("title"));
         board.setContent((String) map.get("content"));
 
-
         // 현재 작업 디렉토리를 가져와서 상대 경로를 만듭니다.
         String currentWorkingDir = System.getProperty("user.dir");
         String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
 
-        // 상대 경로와 업로드 디렉토리를 합쳐서 최종 경로를 만듭니다.
-        String uploadFolder = currentWorkingDir + relativePath;;
+//         상대 경로와 업로드 디렉토리를 합쳐서 최종 경로를 만듭니다.
+        String uploadFolder = currentWorkingDir + relativePath;
         log.info("-----------------------------------");
         log.info(" 현재 프로젝트 홈 : "+req.getContextPath());
         log.info(" dispatcher-servlet에서 지정한 경로 : "+uploadFolder);
@@ -253,34 +235,39 @@ public class ProductController {
                 } catch(IOException e2){
                     log.info(e2.getMessage());
                 }
-
-//                if (!fileList.isEmpty()) {
                 if (!file.getOriginalFilename().equals("")) {
                     productService.removeFileAll(postNo);
                 }
             }
-            productService.updateFileboard(fileboard);
         }
-
-        fileboard.setFileList(fileList);
+        fileboard.setFileList(fileList); // 파일
         fileboard.setFileBoard(board); //글 제목 내용
-//        productService.removeFileAll(postNo);
         productService.updateFileboard(fileboard);
-        /////////////
-        return "redirect:/product/getFileboard?pno="+postNo;
+        return "redirect:/common/getProduct?no="+postNo;
     }
 
-
+    // 파일 삭제
     @PostMapping("fileRemove")
-    public String fileRemove(@RequestParam("no") Integer no, @RequestParam("pno") Integer postNo, HttpServletRequest req, Model model) throws Exception {
-        String path = req.getRealPath("/static/upload");
+    @ResponseBody
+    public Boolean fileRemove(@RequestParam("no") Integer no, @RequestParam("pno") Integer postNo, HttpServletRequest req, Model model) throws Exception {
+        // 현재 작업 디렉토리를 가져와서 상대 경로를 만듭니다.
+        String currentWorkingDir = System.getProperty("user.dir");
+        String relativePath = File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "upload";
+
+        // 상대 경로와 업로드 디렉토리를 합쳐서 최종 경로를 만듭니다.
+        String path = currentWorkingDir + relativePath;;
         FileDTO fileobj = productService.getFile(no);
-        File file = new File(path + "/" + fileobj.getOriginfile());
-        if (file.exists()) { // 해당 파일이 존재하면
-            file.delete(); // 파일 삭제
-            productService.fileRemove(no);
-            log.info("file delete");
+//        File file = new File(path + "/" + fileobj.getOriginfile());
+//        if (file.exists()) { // 해당 파일이 존재하면
+//            file.delete(); // 파일 삭제
+//            productService.fileRemove(no);
+//            log.info("file delete");
+//        }
+        int ck = productService.fileRemove(no);
+        boolean result = false;
+        if(ck==1){
+            result = false;
         }
-        return "redirect:/product/getFileboard?pno="+postNo;
+        return result;
     }
 }
