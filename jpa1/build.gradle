@@ -45,15 +45,21 @@ dependencies {
 	// query dsl, query Annotation
 	annotationProcessor('javax.persistence:javax.persistence-api:2.2',
 		'javax.annotation:javax.annotation-api',
-		'com.querydsl:querydsl-bom:5.0.0') // ${queryDslVersion}:jpa
+		'com.querydsl:querydsl-apt:5.0.0:jpa') // ${queryDslVersion}:jpa
 	// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
+	// query dsl
+	implementation('com.querydsl:querydsl-jpa',
+			'com.querydsl:querydsl-apt',
+			'com.querydsl:querydsl-core',
+			'com.querydsl:querydsl-sql')
 
 
 	// thymeleaf layout
 	implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
 	// validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
 }
 
 tasks.named('bootBuildImage') {
