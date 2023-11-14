@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 상세</title>
     <th:block th:replace="layout/head :: headFragment"></th:block>
+    <style>
+        #contents {
+            height: 400px;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
 <th:block th:replace="layout/header :: headerFragment"></th:block>
@@ -24,10 +31,6 @@
         <tr>
             <th>제목</th>
             <td th:text="${board.title}"></td>
-        </tr>
-        <tr>
-            <th>내용</th>
-            <td th:text="${board.content}"></td>
         </tr>
         <tr>
             <th>조회수</th>
@@ -49,6 +52,11 @@
         </tr>
         </tbody>
     </table>
+
+    <div id="contents" th:utext="${board.content}">
+    </div>
+    <hr>
+
     <table class="table" id="comment">
         <thead>
         <tr>
