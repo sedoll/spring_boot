@@ -3,7 +3,11 @@
 <mapper namespace="com.chunjae.test06th.per.ProductMapper">
     <!-- 게시글 목록, 리스트 -->
     <select id="getProductList" resultType="com.chunjae.test06th.entity.Product">
-        select * from product order by no desc
+        select * from product where act='JOIN' order by no desc
+    </select>
+    <!-- 내 게시글 목록, 리스트 -->
+    <select id="getMyProductList" resultType="com.chunjae.test06th.entity.Product">
+        select * from product where id = #{id} order by no desc
     </select>
     <!-- 게시글 목록, 리스트 -->
     <select id="getFileList" resultType="com.chunjae.test06th.entity.Product">
@@ -36,10 +40,6 @@
     <!-- 파일 목록 -->
     <select id="getFileGroupList" resultType="com.chunjae.test06th.entity.FileDTO">
         select * from fileobj where pno=#{pno}
-    </select>
-    <!-- 파일 상세보기 -->
-    <select id="getFile" resultType="com.chunjae.test06th.entity.FileDTO">
-        select * from fileobj where no=#{no}
     </select>
     <!-- 파일 수 카운트 -->
     <select id="totalFileCount" resultType="integer" >
@@ -97,7 +97,7 @@
     </select>
     <!-- 중고 판매 게시글 추가 -->
     <insert id="fileBoardInsert">
-        insert into product values(default, #{id}, #{title}, #{content}, default, default, default, #{addr})
+        insert into product values(default, #{id}, #{cate}, #{title}, #{content}, #{price}, default, default, default, #{addr})
     </insert>
     <!-- 파일 자료 수정하기 -->
     <update id="fileboardEdit">
@@ -109,6 +109,14 @@
     </delete>
     <!-- 파일 자료 상세보기시 읽은 횟수 증가 -->
     <update id="countUp">
-        update product set visited=visited+1 where no=#{no}
+        update product set cnt=cnt+1 where no=#{no}
+    </update>
+    <!-- 썸네일 이미지 가져오기 -->
+    <select id="thmbn" resultType="com.chunjae.test06th.entity.FileDTO">
+        select * from fileobj where pno=#{no} limit 1
+    </select>
+    <!-- 거래 완료 처리 -->
+    <update id="actUpdate">
+        update product set act='DSBLD', buyer=#{buyer} where no=#{no}
     </update>
 </mapper>

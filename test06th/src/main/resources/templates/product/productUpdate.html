@@ -39,11 +39,10 @@
         </div>
 
         <div class="form-group">
+            <h3>기존파일</h3>
             <th:block th:each="file, status : ${fileList}">
-                <label th:for="${status.index}">기존 파일 [[${status.count}]]</label>
                 <div>
                     <span th:id="'file'+${status.count}" th:text="${file.getOriginfile()}"></span>
-                    <button type="button" th:class="'remove_btn'+${status.count}" style="display:inline-block;padding:0;background-color: black;color:#fff;width:18px;height:18px;font-size:12px;line-height:18px;text-align:center;border-radius:10px;" th:data1="${file.getNo()}" th:data2="${file.getPno()}">x</button><br>
                 </div>
             </th:block>
             <th:block th:if="${fileList == null}">
@@ -53,7 +52,7 @@
 
         <div class="form-group">
             <label for="files" id="file-js-example1">
-                <span style="padding:5px;margin:5px">파일 수정 : </span>
+                <h3>파일 수정 : </h3>
                 <input type="file" class="form-control" name="files" id="files" onchange="addFile(this);"
                        accept="image/png, image/jpeg" multiple> <!-- -->
                 <div class="file-list"></div>

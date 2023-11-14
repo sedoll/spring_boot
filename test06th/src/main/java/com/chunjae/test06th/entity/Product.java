@@ -20,4 +20,5 @@ public class Product {
     private String resdate;     // 게시일
     private String act;         // 거래상태
     private String addr;        // 거래장소 주소
+    private String buyer;       // 구매자
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boardList</title>
+</head>
+<body>
+<h1>boardList</h1>
+<table>
+    <tr th:each="res : ${responseDTO.dtoList}">
+        <th>seq</th>
+        <td th:text="${res.seq}"></td>
+        <th>writer</th>
+        <td th:text="${res.writer}"></td>
+        <th>regDate</th>
+        <td th:text="${res.regDate}"></td>
+        <th>midDate</th>
+        <td th:text="${res.midDate}"></td>
+    </tr>
+</table>
+</body>
+</html>

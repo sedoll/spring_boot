@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 // JpaRepository
 // DML 기능이 들어있음
-public interface BoardRepository extends JpaRepository<Board, Long> {
+// BoardSearch 상속
+
+public interface BoardRepository extends JpaRepository<Board, Long>, BoardSearch {
     
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,10 +26,17 @@ public class ChatController {
     
     // 채팅방 목록
     @GetMapping("chatList")
-    public String chatList(Model model){
+    public String chatList(@RequestParam("name") String name, Model model){
         List<ChatRoom> roomList = chatService.findAllRoom();
+        List<ChatRoom> roomList2 = new ArrayList<>();
+        for (ChatRoom room: roomList) {
+            if(room.getAct().equals("JOIN") && (room.getSeller().equals(name) || room.getBuyer().equals(name))) {
+                roomList2.add(room);
+            }
+        }
+
         logger.info(roomList.toString());
-        model.addAttribute("roomList",roomList);
+        model.addAttribute("roomList",roomList2);
         return "chat/chatList";
     }
     

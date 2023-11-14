@@ -17,11 +17,7 @@ import java.util.*;
 @RequiredArgsConstructor
 @Service
 public class ChatService {
-
-    private final ObjectMapper objectMapper;
     private Map<String, ChatRoom> chatRooms;
-    private Map<String, ProductChat> chatBuyerRooms;
-    private Map<String, ProductChat> chatSellerRooms;
     @Autowired
     private ChatMapper chatMapper;
 
@@ -72,4 +68,7 @@ public class ChatService {
     public int findChatDist(ChatRoom chatRoom) {
         return chatMapper.findChatDist(chatRoom);
     }
+
+    // 거래 완료된 채팅방 숨김처리
+    public int actUpdate(int pno) {return chatMapper.actUpdate(pno);}
 }

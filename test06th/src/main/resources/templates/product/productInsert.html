@@ -25,6 +25,22 @@
         <br>
 
         <div class="form-group">
+            <label for="title">Cate</label>
+            <select id="cate" name="cate" class="form-select" required>
+                <option value="">선택</option>
+                <option value="의류">의류</option>
+                <option value="액세서리">액세서리</option>
+                <option value="전자제품">전자제품</option>
+                <option value="스포츠">스포츠</option>
+                <option value="굿즈">굿즈</option>
+                <option value="도서">도서</option>
+                <option value="티켓">티켓</option>
+                <option value="뷰티">뷰티</option>
+            </select>
+        </div>
+        <br>
+
+        <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" name="title" id="title" placeholder="Title" minlength="1"
                    maxlength="30"
@@ -41,6 +57,13 @@
         <br>
 
         <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" name="price" id="price" placeholder="1000" min="10" max="1000000"  required/>
+            <div>최소 10원 ~ 최대 100만 원</div>
+        </div>
+        <br>
+
+        <div class="form-group">
             <label for="content">Content</label>
             <textarea name="content" class="form-control" id="content" cols="30" rows="10" maxlength="900"
                       required></textarea>
@@ -53,7 +76,7 @@
             <label for="files" id="file-js-example1">
                 <span style="padding:5px;margin:5px">파일 : </span>
                 <input type="file" class="form-control" name="files" id="files" onchange="addFile(this);"
-                       accept="image/png, image/jpeg" multiple> <!-- -->
+                       accept="image/png, image/jpeg" multiple required> <!-- -->
                 <div class="file-list"></div>
                 <span class="file-cta">
                     <span class="file-icon">

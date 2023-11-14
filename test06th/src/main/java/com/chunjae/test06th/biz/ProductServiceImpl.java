@@ -24,6 +24,11 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.getProductList();
     }
 
+    @Override
+    public List<Product> myProductList(String id) {
+        return productMapper.getMyProductList(id);
+    }
+
     // 글 상세 보기
     @Override
     public Product getProduct(Integer no) throws Exception {
@@ -36,7 +41,18 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.productUpdate(product);
     }
 
+    // 조회수 + 1
+    @Override
+    public void countUp(int no) throws Exception {
+        productMapper.countUp(no);
+    }
 
+    @Override
+    public int actUpdate(Product product) {
+        return productMapper.actUpdate(product);
+    }
+
+    // region 파일 관련
     // 중고게시글 및 묶여있는 파일 삭제
     @Override
     public int removeFileboard(int postNo) throws Exception {
@@ -45,7 +61,6 @@ public class ProductServiceImpl implements ProductService{
         return ck;
     }
 
-    // region 파일 관련
     @Override
     public void insertFileboard(FileVO fileboard) throws Exception {
         Product product = fileboard.getFileBoard();
@@ -64,16 +79,6 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public int fileRemove(int no) throws Exception {
-        return productMapper.fileRemove(no);
-    }
-
-    @Override
-    public FileDTO getFile(int no) throws Exception {
-        return productMapper.getFile(no);
-    }
-
-    @Override
     public void updateFileboard(FileVO fileboard) throws Exception {
         Product board = fileboard.getFileBoard();
         List<FileDTO> fileList = fileboard.getFileList();
@@ -86,5 +91,11 @@ public class ProductServiceImpl implements ProductService{
     public void removeFileAll(int postNo) throws Exception {
         productMapper.removeFileAll(postNo);
     }
+
+    @Override
+    public FileDTO thmbn(int no) throws Exception {
+        return productMapper.thmbn(no);
+    }
+
     // endregion
 }

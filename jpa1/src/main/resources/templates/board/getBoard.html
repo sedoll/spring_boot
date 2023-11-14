@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getBoard</title>
+</head>
+<body>
+<h1>getBoard</h1>
+<table>
+    <tbody>
+        <tr>
+            <th>seq</th>
+            <td th:text="${boardDTO.seq}"></td>
+        </tr>
+        <tr>
+            <th>content</th>
+            <td th:text="${boardDTO.content}"></td>
+        </tr>
+        <tr>
+            <th>writer</th>
+            <td th:text="${boardDTO.writer}"></td>
+        </tr>
+        <tr>
+            <th>regDate</th>
+            <td th:text="${boardDTO.regDate}"></td>
+        </tr>
+        <tr>
+            <th>midDate</th>
+            <td th:text="${boardDTO.midDate}"></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

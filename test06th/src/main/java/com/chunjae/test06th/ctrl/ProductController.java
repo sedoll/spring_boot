@@ -1,5 +1,6 @@
 package com.chunjae.test06th.ctrl;
 
+import com.chunjae.test06th.biz.ChatService;
 import com.chunjae.test06th.biz.ProductServiceImpl;
 import com.chunjae.test06th.entity.*;
 import lombok.extern.slf4j.Slf4j;
@@ -43,21 +44,8 @@ public class ProductController {
 
     @Autowired
     private ProductServiceImpl productService;
-
-    @GetMapping("image")
-    public ResponseEntity<Resource> download(@ModelAttribute FileDTO dto) throws IOException {
-        Path path = Paths.get(uploadFolder + "/" + dto.getSavefile());
-        String contentType = Files.probeContentType(path);
-        // header를 통해서 다운로드 되는 파일의 정보를 설정한다.
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentDisposition(ContentDisposition.builder("attachment")
-                .filename(dto.getOriginfile(), StandardCharsets.UTF_8)
-                .build());
-        headers.add(HttpHeaders.CONTENT_TYPE, contentType);
-
-        Resource resource = new InputStreamResource(Files.newInputStream(path));
-        return new ResponseEntity<>(resource, headers, HttpStatus.OK);
-    }
+    @Autowired
+    private ChatService chatService;
 
 
     // 게시글 입력 폼 이동
@@ -87,6 +75,8 @@ public class ProductController {
         board.setTitle(params.get("title"));
         board.setContent(params.get("content"));
         board.setAddr(params.get("addr"));
+        board.setCate(params.get("cate"));
+        board.setPrice(Integer.valueOf(params.get("price")));
 
         File folder = new File(uploadFolder);
         if (!folder.exists())
@@ -226,6 +216,13 @@ public class ProductController {
         }
         
         if(checkFile) { // 파일이 있는 경우
+            List<FileDTO> fileList2 = productService.getFileGroupList(postNo);
+            for (FileDTO fileobj : fileList2) {
+                File file = new File(uploadFolder + "/" + fileobj.getSavefile());
+                if (file.exists()) { // 해당 파일이 존재하면
+                    file.delete(); // 파일 삭제
+                }
+            }
             productService.removeFileAll(postNo);
             fileboard.setFileList(fileList); // 파일
             fileboard.setFileBoard(board); //글 제목 내용
@@ -256,4 +253,36 @@ public class ProductController {
 //        }
 //        return result;
 //    }
+
+    // 내가 판 상품 목록
+    // 상품 목록 보기
+    @GetMapping("productList")
+    public String productList(@RequestParam("name") String name, Model model) throws Exception {
+        List<Product> productList = productService.myProductList(name);
+        List<FileDTO> fileList = new ArrayList<>();
+        for (Product pro:productList) {
+            FileDTO dto = productService.thmbn(pro.getNo());
+            fileList.add(dto);
+        }
+//        log.info(fileboardList.toString());
+        model.addAttribute("productList", productList);
+        model.addAttribute("fileList", fileList);
+        return "product/myProductList";
+    }
+    
+    // 거래확정
+    @PostMapping("sale")
+    public String sale(ChatRoom chatRoom, Model model) throws Exception {
+        
+        // product 구매처리
+        Product product = new Product();
+        product.setBuyer(chatRoom.getBuyer());
+        product.setNo(chatRoom.getPno());
+        int ck = productService.actUpdate(product);
+        
+        // 구매된 상품의 채팅방 dsable 처리
+        int ck2 = chatService.actUpdate(chatRoom.getPno());
+        
+        return "redirect:/product/productList?name="+chatRoom.getSeller();
+    }
 }
