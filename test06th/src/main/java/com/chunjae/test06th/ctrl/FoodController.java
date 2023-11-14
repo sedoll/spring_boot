@@ -60,11 +60,24 @@ public class FoodController {
             int maxValue = 5;
 
             foodService.menuServiceSet(codeS, codeK, date, minValue, maxValue);
+            mlsvList = date;
             ddishList = foodService.getDdishList();
-            mlsvList = foodService.getMlsvList();
             orplcList = foodService.getOrplcList();
             calList = foodService.getCalList();
             ntrList = foodService.getNtrList();
+
+            while (ddishList.size() < 5) {
+                ddishList.add("정보없음");
+            }
+            while (orplcList.size() < 5) {
+                orplcList.add("정보없음");
+            }
+            while (calList.size() < 5) {
+                calList.add("정보없음");
+            }
+            while (ntrList.size() < 5) {
+                ntrList.add("정보없음");
+            }
 
             model.addAttribute("schoolName", schoolName);
             model.addAttribute("ddishList", ddishList);

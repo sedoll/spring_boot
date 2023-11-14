@@ -131,7 +131,7 @@
             "message": ""
         };
         socket.send(JSON.stringify(quitMsg));
-        location.href = "/chat/chatList?name="+id;
+        location.href = "/chat/chatList";
         socket.close();
     }
 

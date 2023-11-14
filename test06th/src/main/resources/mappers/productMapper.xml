@@ -97,7 +97,7 @@
     </select>
     <!-- 중고 판매 게시글 추가 -->
     <insert id="fileBoardInsert">
-        insert into product values(default, #{id}, #{cate}, #{title}, #{content}, #{price}, default, default, default, #{addr})
+        insert into product values(default, #{id}, #{cate}, #{title}, #{content}, #{price}, default, default, default, #{addr}, default)
     </insert>
     <!-- 파일 자료 수정하기 -->
     <update id="fileboardEdit">

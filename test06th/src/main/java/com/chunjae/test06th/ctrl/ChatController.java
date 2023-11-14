@@ -26,17 +26,10 @@ public class ChatController {
     
     // 채팅방 목록
     @GetMapping("chatList")
-    public String chatList(@RequestParam("name") String name, Model model){
+    public String chatList(Model model){
         List<ChatRoom> roomList = chatService.findAllRoom();
-        List<ChatRoom> roomList2 = new ArrayList<>();
-        for (ChatRoom room: roomList) {
-            if(room.getAct().equals("JOIN") && (room.getSeller().equals(name) || room.getBuyer().equals(name))) {
-                roomList2.add(room);
-            }
-        }
-
         logger.info(roomList.toString());
-        model.addAttribute("roomList",roomList2);
+        model.addAttribute("roomList",roomList);
         return "chat/chatList";
     }
     

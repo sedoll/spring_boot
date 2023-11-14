@@ -28,7 +28,6 @@ public class FoodService {
     }
 
     private List<String> ddishList = new ArrayList<>(); // 식단
-    private List<String> mlsvList = new ArrayList<>(); // 날짜
     private List<String> orplcList = new ArrayList<>(); // 원산지
     private List<String> calList = new ArrayList<>(); // 칼로리
     private List<String> ntrList = new ArrayList<>(); // 영양
@@ -41,7 +40,7 @@ public class FoodService {
         try {
             // API 엔드포인트 URL
             String apiUrl = "https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=" + key.getKey() + "&Type=xml&pIndex=" + minValue +
-                    "&pSize=" + maxValue + "&ATPT_OFCDC_SC_CODE=" + codeK + "&SD_SCHUL_CODE=" + codeS + "&MLSV_FROM_YMD=" + date.get(0) + "&MLSV_TO_YMD=" + date.get(1);
+                    "&pSize=" + maxValue + "&ATPT_OFCDC_SC_CODE=" + codeK + "&SD_SCHUL_CODE=" + codeS + "&MLSV_FROM_YMD=" + date.get(0) + "&MLSV_TO_YMD=" + date.get(4);
             System.out.println(apiUrl);
             // API 요청 보내기
             Document doc = Jsoup.connect(apiUrl).get();
@@ -59,14 +58,6 @@ public class FoodService {
                 String ddishNmData = element.text();
                 System.out.println("DDISH_NM 데이터: " + ddishNmData);
                 ddishList.add(ddishNmData);
-            }
-
-            mlsvList.clear();
-            // MLSV_YMD 데이터 출력
-            for (Element element : mlsvYmdElements) {
-                String mlsvYmdData = element.text();
-                System.out.println("MLSV_YMD 데이터: " + mlsvYmdData);
-                mlsvList.add(mlsvYmdData);
             }
 
             orplcList.clear();
@@ -92,12 +83,6 @@ public class FoodService {
                 System.out.println("NTR_INFO 데이터: " + data);
                 ntrList.add(data);
             }
-
-            // 추출된 정보를 결과값에 저장
-            for (int i = 0; i < mlsvList.size(); i++) {
-                result.put(mlsvList.get(i), ddishList.get(i));
-            }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,10 +90,6 @@ public class FoodService {
 
     public List<String> getDdishList() {
         return ddishList;
-    }
-
-    public List<String> getMlsvList() {
-        return mlsvList;
     }
 
     public List<String> getOrplcList() {

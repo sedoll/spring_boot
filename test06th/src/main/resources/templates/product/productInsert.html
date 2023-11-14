@@ -58,8 +58,10 @@
 
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="number" class="form-control" name="price" id="price" placeholder="1000" min="10" max="1000000"  required/>
-            <div>최소 10원 ~ 최대 100만 원</div>
+            <input type="text" class="form-control" name="price" id="price" placeholder="1000"
+                   pattern="\d*" minlength="2" maxlength="7"
+                   oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 7);" required/>
+            <div>최소 10원 ~ 최대 999만 원</div>
         </div>
         <br>
 
@@ -134,6 +136,7 @@
             return false;
         }
     }
+
 </script>
 <script th:src="@{/js/addr.js}"></script>
 <script th:src="@{/js/file.js}"></script>

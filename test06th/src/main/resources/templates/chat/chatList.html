@@ -31,10 +31,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="room : ${roomList}">
-                    <th:block th:if="${#authentication.principal eq room.buyer or #authentication.principal eq room.seller or #authorization.expression('hasAuthority(''ADMIN'')')}">
+            <th:block th:each="room : ${roomList}">
+                <th:block th:if="${room.act eq 'JOIN' and (#authentication.principal eq room.buyer or #authentication.principal eq room.seller or #authorization.expression('hasAuthority(''ADMIN'')'))}">
+                    <tr>
                         <td><a th:href="@{/chat/chatRoom(roomId=${room.roomId})}"
-                            class="btn btn-primary">들어가기</a></td>
+                               class="btn btn-primary">들어가기</a></td>
                         <td>[[${room.name}]]</td>
                         <td>[[${room.buyer}]]</td>
                         <td>[[${room.seller}]]</td>
@@ -49,8 +50,9 @@
                                 </form>
                             </th:block>
                         </td>
-                    </th:block>
-                </tr>
+                    </tr>
+                </th:block>
+            </th:block>
             </tbody>
         </table>
     </th:block>

@@ -10,7 +10,8 @@
 <body>
 <th:block th:replace="layout/header :: headerFragment"></th:block>
 <div class="container">
-  <h2 style="text-align: center;">게시판 목록</h2>
+  <h2 style="text-align: center;">이번주 식단표</h2>
+  <h3 style="text-align: center;">[[${schoolName}]]</h3>
   <form th:action="@{/food/foodList}" class="form" method="post" onsubmit="">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <div class="input-group">
@@ -21,11 +22,11 @@
   </form>
   <hr>
 
-  <p class="is-size-3">이번 주 식단표</p>
-  <table>
+  <h3>이번주 식단표</h3>
+  <table class="table">
     <thead>
-    <tr th:each="day, status : ${mlsvList}">
-      <th>
+    <tr>
+      <th th:each="day, status : ${mlsvList}">
         [[${day}]]
         <th:block th:if="${status.index == 0}">
           (월)
@@ -46,18 +47,30 @@
     </tr>
     </thead>
     <tbody>
-      <tr th:each="eat : ${ddishList}">
-        <td>[[${eat}]]</td>
+      <tr>
+        <th:block th:each="eat : ${ddishList}">
+          <td th:inline="text" th:utext="${eat}"></td>
+        </th:block>
       </tr>
-      <tr th:each="cal : ${calList}">
-        <td>[[${cal}]]</td>
+
+      <tr>
+        <th:block th:each="cal : ${calList}">
+          <td th:inline="text" th:utext="${cal}"></td>
+        </th:block>
       </tr>
-      <tr th:each="orplc : ${orplcList}">
-        <td>[[${orplc}]]</td>
+
+      <tr>
+        <th:block th:each="orplc : ${orplcList}">
+          <td th:inline="text" th:utext="${orplc}"></td>
+        </th:block>
       </tr>
-      <tr th:each="ntr : ${ntrList}">
-        <td>[[${ntr}]]</td>
+
+      <tr>
+        <th:block th:each="ntr : ${ntrList}">
+          <td th:inline="text" th:utext="${ntr}"></td>
+        </th:block>
       </tr>
+
       <tr>
         <td colspan="5">
           알레르기 유발 식재료 번호 : 1.난류, 2.우유, 3.메밀, 4.땅콩, 5.대두, 6.밀, 7.고등어, 8.게, 9.새우, 10.돼지고기, 11.복숭아, 12.토마토, 13.아황산류, 14.호두,
