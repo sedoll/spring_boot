@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional
 public class BoardServiceImpl implements BoardService{
-
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
@@ -37,25 +36,25 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public BoardDTO selectOne(Long seq) {
-        Optional<Board> result = boardRepository.findById(seq);
-        Board board = result.orElseThrow();
-        BoardDTO boardDTO = modelMapper.map(board, BoardDTO.class);
+    public BoardDTO selectOne(Long seq) { // select
+        Optional<Board> result = boardRepository.findById(seq); // db 검색
+        Board board = result.orElseThrow(); // 없으면 예외처리
+        BoardDTO boardDTO = modelMapper.map(board, BoardDTO.class); // type 변경
         return boardDTO;
     }
 
     @Override
-    public void update(BoardDTO boardDTO) {
-        Optional<Board> result = boardRepository.findById(boardDTO.getSeq());
-        Board board = result.orElseThrow();
-        board.change(boardDTO.getTitle(), boardDTO.getContent());
-        boardRepository.save(board);
+    public void update(BoardDTO boardDTO) { // 수정
+        Optional<Board> result = boardRepository.findById(boardDTO.getSeq()); // db 검색
+        Board board = result.orElseThrow(); // 없으면 예외처리
+        board.change(boardDTO.getTitle(), boardDTO.getContent()); // 값 변경
+        boardRepository.save(board); // 저장
     }
 
     @Override
     public void delete(Long seq) {
         boardRepository.deleteById(seq);
-    }
+    } // 제거
 
     @Override
     public PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO) {

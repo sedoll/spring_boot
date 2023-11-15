@@ -34,10 +34,12 @@ public class BoardController {
     }
 
     @GetMapping("getBoard")
-    public String selectOne(@RequestParam("seq") Long seq, Model model) throws Exception {
+    @ResponseBody
+    public BoardDTO selectOne(@RequestParam("seq") Long seq, Model model) throws Exception {
         BoardDTO boardDTO = boardService.selectOne(seq);
-        model.addAttribute("boardDTO", boardDTO);
-        return "board/getBoard";
+//        model.addAttribute("boardDTO", boardDTO);
+//        return "board/getBoard";
+        return boardDTO;
     }
 
     @GetMapping("boardUpdate")
