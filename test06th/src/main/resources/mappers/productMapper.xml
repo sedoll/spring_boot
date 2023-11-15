@@ -17,6 +17,10 @@
     <select id="getMyProductList" resultType="com.chunjae.test06th.entity.Product">
         select * from product where id = #{id} order by no desc
     </select>
+    <!-- 내 구매 목록, 리스트 -->
+    <select id="productBuyerList" resultType="com.chunjae.test06th.entity.Product">
+        select * from product where buyer = #{id} order by no desc
+    </select>
     <!-- 게시글 목록, 리스트 -->
     <select id="getFileList" resultType="com.chunjae.test06th.entity.Product">
         select * from product order by no desc

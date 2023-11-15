@@ -13,6 +13,7 @@ public interface ProductService {
     public List<Product> productList(); // 글 목록 보기
     public List<Product> productListRecent(); // 최근 게시글 목록
     public List<Product> myProductList(String id); // 내 상점 조회
+    public List<Product> productBuyerList(String id); // 내 구매 조회
     public Product getProduct(Integer no) throws Exception; // 글 상세 보기
     public int productUpdate(Product product) throws Exception; // 글 수정
     public void insertFileboard(FileVO fileboard) throws Exception; // 글 추가

@@ -6,27 +6,14 @@ import com.chunjae.test06th.entity.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.ContentDisposition;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 @Slf4j
@@ -257,7 +244,7 @@ public class ProductController {
     // 내가 판 상품 목록
     // 상품 목록 보기
     @GetMapping("productList")
-    public String productList(@RequestParam("name") String name, Model model) throws Exception {
+    public String myProductList(@RequestParam("name") String name, Model model) throws Exception {
         List<Product> productList = productService.myProductList(name);
         List<FileDTO> fileList = new ArrayList<>();
         for (Product pro:productList) {
@@ -267,7 +254,7 @@ public class ProductController {
 //        log.info(fileboardList.toString());
         model.addAttribute("productList", productList);
         model.addAttribute("fileList", fileList);
-        return "product/myProductList";
+        return "user/myProductList";
     }
     
     // 거래확정
@@ -284,5 +271,20 @@ public class ProductController {
         int ck2 = chatService.actUpdate(chatRoom.getPno());
         
         return "redirect:/product/productList?name="+chatRoom.getSeller();
+    }
+
+    // 내가 구매한 상품 목록
+    @GetMapping("productBuyerList")
+    public String productBuyerList(@RequestParam("name") String name, Model model) throws Exception {
+        List<Product> productList = productService.productBuyerList(name);
+        List<FileDTO> fileList = new ArrayList<>();
+        for (Product pro:productList) {
+            FileDTO dto = productService.thmbn(pro.getNo());
+            fileList.add(dto);
+        }
+//        log.info(fileboardList.toString());
+        model.addAttribute("productList", productList);
+        model.addAttribute("fileList", fileList);
+        return "user/productBuyerList";
     }
 }

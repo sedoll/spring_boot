@@ -39,6 +39,11 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.getMyProductList(id);
     }
 
+    @Override // 내 구매 목록 추출
+    public List<Product> productBuyerList(String id) {
+        return productMapper.productBuyerList(id);
+    }
+
     // 글 상세 보기
     @Override
     public Product getProduct(Integer no) throws Exception {

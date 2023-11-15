@@ -46,9 +46,11 @@
                                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                                 <input type="hidden" name="name" id="name" th:value="${#authentication.principal}">
                                 <button type="submit" class="nav-link">내정보</button>
-                            </form></li>
+                            </form>
+                        </li>
                         <li><a th:href="@{/chat/chatList(name=${#authentication.principal})}" class="nav-link">채팅목록</a></li>
-                        <li><a th:href="@{/product/productList(name=${#authentication.principal})}" class="nav-link">내상품</a></li>
+                        <li><a th:href="@{/product/productList(name=${#authentication.principal})}" class="nav-link">판매목록</a></li>
+                        <li><a th:href="@{/product/productBuyerList(name=${#authentication.principal})}" class="nav-link">구매목록</a></li>
                     </ul>
                 </li>
 <!--                <li class="nav-item">-->
