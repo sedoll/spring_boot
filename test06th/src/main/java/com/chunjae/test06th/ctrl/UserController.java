@@ -55,8 +55,9 @@ public class UserController {
     // 회원정보수정
     @PostMapping("updateUserPro")
     public String updateUserPro(Euser user, Model model){
-        Euser euser = userService.getUserById(user.getId());
+        Euser euser = userService.getUserByName(user.getName());
         int cnt = 0;
+        log.info(euser.toString());
         if(user.getPassword().equals(euser.getPassword())){
             cnt = userService.updatePasswordNoChange(user);
         } else {
@@ -66,7 +67,7 @@ public class UserController {
             throw new NoSuchDataException("No Update Process Data");
         }
         model.addAttribute("msg","회원정보를 수정하였습니다.");
-        return "redirect:/user/updateForm?id="+euser.getName();
+        return "redirect:/";
     }
 
 }
