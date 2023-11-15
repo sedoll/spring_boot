@@ -83,10 +83,9 @@ CREATE TABLE board_com(
 		CASCADE
 );
 
--- 중고 상품 테이블
-DROP TABLE product;
-
 -- 중고거래 테이블
+-- DROP TABLE product;
+
 CREATE TABLE product(
 	no INT PRIMARY KEY AUTO_INCREMENT COMMENT '중고상품번호',
 	id VARCHAR(20) NOT NULL COMMENT '작성자',
@@ -100,9 +99,7 @@ CREATE TABLE product(
 	addr VARCHAR(50) NOT NULL COMMENT '서울특별시 구로구',
 	buyer VARCHAR(20) DEFAULT '' COMMENT '구매자',
 	FOREIGN KEY(id) REFERENCES euser(name) ON DELETE 		
-		CASCADE,
-	FOREIGN KEY(buyer) REFERENCES euser(name) ON DELETE 		
-		CASCADE	
+		CASCADE
 );
 
 -- ALTER TABLE product MODIFY COLUMN act VARCHAR(20) DEFAULT 'JOIN' COMMENT '거래상태'; 
@@ -175,11 +172,7 @@ CREATE TABLE school(
 	scname VARCHAR(100)
 );
 
-alter table school change eo_code eocode VARCHAR(10);
-alter table school change eo_name eoname VARCHAR(100);
-alter table school change sc_code sccode VARCHAR(50);
-alter table school change sc_name scname VARCHAR(100);
-
+-- alter table school change eo_code eocode VARCHAR(10);
 
 SELECT * FROM school;
 
