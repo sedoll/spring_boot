@@ -156,6 +156,7 @@ public class ProductController {
         board.setNo(postNo);
         board.setTitle(params.get("title"));
         board.setContent(params.get("content"));
+        board.setCate(params.get("cate"));
 
 
         log.info("-----------------------------------");

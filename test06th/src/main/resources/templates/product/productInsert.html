@@ -59,9 +59,9 @@
         <div class="form-group">
             <label for="price">Price</label>
             <input type="text" class="form-control" name="price" id="price" placeholder="1000"
-                   pattern="\d*" minlength="2" maxlength="7"
+                   pattern="\d*" maxlength="7"
                    oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 7);" required/>
-            <div>최소 10원 ~ 최대 999만 원</div>
+            <div>0원(무료) ~ 최대 999만 원</div>
         </div>
         <br>
 
@@ -126,6 +126,7 @@
     $(document).ready(function() {
         $("#content").cleditor();
     });
+
 </script>
 <script th:src="@{/js/addr.js}"></script>
 <script th:src="@{/js/file.js}"></script>

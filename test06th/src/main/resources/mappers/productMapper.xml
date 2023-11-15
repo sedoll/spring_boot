@@ -31,7 +31,7 @@
     </select>
     <!-- 게시글 수정 -->
     <update id="productUpdate">
-        UPDATE product SET title=#{title}, content=#{content} WHERE no = #{no}
+        UPDATE product SET title=#{title}, content=#{content}, cate=#{cate} WHERE no = #{no}
     </update>
     <!-- 게시판 삭제 -->
     <delete id="deleFile">
@@ -82,7 +82,7 @@
     <!--		update fileobj set saveFolder=#{saveFolder}, originFile=#{originFile}, saveFile=#{saveFile}, fileSize=#{fileSize}, uploadDate=#{uploadDate} where pno=#{pno}-->
     <!--	</update>-->
     <update id="fileboardUpdate">
-        update product set title=#{title}, content=#{content} where no=#{no}
+        update product set title=#{title}, content=#{content}, cate=#{cate} where no=#{no}
     </update>
     <insert id="fileUpdate">
         <choose>
