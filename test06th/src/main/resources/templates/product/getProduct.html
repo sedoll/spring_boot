@@ -84,9 +84,9 @@
   </table>
   <hr>
   <h2 class="title">내용</h2>
-  <div id="contents">
-    [[${product.content}]]
+  <div id="contents" th:utext="${product.content}">
   </div>
+  <hr>
   <h2 class="title">이미지</h2>
   <!-- slidebar banner -->
   <div class="swiper mySwiper" style="margin-top: -10px; width: 600px; text-align: center">

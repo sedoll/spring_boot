@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chunjae.test06th.per.ProductMapper">
+    <!-- 모든 게시글 목록, 리스트 -->
+    <select id="getAdmProductList" resultType="com.chunjae.test06th.entity.Product">
+        select * from product order by no desc
+    </select>
     <!-- 게시글 목록, 리스트 -->
     <select id="getProductList" resultType="com.chunjae.test06th.entity.Product">
         select * from product where act='JOIN' order by no desc

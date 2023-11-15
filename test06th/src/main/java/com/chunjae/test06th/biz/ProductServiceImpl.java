@@ -17,6 +17,12 @@ public class ProductServiceImpl implements ProductService{
     // region 게시판 관련
     @Autowired
     private ProductMapper productMapper;
+    
+    // 모든 중고상품 목록 보기, 관리자
+    @Override
+    public List<Product> getAdmProductList() {
+        return productMapper.getAdmProductList();
+    }
 
     // 게시글 목록 보기
     @Override

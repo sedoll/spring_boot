@@ -61,7 +61,6 @@ public class ChatController {
     
     // 채팅내역 db에 저장
     @PostMapping("insertChat")
-    @ResponseBody
     public void insertChat(ChatMessage chatMsg) throws Exception{
         chatService.insertChat(chatMsg);
     }

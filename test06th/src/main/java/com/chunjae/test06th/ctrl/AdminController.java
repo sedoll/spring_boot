@@ -1,9 +1,12 @@
 package com.chunjae.test06th.ctrl;
 
 import com.chunjae.test06th.biz.ChatService;
+import com.chunjae.test06th.biz.ProductServiceImpl;
 import com.chunjae.test06th.biz.UserService;
 import com.chunjae.test06th.entity.ChatRoom;
 import com.chunjae.test06th.entity.Euser;
+import com.chunjae.test06th.entity.FileDTO;
+import com.chunjae.test06th.entity.Product;
 import com.chunjae.test06th.excep.NoSuchDataException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -11,12 +14,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -30,6 +31,8 @@ public class AdminController {
     private UserService userService;
     @Autowired
     private ChatService chatService;
+    @Autowired
+    private ProductServiceImpl productService;
 
     // 관리자 유저목록 확인페이지
     @GetMapping("/userList")
@@ -68,12 +71,33 @@ public class AdminController {
         return "redirect:/";
     }
 
-    // 전체 채팅창 목록
+    // 전체 채팅방 목록
     @GetMapping("chatList")
-    public String chatList(@RequestParam("id") String id, Model model){
+    public String chatList(Model model){
         List<ChatRoom> roomList = chatService.findAllRoom();
         logger.info(roomList.toString());
         model.addAttribute("roomList",roomList);
-        return "admin/chatList";
+        return "admin/admChatList";
+    }
+
+    // 이상한 채팅방 비활성화
+    @GetMapping("chatDsbld")
+    public String chatDsbld(String roomId) throws Exception{
+        chatService.chatDsbld(roomId);
+        return "redirect:/admin/admChatList";
+    }
+
+    // 모든 상품 목록 보기
+    @GetMapping("productList")
+    public String productList(Model model) throws Exception {
+        List<Product> productList = productService.getAdmProductList();
+        List<FileDTO> fileList = new ArrayList<>();
+        for (Product pro:productList) {
+            FileDTO dto = productService.thmbn(pro.getNo());
+            fileList.add(dto);
+        }
+        model.addAttribute("productList", productList);
+        model.addAttribute("fileList", fileList);
+        return "admin/admProductList";
     }
 }

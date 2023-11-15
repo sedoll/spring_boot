@@ -7,6 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface ProductMapper {
+    List<Product> getAdmProductList(); // 모든 중고상품 리스트 목록
     List<Product> getProductList(); // 리스트 목록
     List<Product> getMyProductList(String id);
     Integer fileBoardInsert(Product fileboard) throws Exception; // 판매글 내용 db 저장

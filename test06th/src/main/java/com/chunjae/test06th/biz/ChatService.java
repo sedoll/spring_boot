@@ -71,4 +71,7 @@ public class ChatService {
 
     // 거래 완료된 채팅방 숨김처리
     public int actUpdate(int pno) {return chatMapper.actUpdate(pno);}
+    
+    // 채팅방 비활성화
+    public int chatDsbld(String roomId) {return chatMapper.chatDsbld(roomId);}
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 
 public interface ProductService {
+    public List<Product> getAdmProductList(); // 모든 중고상품 리스트 목록
     public List<Product> productList(); // 글 목록 보기
     public List<Product> myProductList(String id); // 내 상점 조회
     public Product getProduct(Integer no) throws Exception; // 글 상세 보기

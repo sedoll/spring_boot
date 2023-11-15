@@ -30,7 +30,7 @@
             <label for="content">Content</label>
             <textarea name="content" class="form-control" id="content" cols="30" rows="10" maxlength="1800" required>[[${board.content}]]</textarea>
             <input type="hidden" id="ck" value="no">
-            <div id="error-message"></div>
+            <div id="msg"></div>
         </div>
         <div class="form-group">
             <button id="contBtn" type="button" class="btn btn-secondary">내용 검사</button>
@@ -44,18 +44,16 @@
     $(document).ready(function() {
         $("#contBtn").click(function () {
             const textarea = $("#content");
-            const errorMessage = $("#error-message");
             const ck_content = $("#ck");
 
             const inputText = textarea.val();
-            const pattern = /&lt;script&gt;|&lt;\/script&gt;/i; // HTML 엔티티로 인코딩된 스크립트 태그 패턴
+            const pattern = /&lt;|&gt;/i; // HTML 엔티티로 인코딩된 스크립트 태그 패턴
 
             if (!pattern.test(inputText)) {
-                errorMessage.text("내용이 제대로 작성되었습니다.");
+                $("#msg").html("<strong style='color:blue'>내용이 제대로 작성되었습니다.</strong>");
                 ck_content.val("yes");
-                // 여기에서 다른 작업 수행
             } else {
-                errorMessage.text("스크립트 태그는 사용할 수 없습니다.");
+                $("#msg").html("<strong style='color:red'>스크립트 태그는 사용할 수 없습니다.</strong>");
                 ck_content.val("no");
             }
         });
