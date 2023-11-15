@@ -9,6 +9,7 @@ import java.util.List;
 public interface ProductMapper {
     List<Product> getAdmProductList(); // 모든 중고상품 리스트 목록
     List<Product> getProductList(); // 리스트 목록
+    List<Product> productListRecent(); // 최근 리스트 목록 8개
     List<Product> getMyProductList(String id);
     Integer fileBoardInsert(Product fileboard) throws Exception; // 판매글 내용 db 저장
     Integer fileInsert(FileDTO file) throws Exception; // 판매글의 파일 db 저장

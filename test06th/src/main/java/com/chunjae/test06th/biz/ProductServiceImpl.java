@@ -30,6 +30,10 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.getProductList();
     }
 
+    // 게시글 목록 보기
+    @Override
+    public List<Product> productListRecent() {return productMapper.productListRecent();}
+
     @Override
     public List<Product> myProductList(String id) {
         return productMapper.getMyProductList(id);

@@ -9,6 +9,10 @@
     <select id="getProductList" resultType="com.chunjae.test06th.entity.Product">
         select * from product where act='JOIN' order by no desc
     </select>
+    <!-- 최근 게시글 목록, 리스트 -->
+    <select id="productListRecent" resultType="com.chunjae.test06th.entity.Product">
+        select * from product where act='JOIN' order by no desc limit 8
+    </select>
     <!-- 내 게시글 목록, 리스트 -->
     <select id="getMyProductList" resultType="com.chunjae.test06th.entity.Product">
         select * from product where id = #{id} order by no desc
