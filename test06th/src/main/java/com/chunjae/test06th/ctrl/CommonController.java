@@ -219,6 +219,7 @@ public class CommonController {
     }
 
     // 중고 게시글 관련 이미지
+    // 다른 디렉토리에 저장된 이미지 보기
     @GetMapping("image")
     public ResponseEntity<Resource> download(@ModelAttribute FileDTO dto) throws IOException {
         Path path = Paths.get(uploadFolder + "/" + dto.getSavefile());
