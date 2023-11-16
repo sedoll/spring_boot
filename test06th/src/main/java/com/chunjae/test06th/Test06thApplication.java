@@ -24,7 +24,8 @@ public class Test06thApplication {
 
 	@Autowired
 	private ProductServiceImpl productService;
-
+	
+	// index
 	@GetMapping("/")
 	public String home(Model model) throws Exception {
 		List<Product> productList = productService.productList();
