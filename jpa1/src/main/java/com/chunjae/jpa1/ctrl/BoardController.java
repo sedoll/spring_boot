@@ -4,6 +4,8 @@ import com.chunjae.jpa1.biz.BoardService;
 import com.chunjae.jpa1.dto.BoardDTO;
 import com.chunjae.jpa1.dto.PageRequestDTO;
 import com.chunjae.jpa1.dto.PageResponseDTO;
+import lombok.Builder;
+import org.hibernate.annotations.BatchSize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
 
 @Controller
 @RequestMapping("/board/*")
@@ -54,5 +61,20 @@ public class BoardController {
         return "board/list";
     }
 
+    @OneToMany(mappedBy = "board",cascade = {CascadeType.ALL},
+            fetch = FetchType.LAZY, orphanRemoval = true)
+    @Builder.Default
+    @BatchSize(size = 20)
+    private Set<BoardImage> imageSet = new HashSet<>();
+    public void addImage(String uuid, String fileName){
+        BoardImage boardImage = BoardImage.builder()
+                .uuid(uuid).fileName(fileName)
+                .board(this).ord(imageSet.size()).build();
+        imageSet.add(boardImage);
+    }
+    public void clearImages() {
+        imageSet.forEach(boardImage -> boardImage.changeBoard(null));
+        this.imageSet.clear();
+    }
 
 }

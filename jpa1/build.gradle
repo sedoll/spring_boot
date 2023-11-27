@@ -64,6 +64,9 @@ dependencies {
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	
+	// 썸네일 관련
+	implementation 'net.coobird:thumbnailator:0.4.16'
 }
 
 tasks.named('bootBuildImage') {
