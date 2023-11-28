@@ -9,8 +9,8 @@
 <body>
 <h1>메인</h1>
 <ul>
-    <li><a th:href="@{/test/test1}">테스트1</a></li>
-    <li><a th:href="@{/test2/auth}">authenticated()</a></li>
+    <li><a th:href="@{/test/write}">에디터</a></li>
+    <li><a th:href="@{/common/productList}">강의목록</a></li>
     <li>authentication.principal : [[${#authentication.principal}]]</li>
     <li>authorization.expression('hasAuthority(''ADMIN'')') : [[${#authorization.expression('hasAuthority(''ADMIN'')')}]]</li>
     <li>authorization.expression('hasAuthority(''USER'')') : [[${#authorization.expression('hasAuthority(''USER'')')}]]</li>

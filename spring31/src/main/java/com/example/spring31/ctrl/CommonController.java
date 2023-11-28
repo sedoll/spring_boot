@@ -1,7 +1,14 @@
 package com.example.spring31.ctrl;
 
+import com.example.spring31.dto.FileDTO;
+import com.example.spring31.dto.FileVO;
+import com.example.spring31.dto.Product;
 import com.example.spring31.excep.NoSuchDataException;
+import com.example.spring31.service.ProductService;
 import com.example.spring31.service.UserService;
+import com.example.spring31.utils.Page;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +52,9 @@ public class CommonController {
 
     @Autowired
     private UserService userService;
-    
+    @Autowired
+    private ProductService productService;
+
     // region 로그인
     // 로그인 창
     @GetMapping("/login")
@@ -66,4 +75,85 @@ public class CommonController {
         return "redirect:/";
     }
 
+    // 중고 게시글 관련 파일
+    // 다른 디렉토리에 저장된 이미지 보기
+    @GetMapping("file")
+    public ResponseEntity<Resource> download(@ModelAttribute FileDTO dto) throws IOException {
+        Path path = Paths.get(uploadFolder + "/" + dto.getSavefile());
+        String contentType = Files.probeContentType(path);
+        // header를 통해서 다운로드 되는 파일의 정보를 설정한다.
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentDisposition(ContentDisposition.builder("attachment")
+                .filename(dto.getSavefile(), StandardCharsets.UTF_8)
+                .build());
+        headers.add(HttpHeaders.CONTENT_TYPE, contentType);
+
+        Resource resource = new InputStreamResource(Files.newInputStream(path));
+        return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+    }
+
+
+    // region board 게시판
+    // 상품 목록 보기
+    @GetMapping("productList")
+    public String productList(HttpServletRequest request, Model model) throws Exception {
+        String category = request.getParameter("category");
+        String type = request.getParameter("type");
+        String keyword = request.getParameter("keyword");
+        int curPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
+        Page page = new Page(curPage, type, keyword, category);
+        page.makePage(productService.getTotal(page));
+
+        List<Product> productList = productService.productListWithPage(page);
+        List<FileDTO> fileList = new ArrayList<>();
+        for (Product pro:productList) {
+            FileDTO dto = productService.thmbn(pro.getNo());
+            fileList.add(dto);
+        }
+//        log.info(fileboardList.toString());
+        model.addAttribute("productList", productList);
+        model.addAttribute("fileList", fileList);
+        model.addAttribute("page", page);
+        return "product/productList";
+    }
+
+    // getFileboard
+    // 판매 페이지 상세
+    @GetMapping("getProduct")
+    public String getFileboard(@RequestParam("no") int no, Model model, HttpServletRequest req) throws Exception {
+        FileVO fileboard = new FileVO();
+
+        HttpSession session = req.getSession();
+        Cookie[] cookieFromRequest = req.getCookies();
+        String cookieValue = null;
+        for(int i = 0 ; i<cookieFromRequest.length; i++) {
+            // 요청정보로부터 쿠키를 가져온다.
+            cookieValue = cookieFromRequest[0].getValue();  // 테스트라서 추가 데이터나 보안사항은 고려하지 않으므로 1번째 쿠키만 가져옴
+        }
+
+        // 쿠키 세션 입력
+        if (session.getAttribute(no+":cookieFile") == null) {
+            session.setAttribute(no+":cookieFile", no + ":" + cookieValue);
+        } else {
+            session.setAttribute(no+":cookieFile ex", session.getAttribute(no+":cookieFile"));
+            if (!session.getAttribute(no+":cookieFile").equals(no + ":" + cookieValue)) {
+                session.setAttribute(no+":cookieFile", no + ":" + cookieValue);
+            }
+        }
+
+        // 쿠키와 세션이 없는 경우 조회수 카운트
+        if (!session.getAttribute(no+":cookieFile").equals(session.getAttribute(no+":cookieFile ex"))) {
+            productService.countUp(no);
+        }
+
+        Product product = productService.getProduct(no); // 중고 게시글 관련 정보
+        List<FileDTO> fileList = productService.getFileGroupList(no); // 해당 게시글의 파일 목록
+        fileboard.setFileBoard(product);
+        fileboard.setFileList(fileList);
+
+        log.info(fileboard.toString());
+        model.addAttribute("product", fileboard.getFileBoard());
+        model.addAttribute("fileList", fileboard.getFileList());
+        return "product/getProduct";
+    }
 }
