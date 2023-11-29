@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>정리본</title>
+    <title>요약 정리</title>
 </head>
 <body>
 <h1>요약 정리</h1>
-<th:block th:if="${page == total_size - 1}">
-    <form th:action="@{/video/test}" onsubmit="return testCheck()">
-        <input type="hidden" name="pno" id="video_name2" th:value="${pno}">
-        <input type="hidden" name="page" id="video_page2" th:value="${page+1}">
-        <!--    <input type="hidden" name="vidoe_time" id="video_time" th:value="${video_time}">-->
-        <input type="submit" value="문제풀기">
-    </form>
-</th:block>
+<div>
+<p>내용</p>
+</div>
+<form th:action="@{/video/test}" onsubmit="return testCheck()">
+    <!--    <input type="hidden" name="vidoe_time" id="video_time" th:value="${video_time}">-->
+    <input type="submit" value="문제풀기">
+</form>
+
+<script th:inline="javascript">
+
+    // 시험보기
+    function testCheck() {
+        return confirm('시험을 보시겠습니까?');
+    }
+</script>
 </body>
 </html>

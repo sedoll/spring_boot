@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비디오 플레이어</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
     <style>
         /* .vjs-progress-control 클래스의 마우스 선택을 비활성화 */
@@ -15,16 +15,19 @@
 </head>
 <body>
 <div>
+
     <video
-        id="my-video"
-        class="video-js"
-        controls
-        preload="auto"
-        width="640"
-        height="360"
-        data-setup="{}"
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="640"
+            height="360"
+            data-setup="{}"
     >
-        <source th:src="${'/common/file?savefile='+savefile}" type="video/mp4" />
+<!--        <source th:src="@{/upload/video/test.mp4}" type="video/mp4" />-->
+        <source th:src="@{/upload/} + ${savefile}" type="video/mp4" />
+<!--        <source th:src="${'/common/file?savefile='+savefile}" type="video/mp4" />-->
         <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that
@@ -38,12 +41,32 @@
         <p id="video-duration"></p>
     </div>
 </div>
-<form th:action="@{/video/check}" method="post" onsubmit="return videoCheck()">
-    <input type="hidden" name="video_name" id="video_name" th:value="${video_name}">
-    <input type="hidden" name="video_page" id="video_page" th:value="${video_page}">
-    <input type="hidden" name="vidoe_time" id="video_time" th:value="${video_time}">
+<div>
+    <span th:text="${page + 1} + ' 번 영상'"></span>
+</div>
+<div>
+    <span id="war" style="color: red"></span>
+</div>
+
+<!-- 다음 영상으로 넘어가기 -->
+<th:block th:if="${page < total_size - 1}">
+<form th:action="@{/video/player}" onsubmit="return videoCheck()">
+    <input type="hidden" name="pno" id="video_name" th:value="${pno}">
+    <input type="hidden" name="page" id="video_page" th:value="${page+1}">
+<!--    <input type="hidden" name="vidoe_time" id="video_time" th:value="${video_time}">-->
     <input type="submit" value="다음 영상">
 </form>
+</th:block>
+
+<!-- 문제 풀기전 요약정리 보기 -->
+<th:block th:if="${page == total_size - 1}">
+    <form th:action="@{/video/summary}" onsubmit="return videoCheck()">
+        <input type="hidden" name="pno" id="video_name2" th:value="${pno}">
+        <input type="hidden" name="page" id="video_page2" th:value="${page+1}">
+        <!--    <input type="hidden" name="vidoe_time" id="video_time" th:value="${video_time}">-->
+        <input type="submit" value="요약 정리">
+    </form>
+</th:block>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
@@ -64,28 +87,29 @@
         const seconds = Math.floor(totalSeconds % 60); // 초
         videoDurationDisplay.innerHTML = `총 길이: ${hours}시간 ${minutes}분 ${seconds}초<br>
                                                 ${totalSeconds}초`;
-
-        // 특정 시간부터 재생
-        if(time >= 0)  {
-            const specificTimeInSeconds = time;
-            video.currentTime = specificTimeInSeconds; // 특정 시간으로 비디오 이동
-            video.play();
-        }
     });
 
+    // db에 저장된 시간이 있으면
+    // 특정 시간부터 재생
+    if(time > 0)  {
+        const specificTimeInSeconds = time;
+        video.currentTime = specificTimeInSeconds; // 특정 시간으로 비디오 이동
+        video.play();
+    }
 
-    // 다음으로 넘어가기 함수
+    // 다음으로 넘어가기
     function videoCheck() {
         if(video.currentTime < totalSeconds) {
-            const vjs = document.getElementById("vjs-control-text")
-            alert('아직 동영상을 다 보지 않았습니다.')
+            // $("#war").text("아직 동영상을 다 보지 않았습니다.")
             video.pause(); // 일시정지
+            alert('아직 동영상을 다 보지 않았습니다.')
             return false;
         } else {
             alert('동영상 재생을 완료했습니다.')
             return true;
         }
     }
+
     /*]]>*/
 </script>
 <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>

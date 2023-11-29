@@ -24,6 +24,7 @@ public class SecurityConfig {
                 .loginPage("/members/login")
                 .defaultSuccessUrl("/")
                 .usernameParameter("email")
+                .passwordParameter("password")
                 .failureUrl("/members/login/error")
                 .and()
                 .logout()
@@ -33,7 +34,7 @@ public class SecurityConfig {
 
         http.authorizeRequests()
                 .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
+                .requestMatchers("/", "/members/**", "/member/**", "/item/**", "/fragments/**", "/cart/**", "/order/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ;

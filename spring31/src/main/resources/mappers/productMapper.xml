@@ -24,10 +24,12 @@
         </where>
         order by no desc limit #{postStart}, #{postCount}
     </select>
+
     <!-- 게시글 목록, 리스트 -->
     <select id="getProductList" resultType="com.example.spring31.dto.Product">
         select * from product where act='JOIN' order by no desc
     </select>
+
     <select id="getTotal">
         select count(*) from product where act='JOIN'
         <if test="type != null">
@@ -47,6 +49,7 @@
             AND cate = #{category}
         </if>
     </select>
+
     <!-- 게시글 목록, 페이징 -->
     <select id="productListWithPage" resultType="com.example.spring31.dto.Product">
         select * from product where act='JOIN'
@@ -71,10 +74,12 @@
         </if>
         order by no desc limit #{postStart}, #{postCount}
     </select>
+
     <!-- 최근 게시글 목록, 리스트 -->
     <select id="productListRecent" resultType="com.example.spring31.dto.Product">
         select * from product where act='JOIN' order by no desc limit 8
     </select>
+
     <!-- 내 게시글 목록, 리스트 -->
     <select id="getMyProductList" resultType="com.example.spring31.dto.Product">
         select * from product where id = #{name}
@@ -99,6 +104,7 @@
         </if>
         order by no desc limit #{postStart}, #{postCount}
     </select>
+
     <select id="getMyTotal" resultType="integer">
         select count(*) from product where id = #{name}
         <if test="type != null">
@@ -122,6 +128,7 @@
         </if>
         order by no desc limit #{postStart}, #{postCount}
     </select>
+
     <select id="getBuyerTotal" resultType="integer">
         select count(*) from product where buyer = #{name}
         <if test="type != null">
@@ -145,6 +152,7 @@
         </if>
         order by no desc limit #{postStart}, #{postCount}
     </select>
+
     <!-- 내 구매 목록, 리스트 -->
     <select id="productBuyerList" resultType="com.example.spring31.dto.Product">
         select * from product where buyer = #{name}
@@ -169,26 +177,32 @@
         </if>
         order by no desc limit #{postStart}, #{postCount}
     </select>
+
     <!-- 게시글 목록, 리스트 -->
     <select id="getFileList" resultType="com.example.spring31.dto.Product">
         select * from product order by no desc
     </select>
+
     <!-- 게시글 상세 -->
     <select id="getProduct" resultType="com.example.spring31.dto.Product">
         select * from product where no = #{no}
     </select>
+
     <!-- 게시글 수정 -->
     <update id="productUpdate">
         UPDATE product SET title=#{title}, content=#{content}, cate=#{cate} WHERE no = #{no}
     </update>
+
     <!-- 게시판 삭제 -->
     <delete id="deleFile">
         DELETE from product where id = #{id}
     </delete>
+
     <!-- id(no) 로 Product 찾기 -->
     <select id="getProductById" resultType="com.example.spring31.dto.Product">
         select * from board where id = #{id}
     </select>
+
     <!-- name(실제 id) 로 Product 찾기 -->
     <select id="getProductByName" resultType="com.example.spring31.dto.Product">
         select * from board where name = #{name}

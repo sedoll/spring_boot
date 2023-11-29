@@ -44,13 +44,16 @@
         <div class="row s_product_inner">
             <div>
                 <ul>
-                    <th:block th:each="file, status : ${fileList}">
+                    <li>
+                        <a onclick="openLecture()">강의영상</a>
+                    </li>
+<!--                    <th:block th:each="file, status : ${fileList}">
                         <li>
                             <span th:text="${file.getOriginfile()}"></span>
                             <a th:fName="${file.getSavefile()}"
                                th:onclick="openLecture(this.getAttribute('fName'))">강의영상</a>
                         </li>
-                    </th:block>
+                    </th:block>-->
                 </ul>
             </div>
             <div class="col-lg-5 offset-lg-1">
@@ -166,15 +169,16 @@
 <!--================ End footer Area  =================-->
 
 <script th:inline="javascript">
-    function openLecture(savefile) {
+    /*<![CDATA[*/
+    function openLecture() {
         let screenSizeWidth, screenSizeHeight;
         if (self.screen) {
             /*screenSizeWidth = screen.width;
             screenSizeHeight = screen.height;*/
-            screenSizeWidth = 800;
-            screenSizeHeight = 640;
+            screenSizeWidth = 1080;
+            screenSizeHeight = 720;
         }
-        let documentURL = "/video/player?savefile=" + savefile;    //팝업창에 출력될 페이지 URL
+        let documentURL = "/video/player?pno="+[[${product.no}]]+"&page=" + 0;    //팝업창에 출력될 페이지 URL
         let windowname = "강의 플레이어";
         let intWidth = screenSizeWidth;
         let intHeight = screenSizeHeight;
@@ -185,6 +189,7 @@
         obwindow.resizeTo(intWidth, intHeight);
         obwindow.moveTo(intXOffset, intYOffset);
     }
+    /*]]>*/
 </script>
 </body>
 </html>
