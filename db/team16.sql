@@ -7,14 +7,15 @@ USE team16;
 CREATE TABLE course(
 	no INT PRIMARY KEY AUTO_INCREMENT COMMENT '강좌번호',
 	id VARCHAR(20) NOT NULL COMMENT '작성자',
-	cate VARCHAR(100) NOT NULL COMMENT '분류',
+	cate VARCHAR(100) NOT NULL COMMENT '과목',
+	level int comment '학년',
 	title VARCHAR(100) COMMENT '제목',
 	content VARCHAR(2000) COMMENT '내용',
 	cnt INT DEFAULT 0 COMMENT '조회수',
-	resdate DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '게시일',
+	created_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '게시일',
 	ino INT NOT NULL COMMENT '강사코드 (FK)',
-	lec INT DEFAULT 0 COMMENT '현재수강인원',
-	lec_max INT COMMENT '최대 수강인원'
+	peo INT DEFAULT 0 COMMENT '현재수강인원',
+	peo_max INT COMMENT '최대 수강인원'
 	-- FOREIGN KEY(id) REFERENCES user(NAME),
 	-- FOREIGN KEY(ino) REFERENCES instructor(no)
 );
@@ -65,7 +66,7 @@ CREATE TABLE cimgobj (
 	originfile VARCHAR(400) COMMENT '실제 파일 이름',
 	savefile VARCHAR(800) COMMENT '난수화된 저장 파일이름',
 	filesize INT COMMENT '파일 사이즈',
-	uploaddate VARCHAR(100),
+	created_time VARCHAR(100),
 	FOREIGN KEY(cno) REFERENCES course(no)
 );
 
@@ -77,19 +78,19 @@ CREATE TABLE limgobj (
 	originfile VARCHAR(400) COMMENT '실제 파일 이름',
 	savefile VARCHAR(800) COMMENT '난수화된 저장 파일이름',
 	filesize INT COMMENT '파일 사이즈',
-	uploaddate VARCHAR(100),
+	created_time VARCHAR(100),
 	FOREIGN KEY(lno) REFERENCES lecture(no)
 );
 
 -- 강의 문제 정보 db
 -- 아직 구상중
 CREATE TABLE lectest (
-	no int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '이미지번호',
+	no int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '자료번호',
 	lno INT COMMENT '강의 번호',
 	savefolder VARCHAR(400) COMMENT '저장경로',
 	originfile VARCHAR(400) COMMENT '실제 파일 이름',
 	savefile VARCHAR(800) COMMENT '난수화된 저장 파일이름',
 	filesize INT COMMENT '파일 사이즈',
-	uploaddate VARCHAR(100),
+	created_time VARCHAR(100),
 	FOREIGN KEY(lno) REFERENCES lecture(no)
 );
