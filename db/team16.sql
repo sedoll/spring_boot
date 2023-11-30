@@ -53,7 +53,7 @@ CREATE TABLE fileobj (
 	originfile VARCHAR(400) COMMENT '실제 파일 이름',
 	savefile VARCHAR(800) COMMENT '난수화된 저장 파일이름',
 	filesize INT COMMENT '파일 사이즈',
-	uploaddate VARCHAR(100),
+	created_time VARCHAR(100),
 	FOREIGN KEY(cno) REFERENCES course(no),
 	FOREIGN KEY(lno) REFERENCES lecture(no)
 );
