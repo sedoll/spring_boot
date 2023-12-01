@@ -14,9 +14,6 @@
         <li><a th:href="@{/join1}">회원가입11</a></li>
         <li><a th:href="@{/join2}">회원가입22</a></li>
         <li><a th:href="@{/course/list}">강좌 목록</a></li>
-        <th:block sec:authorize="hasAuthority('ADMIN')">
-            <li><a th:href="@{/course/insert}">강좌 등록</a></li>
-        </th:block>
         <li sec:authorize="isAuthenticated()" ><a th:href="@{/logout}">로그아웃</a></li>
     </ul>
 

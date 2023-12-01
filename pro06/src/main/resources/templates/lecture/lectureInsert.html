@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강의등록</title>
+</head>
+<body>
+<h1>강의등록</h1>
+<form th:action="@{/lecture/insert}" method="post">
+    <div>
+        <label for="id">아이디</label>
+        <input type="hidden" name="cno" id="cno" th:value="${cno}" readonly>
+        <input type="text" name="id" id="id" th:value="${id}" readonly>
+    </div>
+    <div>
+        <label for="title">제목</label>
+        <input type="text" name="title" id="title" required>
+    </div>
+    <div>
+        <label for="keyword">키워드</label>
+        <input type="text" name="keyword" id="keyword" required>
+    </div>
+    <div>
+        <label for="content">내용</label>
+        <input type="text" name="content" id="content" required>
+    </div>
+<!--    <div>
+        <label for="video_file">강의영상</label>
+        <input type="text" name="content" id="video_file" required>
+    </div>-->
+    <div>
+        <input type="submit" value="등록">
+        <input type="reset" value="초기화">
+    </div>
+</form>
+</body>
+</html>

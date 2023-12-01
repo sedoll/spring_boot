@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 // 강좌 테이블
+// 여기에 나중에 선생님 관련 컬럼 하나 추가
 
 @Entity
 @Getter
@@ -23,11 +24,11 @@ import org.hibernate.annotations.DynamicUpdate;
 public class Course extends BaseEntity{
 
     @Id
+    @Column(name = "no")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer no;         // 강좌 번호
     private String id;          // 작성자(관리자)
-    private String cate;        // 과목
-    private Integer level;      // 학년
+    private String level;      // 학년
     private String title;       // 제목
     private String content;     // 내용
 

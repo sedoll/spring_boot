@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface VideoRepository extends JpaRepository<Video, Integer> {
 
-    @Query("select v from Video where v.cno = :cno")
-    List<String> videoList(@Param("id") String id);
+//    @Query("select v.savefile from Video v where v.lno = :lno and v.cno = :cno")
+    @Query("select v.savefile from Video v where v.lecture.no = :lno and v.course.no = :cno")
+    List<String> videoList(@Param("cno") Integer cno, @Param("lno") Integer lno);
 }

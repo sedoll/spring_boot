@@ -20,7 +20,7 @@ public class VideoServiceImpl {
     }
     
     // 강좌 영상
-//    public List<String> videoList(Integer cno) {
-////        return videoRepository.
-//    }
+    public List<String> videoList(Integer cno, Integer lno) {
+        return videoRepository.videoList(cno, lno);
+    }
 }

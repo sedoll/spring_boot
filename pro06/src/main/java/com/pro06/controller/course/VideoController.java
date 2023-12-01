@@ -1,4 +1,4 @@
-package com.pro06.controller;
+package com.pro06.controller.course;
 
 import com.pro06.service.VideoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,8 @@ public class VideoController {
     @GetMapping("player")
     public String player(@RequestParam("cno") Integer cno, @RequestParam("lno") Integer lno, @RequestParam("page") Integer page, Model model) {
         List<String> videoList = videoService.videoList(cno, lno);
-
-        model.addAttribute("pno", pno);
+        model.addAttribute("cno", cno);
+        model.addAttribute("lno", lno);
         model.addAttribute("total_size", videoList.size());
         model.addAttribute("page", page);
         model.addAttribute("savefile", videoList.get(page));
