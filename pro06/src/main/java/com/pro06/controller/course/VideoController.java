@@ -17,15 +17,16 @@ public class VideoController {
     private VideoServiceImpl videoService;
     
     // 영상 재생
-/*    @GetMapping("player")
-    public String player(@RequestParam("pno") Integer pno, @RequestParam("page") Integer page, Model model) {
-        List<String> videoList = videoService.videoList(pno);
+    @GetMapping("player")
+    public String player(@RequestParam("cno") Integer cno, @RequestParam("lno") Integer lno, @RequestParam("page") Integer page, Model model) {
+        List<String> videoList = videoService.videoList(cno, lno);
+
         model.addAttribute("pno", pno);
         model.addAttribute("total_size", videoList.size());
         model.addAttribute("page", page);
         model.addAttribute("savefile", videoList.get(page));
         return "video/player";
-    }*/
+    }
     
     // 요약정리
     @GetMapping("summary")
