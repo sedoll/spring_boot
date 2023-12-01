@@ -20,7 +20,7 @@
     <th:block th:each="lecture : ${lectureList}">
     <li>
         <div>
-            <a th:href="@{/lecture/detail(cno=${course.no}, lno=${lecture.no})}">강의보기</a>
+            <a th:href="@{/lecture/detail(cno=${course.no}, lno=${lecture.no})}" th:text="${lecture.title} + ' 강의보기'"></a>
         </div>
     </li>
     </th:block>
