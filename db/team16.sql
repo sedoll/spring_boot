@@ -16,8 +16,7 @@ CREATE TABLE course(
 	ino INT NOT NULL COMMENT '강사코드 (FK)',
 	peo INT DEFAULT 0 COMMENT '현재수강인원',
 	peo_max INT COMMENT '최대 수강인원'
-	-- FOREIGN KEY(id) REFERENCES user(NAME),
-	-- FOREIGN KEY(ino) REFERENCES instructor(no)
+	FOREIGN KEY(id) REFERENCES user(NAME)
 );
 
 -- 강의 테이블
@@ -92,5 +91,31 @@ CREATE TABLE lectest (
 	savefile VARCHAR(800) COMMENT '난수화된 저장 파일이름',
 	filesize INT COMMENT '파일 사이즈',
 	created_time VARCHAR(100),
+	FOREIGN KEY(lno) REFERENCES lecture(no)
+);
+
+-- my_course 내 강좌
+CREATE TABLE my_course(
+	no INT PRIMARY KEY AUTO_INCREMENT COMMENT '내강좌번호',
+	cno INT COMMENT '강좌 번호',
+	id VARCHAR(20) NOT NULL COMMENT '수강자',
+	state varchar(5) default 'y' COMMENT '상태',
+	start_time DATETIME,
+	end_time DATETIME,
+	FOREIGN KEY(id) REFERENCES user(NAME),
+	FOREIGN KEY(cno) REFERENCES course(no)
+);
+
+-- 강의 비디오 시간 체크
+create table ck_video (
+	no INT PRIMARY KEY AUTO_INCREMENT COMMENT '내강좌번호',
+	cno INT COMMENT '강좌 번호',
+	lno INT COMMENT '강의 번호',
+	id VARCHAR(20) NOT NULL COMMENT '수강자',
+	page int not NULL COMMENT '현재 페이지',
+	time INT COMMENT '비디오 시간 체크',
+	complete varchar(5) DEFAULT n COMMENT '모든 비디오를 수강했는지 않했는지 체크',
+	FOREIGN KEY(id) REFERENCES user(NAME),
+	FOREIGN KEY(cno) REFERENCES course(no),
 	FOREIGN KEY(lno) REFERENCES lecture(no)
 );
