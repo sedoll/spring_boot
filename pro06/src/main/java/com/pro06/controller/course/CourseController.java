@@ -2,8 +2,8 @@ package com.pro06.controller.course;
 
 import com.pro06.entity.Course;
 import com.pro06.entity.Lecture;
-import com.pro06.service.CourseServiceImpl;
-import com.pro06.service.LectureServiceImpl;
+import com.pro06.service.course.CourseServiceImpl;
+import com.pro06.service.course.LectureServiceImpl;
 import com.pro06.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

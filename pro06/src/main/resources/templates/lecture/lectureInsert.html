@@ -27,7 +27,7 @@
 </head>
 <body>
 <h1>강의등록</h1>
-<form method="post" onsubmit="return submitForm()" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
     <div>
         <label for="id">아이디</label>
         <input type="hidden" name="cno" id="cno" th:value="${cno}" readonly>
@@ -46,25 +46,28 @@
         <input type="text" name="content" id="content" required>
     </div>
     <div>
-        <label for="video_file">강의영상</label>
-        <input type="file" id="video_file" name="video_file" onchange="addFile(this);" multiple/>
+        <label for="file">강의영상</label>
+        <input type="file" id="file" name="file" onchange="addFile(this);" multiple accept="video/mp4"/>
         <div class="file-list"></div>
     </div>
     <div>
-        <input type="submit" value="등록">
+        <input type="button" th:onclick="return submitForm()" value="등록">
         <input type="reset" value="초기화">
     </div>
 </form>
 <script th:inline="javascript">
-    var fileNo = 0;
-    var filesArr = new Array();
+    let fileNo = 0;
+    let filesArr = new Array();
+    /*<![CDATA[*/
+    let cno = [[${cno}]];
+        /*]]>*/
 
-    /* 첨부파일 추가 */
+        /* 첨부파일 추가 */
     function addFile(obj){
-        var maxFileCnt = 5;   // 첨부파일 최대 개수
-        var attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
-        var remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
-        var curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
+        let maxFileCnt = 5;   // 첨부파일 최대 개수
+        let attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
+        let remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
+        let curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
 
         // 첨부파일 개수 확인
         if (curFileCnt > remainFileCnt) {
@@ -101,7 +104,7 @@
 
     /* 첨부파일 검증 */
     function validation(obj){
-        const fileTypes = ['application/pdf', 'image/gif', 'image/jpeg', 'image/png', 'image/bmp', 'image/tif', 'application/haansofthwp', 'application/x-hwp'];
+        const fileTypes = ['video/mp4'];
         if (obj.name.length > 100) {
             alert("파일명이 100자 이상인 파일은 제외되었습니다.");
             return false;
@@ -130,36 +133,59 @@
 
     /* 폼 전송 */
     function submitForm() {
+        let title = $("#title").val();
+        let keyword = $("#keyword").val();
+        let content = $("#content").val();
+
+        if(title === '') {
+            alert('제목을 입력하세요');
+            $('#title').focus();
+            return false;
+        }
+
+        if(keyword === '') {
+            alert('키워드를 입력하세요');
+            return false;
+        }
+
+        if(content === '') {
+            alert('설명을 입력하세요')
+            return false;
+        }
+
 
         let attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
-        if(attFileCnt === 0) {
+        if(attFileCnt === 0) { // 추가된 파일이 없으면 submit 실패
+            alert('동영상 파일이 최소 1개이상 있어야 합니다.')
             return false;
         }
 
         // 폼데이터 담기
-        var form = document.querySelector("form");
+        let form = document.querySelector("form");
         let formData = new FormData(form);
         for (var i = 0; i < filesArr.length; i++) {
             // 삭제되지 않은 파일만 폼데이터에 담기
             if (!filesArr[i].is_delete) {
-                formData.append("video_file", filesArr[i]);
+                formData.append("files", filesArr[i]);
             }
         }
 
+        // ajax로 form 데이터 전송
         $.ajax({
             method: 'POST',
             url: '/lecture/insert',
-            dataType: 'json',
-            data: formData,
-            async: true,
-            timeout: 30000,
+            data: formData,                 // 필수
+            async: false,                   // 비동기를 false로 안하면 데이터를 보내는 중에 에러 터짐
             cache: false,
-            headers: {'cache-control': 'no-cache', 'pragma': 'no-cache'},
+            enctype: 'multipart/form-data',	// 필수
+            processData: false,	            // 필수
+            contentType: false,	            // 필수
             success: function () {
                 console.log('강의 업로드 성공');
+                location.href = '/course/detail?no=' + cno;
             },
             error: function () {
-                console.log('강의 업로드 실패');
+                alert('강의 업로드 실패');
                 return false;
             }
         })

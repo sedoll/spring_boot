@@ -1,4 +1,4 @@
-package com.pro06.repository;
+package com.pro06.repository.course;
 
 
 import com.pro06.entity.Course;

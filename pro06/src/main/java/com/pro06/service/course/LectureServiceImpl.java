@@ -1,32 +1,25 @@
-package com.pro06.service;
+package com.pro06.service.course;
 
-import com.pro06.dto.VideoDto;
 import com.pro06.dto.LectureVO;
 import com.pro06.entity.Course;
 import com.pro06.entity.Lecture;
 import com.pro06.entity.Video;
-import com.pro06.repository.LectureRepository;
-import com.pro06.repository.VideoRepository;
+import com.pro06.repository.course.LectureRepository;
+import com.pro06.repository.course.VideoRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Log4j2
 public class LectureServiceImpl {
     @Autowired
     private LectureRepository lectureRepository;
 
     @Autowired
     private VideoRepository videoRepository;
-    
-    // 강의 등록
-    public Lecture LectureInsert(Lecture lecture, Integer cno) {
-        Course course = new Course();
-        course.setNo(cno);
-        lecture.setCourse(course);
-        return lectureRepository.save(lecture);
-    }
 
     // 강의 정보 + 파일 등록
     public void LectureVoInsert(LectureVO vo) throws Exception {
@@ -38,12 +31,15 @@ public class LectureServiceImpl {
         course.setNo(vo.getCno());
         lecture.setCourse(course);
         lectureRepository.save(lecture);
+
+        log.info("lecture 저장");
         
         // 강의 영상 등록
         for(Video video: fileList) {
             video.setLecture(lecture);
             video.setCourse(course);
             videoRepository.save(video);
+            log.info("video 저장");
         }
     }
 

@@ -1,10 +1,7 @@
-package com.pro06.service;
+package com.pro06.service.course;
 
-import com.pro06.entity.Role;
-import com.pro06.entity.Status;
-import com.pro06.entity.User;
 import com.pro06.entity.Video;
-import com.pro06.repository.VideoRepository;
+import com.pro06.repository.course.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

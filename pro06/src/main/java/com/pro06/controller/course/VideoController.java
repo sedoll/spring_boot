@@ -1,6 +1,6 @@
 package com.pro06.controller.course;
 
-import com.pro06.service.VideoServiceImpl;
+import com.pro06.service.course.VideoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,14 +1,8 @@
-package com.pro06.service;
+package com.pro06.service.course;
 
 import com.pro06.entity.Course;
-import com.pro06.entity.Role;
-import com.pro06.entity.Status;
-import com.pro06.entity.User;
-import com.pro06.repository.CourseRepository;
-import com.pro06.repository.UserRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
+import com.pro06.repository.course.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
