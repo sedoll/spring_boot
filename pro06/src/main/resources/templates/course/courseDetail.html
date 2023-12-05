@@ -20,7 +20,7 @@
     <th:block th:each="lecture : ${lectureList}">
     <li>
         <div>
-            <a th:href="@{/lecture/detail(cno=${course.no}, lno=${lecture.no})}" th:text="${lecture.title} + ' 강의보기'"></a>
+            <a href="javascript:void(0);" th:onclick="'openLecture(' + ${lecture.course.no} + ', ' + ${lecture.no} + ')'" th:text="${lecture.title + ' 강의보기'}"></a>
         </div>
     </li>
     </th:block>
@@ -30,5 +30,29 @@
             <a th:href="@{/lecture/insert(cno=${course.no})}">강의등록</a>
     </th:block>
 </div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function openLecture(cno, lno) {
+        let screenSizeWidth, screenSizeHeight;
+        if (self.screen) {
+            /*screenSizeWidth = screen.width;
+            screenSizeHeight = screen.height;*/
+            screenSizeWidth = 1080;
+            screenSizeHeight = 720;
+        }
+        let documentURL = "/video/player?cno="+cno+ "&lno=" + lno + "&page=" + 0;    //팝업창에 출력될 페이지 URL
+        let windowname = "강의 플레이어";
+        let intWidth = screenSizeWidth;
+        let intHeight = screenSizeHeight;
+        let intXOffset = 0;
+        let intYOffset = 0;
+
+        let obwindow = window.open(documentURL, windowname, " toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no");
+        obwindow.resizeTo(intWidth, intHeight);
+        obwindow.moveTo(intXOffset, intYOffset);
+    }
+    /*]]>*/
+</script>
 </body>
 </html>

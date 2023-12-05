@@ -12,11 +12,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Value("${spring.servlet.multipart.location}")
     String uploadPath;
 
+    String shop = "file:///c:/shop/";
+
     private final long MAX_AGE_SECS = 3600;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/**").addResourceLocations(uploadPath);
+//        registry.addResourceHandler("/images/**").addResourceLocations(uploadPath);
+        // 절대경로로 shop 디렉토리 지정
+        registry.addResourceHandler("/shop/**").addResourceLocations(shop);
     }
 
     @Override
