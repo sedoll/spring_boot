@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseServiceImpl {
@@ -20,8 +21,15 @@ public class CourseServiceImpl {
     // 강좌 목록 불러오기
     public List<Course> courseList() {
         return courseRepository.findAll();
+//        return courseRepository.courseList();
     }
     
     // 강좌 상세 보기
     public Course getCourse(Integer no) {return courseRepository.getReferenceById(no);}
+
+    // 강좌 수강신청 수강생 +1
+    public void setCoursePeo(Integer no) {
+        Optional<Course> course = courseRepository.findById(no);
+        course.get().setPeo(course.get().getPeo()+1);
+    }
 }

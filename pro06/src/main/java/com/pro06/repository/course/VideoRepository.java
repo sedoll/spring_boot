@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface VideoRepository extends JpaRepository<Video, Integer> {
-
-//    @Query("select v.savefile from Video v where v.lno = :lno and v.cno = :cno")
+    
+    // 해당 강좌의 해당 강의의 실제 저장된 비디오 이름을 List 형태로 추출
     @Query("select v.savefile from Video v where v.lecture.no = :lno and v.course.no = :cno")
     List<String> videoList(@Param("cno") Integer cno, @Param("lno") Integer lno);
 }

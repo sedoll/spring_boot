@@ -116,7 +116,7 @@ public class LectureController {
         log.info(" 요청 URL : " + req.getServletPath());
         log.info(" 파일 저장 경로 : " + uploadFolder);
         
-        // 첨부된 파일(MultipartFile)을 처리할 수 있습니다.
+        // 첨부된 파일(MultipartFile) 처리
         if (files != null && files.size() > 0) {
             for (MultipartFile file : files) {
                 // 파일 처리 로직 시작
@@ -125,26 +125,26 @@ public class LectureController {
                 String Extension = OriginalFilename.substring(OriginalFilename.lastIndexOf("."));  // 파일 확장자 추출
                 String saveFileName = randomUUID + Extension;  // 저장할 파일 이름 생성
 
-                // ... (기존 파일 처리 로직)
+                // 저장위치, 실제파일이름, 저장될 파일이름, 파일크기 정보를 저장
                 Video data = new Video();
                 data.setSavefolder(uploadFolder);
                 data.setOriginfile(file.getOriginalFilename());
                 data.setSavefile(saveFileName);
                 data.setFilesize(file.getSize());
-                Date today = new Date();
                 fileList.add(data);
 
                 // 파일 저장
                 File saveFile = new File(uploadFolder, saveFileName);
                 try {
-                    file.transferTo(saveFile);
+                    file.transferTo(saveFile); // 실제 upload 위치에 파일 저장
                 } catch (IllegalStateException | IOException e) {
                     e.printStackTrace();
                     // 예외 처리
                 }
             }
         }
-
+        
+        // VO를 통해 db에 저장
         LectureVO lectureVO = new LectureVO();
         lectureVO.setLecture(lecture);
         lectureVO.setFileList(fileList);

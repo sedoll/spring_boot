@@ -19,7 +19,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        registry.addResourceHandler("/images/**").addResourceLocations(uploadPath);
-        // 절대경로로 shop 디렉토리 지정
+        // 절대경로 shop 디렉토리 지정
         registry.addResourceHandler("/shop/**").addResourceLocations(shop);
     }
 

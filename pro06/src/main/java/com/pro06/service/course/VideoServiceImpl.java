@@ -11,10 +11,6 @@ import java.util.List;
 public class VideoServiceImpl {
     @Autowired
     private VideoRepository videoRepository;
-
-    public Video userInsert(Video video) {
-        return videoRepository.save(video);
-    }
     
     // 강좌 영상
     public List<String> videoList(Integer cno, Integer lno) {

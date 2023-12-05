@@ -33,8 +33,8 @@ public class SecurityConfig {
                 // 특정 URL에 대한 권한 설정.
                 .authorizeHttpRequests((authorizeRequests) -> {
                     authorizeRequests
-                            .requestMatchers("/video/**", "/course/**").permitAll()
-                            .requestMatchers("/user/**").authenticated() // 인증된, 로그인 한 사람만 접근 가능
+                            .requestMatchers("/video/**", "/course/**").permitAll() // 모두 접근 가능
+                            .requestMatchers("/user/**", "/mycourse/**").authenticated() // 인증된, 로그인 한 사람만 접근 가능
                             .requestMatchers("/admin/**").hasAuthority("ADMIN") // admin만 접근 가능
                             .requestMatchers("/css/**", "/js/**", "/upload/**", "/cleditor/**", "/scss/**",
                                     "/vendors/**", "/ckeditor/**", "/webfonts/**", "/resource/**", "/shop/**")
@@ -50,7 +50,7 @@ public class SecurityConfig {
                             .loginProcessingUrl("/auth")    // POST 요청 (login 창에 입력한 데이터를 처리)
                             .usernameParameter("id")  // login에 필요한 id 값을 email로 설정 (default는 username)
                             .passwordParameter("pw")  // login에 필요한 password 값을 password(default)로 설정
-                            .failureUrl("/login?error=Login Fail");
+                            .failureUrl("/login?error=Login Fail"); // 로그인 실패 msg 전송
                 })
                 // 로그아웃
                 .logout((logout) -> {
@@ -64,14 +64,12 @@ public class SecurityConfig {
                     exceptionHandling.authenticationEntryPoint(new CustomAuthenticationEntryPoint());
                 })*/
                 // 중복 로그인 방지
-
                 .sessionManagement((sessionManagement) -> {
                     sessionManagement.sessionFixation().changeSessionId()
                             .maximumSessions(1)
                             .maxSessionsPreventsLogin(false)
                             .sessionRegistry(sessionRegistry());
                 })
-
                 .build();
     }
     @Bean
