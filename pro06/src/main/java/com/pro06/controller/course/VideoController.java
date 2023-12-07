@@ -76,7 +76,7 @@ public class VideoController {
         if(myVideo != null) {
             userPage = myVideo.getPage();
             // page 검사
-            if(userPage < page) {
+            if(userPage != null && userPage < page) {
                 // 동영상 시청 위치 저장
                 myVideo.setSec(0);
                 myVideo.setPage(page);

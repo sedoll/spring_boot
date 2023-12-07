@@ -23,7 +23,7 @@
         <a href="javascript:void(0);"
            th:onclick="'openLecture(' + ${lecture.course.no} + ', ' + ${lecture.no} + ')'">강의보기</a>
         <span class="state" th:text="${stateList.get(status.index)}"></span>
-        
+
         <th:block th:if="${stateList.get(status.index) eq '수강완료'}">
             <a href="#">시험보기</a>
         </th:block>
