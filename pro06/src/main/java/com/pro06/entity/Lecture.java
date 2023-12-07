@@ -8,7 +8,8 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-// 강좌 테이블
+// 강의 테이블
+// 강좌에 속해있으며 여러개의 동영상을 하나로 묶는 역할
 
 @Entity
 @Getter

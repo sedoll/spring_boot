@@ -8,8 +8,8 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-// 강좌 테이블
-// 여기에 나중에 선생님 관련 컬럼 하나 추가
+// 나의 학습방 테이블
+// 사용자가 수강신청을 하면 여기에 저장되며 강의를 수강할 수 있다.
 
 @Entity
 @Getter

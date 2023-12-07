@@ -2,6 +2,9 @@ package com.pro06.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -12,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @AllArgsConstructor
 @Table(name = "User")
 @ToString
+@DynamicInsert
+@DynamicUpdate
 public class User extends BaseEntity {
 
     @Id
@@ -38,5 +43,8 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ColumnDefault("'n'")
+    private String isStudy;
 
 }

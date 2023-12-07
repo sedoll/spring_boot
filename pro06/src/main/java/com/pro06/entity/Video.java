@@ -5,6 +5,9 @@ import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+// 강의 영상 테이블
+// 강의 영상 정보를 저장
+
 @Entity
 @Getter
 @Setter

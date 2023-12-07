@@ -1,12 +1,16 @@
 package com.pro06.service;
 
+import com.pro06.entity.MyVideo;
 import com.pro06.entity.Role;
 import com.pro06.entity.Status;
 import com.pro06.entity.User;
 import com.pro06.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -34,4 +38,13 @@ public class UserServiceImpl implements UserService{
     public User getId(String id) {
         return userRepository.getId(id);
     }
+
+    // 동영상 시청 중
+    @Transactional
+    @Override
+    public void updateStudyYes(String id) {userRepository.updateStudyYes(id);}
+
+    // 동영상 시청 종료
+    @Override
+    public void updateStudyNo(String id) {userRepository.updateStudyNo(id);}
 }

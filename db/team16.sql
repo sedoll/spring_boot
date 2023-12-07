@@ -107,13 +107,13 @@ CREATE TABLE my_course(
 );
 
 -- 강의 비디오 시간 체크
-create table ck_video (
-	no INT PRIMARY KEY AUTO_INCREMENT COMMENT '내강좌번호',
+create table my_lecture (
+	no INT PRIMARY KEY AUTO_INCREMENT COMMENT '번호',
 	cno INT COMMENT '강좌 번호',
 	lno INT COMMENT '강의 번호',
 	id VARCHAR(20) NOT NULL COMMENT '수강자',
-	page int not NULL COMMENT '현재 페이지',
-	time INT COMMENT '비디오 시간 체크',
+	page INT DEFAULT 0 COMMENT '현재 페이지',
+	time INT DEFAULT 0 COMMENT '비디오 시간 체크 (초 단위)',
 	complete varchar(5) DEFAULT n COMMENT '모든 비디오를 수강했는지 않했는지 체크',
 	FOREIGN KEY(id) REFERENCES user(NAME),
 	FOREIGN KEY(cno) REFERENCES course(no),

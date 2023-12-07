@@ -16,15 +16,20 @@
 </ul>
 <hr>
 <h3>강의 목록</h3>
-<ul>
+<ol>
     <th:block th:each="lecture, status : ${lectureList}">
     <li>
+        <span class="title" th:text="${lecture.title}"></span>
         <a href="javascript:void(0);"
-           th:onclick="'openLecture(' + ${lecture.course.no} + ', ' + ${lecture.no} + ')'"
-           th:text="${status.count} + '. ' + ${lecture.title + ' 강의보기'}"></a>
+           th:onclick="'openLecture(' + ${lecture.course.no} + ', ' + ${lecture.no} + ')'">강의보기</a>
+        <span class="state" th:text="${stateList.get(status.index)}"></span>
+        
+        <th:block th:if="${stateList.get(status.index) eq '수강완료'}">
+            <a href="#">시험보기</a>
+        </th:block>
     </li>
     </th:block>
-</ul>
+</ol>
 <div>
     <th:block sec:authorize="hasAuthority('ADMIN')">
             <a th:href="@{/lecture/insert(cno=${course.no})}">강의등록</a>

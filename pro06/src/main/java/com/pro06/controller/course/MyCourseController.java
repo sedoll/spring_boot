@@ -1,13 +1,11 @@
 package com.pro06.controller.course;
 
-import com.pro06.entity.Course;
-import com.pro06.entity.Lecture;
-import com.pro06.entity.MyCourse;
-import com.pro06.entity.User;
+import com.pro06.entity.*;
 import com.pro06.service.UserService;
 import com.pro06.service.course.CourseServiceImpl;
 import com.pro06.service.course.LectureServiceImpl;
 import com.pro06.service.course.MyCourseServiceImpl;
+import com.pro06.service.course.MyVideoServiceImpl;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,6 +34,9 @@ public class MyCourseController {
 
     @Autowired
     private CourseServiceImpl courseService;
+
+    @Autowired
+    private MyVideoServiceImpl myVideoService;
 
     @Autowired
     private UserService userService;
@@ -83,6 +85,19 @@ public class MyCourseController {
         // 강의 목록
         List<Lecture> lectureList = lectureService.lectureCnoList(no);
         model.addAttribute("lectureList", lectureList);
+        
+        // 수강상태
+        // 동영상을 다 봤는지 안봤는지 검사
+        List<String> stateList = new ArrayList<>();
+        for (Lecture lec: lectureList) {
+            MyVideo myVideo = myVideoService.getMyVideo(id, no, lec.getNo());
+            if(myVideo != null && myVideo.getState().equals("y")) {
+                stateList.add("수강완료");
+            } else {
+                stateList.add("수강중");
+            }
+        }
+        model.addAttribute("stateList", stateList);
         return "mycourse/myCourseDetail";
     }
 }
