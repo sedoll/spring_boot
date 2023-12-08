@@ -56,70 +56,21 @@
 
     <br><hr><br>
     <h2>시험문제</h2>
-    <div>
+    <!-- 문제, 답 5개 씩 만듬 -->
+    <th:block th:each="i : ${#numbers.sequence(1, 5)}">
         <div>
-            <label for="exam1">문제1</label>
-            <input type="text" class="exam" name="exam1" id="exam1" maxlength="100" required>
+            <div>
+                <label th:for="'exam' + ${i}" th:text="'문제' + ${i}"></label>
+                <input type="text" class="exam" th:name="'exam' + ${i}" th:id="'exam' + ${i}" maxlength="100" required>
+            </div>
+            <br>
+            <div>
+                <label th:for="'answer' + ${i}">답</label>
+                <input type="text" class="exam" th:name="'answer' + ${i}" th:id="'answer' + ${i}" maxlength="100" required>
+            </div>
         </div>
-        <br>
-        <div>
-            <label for="answer1">답</label>
-            <input type="text" class="exam" name="answer1" id="answer1" maxlength="100" required>
-        </div>
-    </div>
-    <br><br>
-
-    <div>
-        <div>
-            <label for="exam2">문제2</label>
-            <input type="text" class="exam" name="exam2" id="exam2" maxlength="100" required>
-        </div>
-        <br>
-        <div>
-            <label for="answer2">답</label>
-            <input type="text" class="exam" name="answer2" id="answer2" maxlength="100" required>
-        </div>
-    </div>
-    <br><br>
-
-    <div>
-        <div>
-            <label for="exam3">문제3</label>
-            <input type="text" class="exam" name="exam3" id="exam3" maxlength="100" required>
-        </div>
-        <br>
-        <div>
-            <label for="answer3">답</label>
-            <input type="text" class="exam" name="answer3" id="answer3" maxlength="100" required>
-        </div>
-    </div>
-    <br><br>
-
-    <div>
-        <div>
-            <label for="exam4">문제4</label>
-            <input type="text" class="exam" name="exam4" id="exam4" maxlength="100" required>
-        </div>
-        <br>
-        <div>
-            <label for="answer4">답</label>
-            <input type="text" class="exam" name="answer4" id="answer4" maxlength="100" required>
-        </div>
-    </div>
-    <br><br>
-
-    <div>
-        <div>
-            <label for="exam5">문제5</label>
-            <input type="text" class="exam" name="exam5" id="exam5" maxlength="100" required>
-        </div>
-        <br>
-        <div>
-            <label for="answer5">답</label>
-            <input type="text" class="exam" name="answer5" id="answer5" maxlength="100" required>
-        </div>
-    </div>
-    <br><br>
+        <br><br>
+    </th:block>
 
     <div>
         <input type="button" th:onclick="return submitForm()" value="등록">
