@@ -2,6 +2,7 @@ package com.pro06.controller.course;
 
 import com.pro06.dto.LectureVO;
 import com.pro06.entity.Course;
+import com.pro06.entity.LecTest;
 import com.pro06.entity.Lecture;
 import com.pro06.entity.Video;
 import com.pro06.service.course.LectureServiceImpl;
@@ -12,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -91,6 +89,19 @@ public class LectureController {
         lecture.setTitle(req.getParameter("title"));
         lecture.setContent(req.getParameter("content"));
         lecture.setKeyword(req.getParameter("keyword"));
+        
+        // 시험정보 저장
+        LecTest lecTest = new LecTest();
+        lecTest.setExam1(req.getParameter("exam1"));
+        lecTest.setExam2(req.getParameter("exam2"));
+        lecTest.setExam3(req.getParameter("exam3"));
+        lecTest.setExam4(req.getParameter("exam4"));
+        lecTest.setExam5(req.getParameter("exam5"));
+        lecTest.setAnswer1(req.getParameter("answer1"));
+        lecTest.setAnswer2(req.getParameter("answer2"));
+        lecTest.setAnswer3(req.getParameter("answer3"));
+        lecTest.setAnswer4(req.getParameter("answer4"));
+        lecTest.setAnswer5(req.getParameter("answer5"));
 
         // 파일 추출 테스트
         for(int i=0; i<req.getFiles("files").size(); i++) {
@@ -148,9 +159,56 @@ public class LectureController {
         LectureVO lectureVO = new LectureVO();
         lectureVO.setLecture(lecture);
         lectureVO.setFileList(fileList);
+        lectureVO.setLecTest(lecTest);
         lectureVO.setCno(cno);
         lectureService.LectureVoInsert(lectureVO); // 강의와 비디오를 같이 저장
         
         return "redirect:/course/detail?no=" + cno;
+    }
+
+    // 시험 보기
+    @PostMapping("test")
+    public String test(@RequestParam("cno") Integer cno,
+                       @RequestParam("lno") Integer lno,
+                       Principal principal, Model model){
+
+        LecTest lecTest = lectureService.getLecTest(cno, lno);
+        
+        // 문제 저장
+        List<String> examList = new ArrayList<>();
+        examList.add(lecTest.getExam1());
+        examList.add(lecTest.getExam2());
+        examList.add(lecTest.getExam3());
+        examList.add(lecTest.getExam4());
+        examList.add(lecTest.getExam5());
+        
+        // 선택 답안 저장
+        List<String> itemList = new ArrayList<>();
+        itemList.add(lecTest.getAnswer1());
+        itemList.add(lecTest.getAnswer2());
+        itemList.add(lecTest.getAnswer3());
+        itemList.add(lecTest.getAnswer4());
+        itemList.add(lecTest.getAnswer5());
+        Collections.shuffle(itemList);
+
+        model.addAttribute("examList", examList);
+        model.addAttribute("itemList", itemList);
+        model.addAttribute("lecTest", lecTest);
+        return "lecture/lectureTest";
+    }
+
+    // 정답 가져오기
+    @PostMapping("answers")
+    @ResponseBody
+    public List<String> answers(@RequestParam("cno") Integer cno,
+                                @RequestParam("lno") Integer lno) {
+        LecTest lecTest = lectureService.getLecTest(cno, lno);
+        List<String> answers = new ArrayList<>();
+        answers.add(lecTest.getAnswer1());
+        answers.add(lecTest.getAnswer2());
+        answers.add(lecTest.getAnswer3());
+        answers.add(lecTest.getAnswer4());
+        answers.add(lecTest.getAnswer5());
+        return answers;
     }
 }

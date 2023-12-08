@@ -25,7 +25,8 @@
         <span class="state" th:text="${stateList.get(status.index)}"></span>
 
         <th:block th:if="${stateList.get(status.index) eq '수강완료'}">
-            <a href="#">시험보기</a>
+            <a href="javascript:void(0);"
+               th:onclick="'openLecTest(' + ${lecture.course.no} + ', ' + ${lecture.no} + ')'">시험보기</a>
         </th:block>
     </li>
     </th:block>
@@ -38,6 +39,8 @@
 
 <script th:inline="javascript">
     /*<![CDATA[*/
+
+    // 영상 보기
     function openLecture(cno, lno) {
 
         // post로 보내기 위한 form 데이터 생성
@@ -64,6 +67,47 @@
         }
 
         let windowname = "강의 플레이어";
+        let intWidth = 1080;
+        let intHeight = 720;
+        let intXOffset = 0;
+        let intYOffset = 0;
+
+        let obwindow = window.open('', windowname, "toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no");
+        form.target = windowname;
+        document.body.appendChild(form);
+        form.submit();
+        obwindow.resizeTo(intWidth, intHeight);
+        obwindow.moveTo(intXOffset, intYOffset);
+        document.body.removeChild(form); // Optional: Remove the form after submission
+    }
+
+    // 시험보기
+    function openLecTest(cno, lno) {
+
+        // post로 보내기 위한 form 데이터 생성
+        let form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/lecture/test');
+
+        // 전송할 값
+        let params = {
+            cno: cno,
+            lno: lno,
+            page: 0
+        };
+
+        // map
+        for (let key in params) {
+            if (params.hasOwnProperty(key)) {
+                let input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', key);
+                input.setAttribute('value', params[key]);
+                form.appendChild(input);
+            }
+        }
+
+        let windowname = "시험";
         let intWidth = 1080;
         let intHeight = 720;
         let intXOffset = 0;

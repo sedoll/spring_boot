@@ -2,12 +2,15 @@ package com.pro06.service.course;
 
 import com.pro06.dto.LectureVO;
 import com.pro06.entity.Course;
+import com.pro06.entity.LecTest;
 import com.pro06.entity.Lecture;
 import com.pro06.entity.Video;
+import com.pro06.repository.course.LecTestRepository;
 import com.pro06.repository.course.LectureRepository;
 import com.pro06.repository.course.VideoRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +23,9 @@ public class LectureServiceImpl {
 
     @Autowired
     private VideoRepository videoRepository;
+
+    @Autowired
+    private LecTestRepository lecTestRepository;
 
     // 강의 정보 + 파일 등록
     public void LectureVoInsert(LectureVO vo) throws Exception {
@@ -41,6 +47,12 @@ public class LectureServiceImpl {
             videoRepository.save(video);
             log.info("video 저장");
         }
+        
+        // 시험 정보 등록
+        LecTest lecTest = vo.getLecTest();
+        lecTest.setLecture(lecture);
+        lecTest.setCourse(course);
+        lecTestRepository.save(lecTest);
     }
 
     // 해당강의의 강좌 목록 불러오기
@@ -51,4 +63,7 @@ public class LectureServiceImpl {
     // 강의 비디오 보기
     public Lecture getLecture(Integer cno, Integer lno) {return lectureRepository.videoList(cno, lno);}
 //    public List<String> getLecture(Integer cno, Integer lno) {return lectureRepository.videoList(cno, lno);}
+    
+    // 시험 정보 가져오기
+    public LecTest getLecTest(Integer cno, Integer lno) {return lecTestRepository.getLecTest(cno, lno);}
 }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>시험</title>
+  <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<h1>시험</h1>
+<div>
+  <form action="" method="post" onsubmit="return sbmsn();">
+    <!-- 해당 문제 동안 반복 -->
+    <th:block th:each="exam, status : ${examList}">
+      <div>
+        <h3 th:text="${status.count} + '번 문제'"></h3>
+        <p th:text="${exam}"></p>
+        <fieldset>
+          <legend>정답 선택</legend>
+
+          <div>
+            <input type="radio" th:id="'ex' + ${status.count} + '1'" th:name="'ex' + ${status.count}" th:value="${itemList.get(0)}" />
+            <label th:for="'ex' + ${status.count} + '1'" th:text="${itemList.get(0)}"></label>
+          </div>
+
+          <div>
+            <input type="radio" th:id="'ex' + ${status.count} + '2'" th:name="'ex' + ${status.count}" th:value="${itemList.get(1)}" />
+            <label th:for="'ex' + ${status.count} + '2'" th:text="${itemList.get(1)}"></label>
+          </div>
+
+          <div>
+            <input type="radio" th:id="'ex' + ${status.count} + '3'" th:name="'ex' + ${status.count}" th:value="${itemList.get(2)}" />
+            <label th:for="'ex' + ${status.count} + '3'" th:text="${itemList.get(2)}"></label>
+          </div>
+
+          <div>
+            <input type="radio" th:id="'ex' + ${status.count} + '4'" th:name="'ex' + ${status.count}" th:value="${itemList.get(3)}" />
+            <label th:for="'ex' + ${status.count} + '4'" th:text="${itemList.get(3)}"></label>
+          </div>
+
+          <div>
+            <input type="radio" th:id="'ex' + ${status.count} + '5'" th:name="'ex' + ${status.count}" th:value="${itemList.get(4)}" />
+            <label th:for="'ex' + ${status.count} + '5'" th:text="${itemList.get(4)}"></label>
+          </div>
+        </fieldset>
+      </div>
+    </th:block>
+
+    <input type="submit" value="답안 제출">
+  </form>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    let cno = [[${lecTest.getCourse().no}]];
+    let lno = [[${lecTest.getLecture().no}]];
+    /*]]>*/
+
+    let answers = [];
+
+    // 해당 파일의 답안 받기
+    $.ajax({
+      type : 'post',
+      url : '/lecture/answers',
+      dataType : "json",
+      async: false,
+      data: {
+        'cno' : cno,
+        'lno' : lno
+      },
+      success : function (result) {
+        console.log(result);
+        answers = result;
+      }
+    })
+
+    // 답안 제출
+    function sbmsn() {
+
+      let selectArr = []; // 선택된 값들을 저장할 배열
+
+      // 각 fieldset 내에서 선택된 라디오 버튼의 값을 추출하여 배열에 저장합니다.
+      $('fieldset').each(function() {
+        let checkedRadio = $(this).find('input[type="radio"]:checked');
+
+        if(checkedRadio.length < 5) {
+          return false;
+        }
+
+        if (checkedRadio.length > 0) {
+          selectArr.push(checkedRadio.val()); // 선택된 값을 배열에 추가합니다.
+        }
+      });
+
+      // 추출된 선택된 값들을 콘솔에 출력합니다.
+      console.log("선택된 값들:", selectArr);
+      console.log('정답 : ', answers);
+
+
+      // 여기서 미리 몇 개를 맞았는지 계산해서 출력
+      // 지금 상태는 예시 코드 상태
+      let answerCnt = 0;
+
+      // 맞은 개수 세기
+      for(var i=0; i<5; i++) {
+        if(answers[i] == selectArr[i]) {
+          answerCnt++;
+        }
+      }
+
+      let hint = '과반수 이상 맞히지 못해서 아직 수정을 더 해야 합니다.' +
+              '\n통과하지 못할 경우 해당 강의를 처음부터 다시 공부해야 합니다.\n';
+      if(answerCnt >= 3) {
+        hint = '과반수 이상 맞아서 통과가 가능합니다.\n';
+      }
+      return confirm(hint + `답안을 제출하시겠습니까? \n맞은 답안의 개수 : ${answerCnt} \n선택 : ${selectArr} \n정답 : ${answers}`);
+    }
+  </script>
+</div>
+</body>
+</html>

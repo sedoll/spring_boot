@@ -150,20 +150,6 @@ public class VideoController {
         out.flush();
     }
     
-    // 시험
-    @GetMapping("test")
-    public String test(){
-        return "video/test";
-    }
-    
-    // 정답 가져오기
-    @PostMapping("answers")
-    @ResponseBody
-    public List<String> answers() {
-        List<String> answers = Arrays.asList("test", "huey", "dewey", "huey", "louie");
-        return answers;
-    }
-    
     // 동영상에서 나간 경우
     // 여기 트랜잭션 처리 안할경우 오류 발생
     @PostMapping("closeVideo")

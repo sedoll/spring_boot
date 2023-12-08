@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-
 public interface LectureRepository extends JpaRepository<Lecture, Integer> {
     // cno로 강의 리스트 정보 추출
     @Query("select l from Lecture l where l.course.no = :cno")

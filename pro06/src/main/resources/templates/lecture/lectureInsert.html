@@ -45,11 +45,82 @@
         <label for="content">내용</label>
         <input type="text" name="content" id="content" required>
     </div>
+
+    <br><hr><br>
+    <h2>영상</h2>
     <div>
         <label for="file">강의영상</label>
         <input type="file" id="file" name="file" onchange="addFile(this);" multiple accept="video/mp4"/>
         <div class="file-list"></div>
     </div>
+
+    <br><hr><br>
+    <h2>시험문제</h2>
+    <div>
+        <div>
+            <label for="exam1">문제1</label>
+            <input type="text" class="exam" name="exam1" id="exam1" maxlength="100" required>
+        </div>
+        <br>
+        <div>
+            <label for="answer1">답</label>
+            <input type="text" class="exam" name="answer1" id="answer1" maxlength="100" required>
+        </div>
+    </div>
+    <br><br>
+
+    <div>
+        <div>
+            <label for="exam2">문제2</label>
+            <input type="text" class="exam" name="exam2" id="exam2" maxlength="100" required>
+        </div>
+        <br>
+        <div>
+            <label for="answer2">답</label>
+            <input type="text" class="exam" name="answer2" id="answer2" maxlength="100" required>
+        </div>
+    </div>
+    <br><br>
+
+    <div>
+        <div>
+            <label for="exam3">문제3</label>
+            <input type="text" class="exam" name="exam3" id="exam3" maxlength="100" required>
+        </div>
+        <br>
+        <div>
+            <label for="answer3">답</label>
+            <input type="text" class="exam" name="answer3" id="answer3" maxlength="100" required>
+        </div>
+    </div>
+    <br><br>
+
+    <div>
+        <div>
+            <label for="exam4">문제4</label>
+            <input type="text" class="exam" name="exam4" id="exam4" maxlength="100" required>
+        </div>
+        <br>
+        <div>
+            <label for="answer4">답</label>
+            <input type="text" class="exam" name="answer4" id="answer4" maxlength="100" required>
+        </div>
+    </div>
+    <br><br>
+
+    <div>
+        <div>
+            <label for="exam5">문제5</label>
+            <input type="text" class="exam" name="exam5" id="exam5" maxlength="100" required>
+        </div>
+        <br>
+        <div>
+            <label for="answer5">답</label>
+            <input type="text" class="exam" name="answer5" id="answer5" maxlength="100" required>
+        </div>
+    </div>
+    <br><br>
+
     <div>
         <input type="button" th:onclick="return submitForm()" value="등록">
         <input type="reset" value="초기화">
@@ -136,6 +207,7 @@
         let title = $("#title").val();
         let keyword = $("#keyword").val();
         let content = $("#content").val();
+        let exam = $(".exam").length;
 
         if(title === '') {
             alert('제목을 입력하세요');
@@ -153,11 +225,20 @@
             return false;
         }
 
-
+        // 동영상 체크
         let attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
         if(attFileCnt === 0) { // 추가된 파일이 없으면 submit 실패
             alert('동영상 파일이 최소 1개이상 있어야 합니다.')
             return false;
+        }
+
+        // 시험 정보 체크
+        for(var i=0; i<exam; i++) {
+            let value = $(".exam").eq(i).val()
+            if(value === '') {
+                alert('시험에 입력되지 않은 곳이 존재합니다.')
+                return false;
+            }
         }
 
         // 폼데이터 담기
