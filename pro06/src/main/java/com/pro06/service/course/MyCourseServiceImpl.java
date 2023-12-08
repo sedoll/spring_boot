@@ -1,10 +1,8 @@
 package com.pro06.service.course;
 
-import com.pro06.entity.Course;
 import com.pro06.entity.MyCourse;
 import com.pro06.repository.course.MyCourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +26,7 @@ public class MyCourseServiceImpl {
     }
 
     // 해당 유저가 해당 강좌를 수강하는지 확인
-    public Integer getMyCourse(String id, Integer cno) { return myCourseRepository.getMyCourse(id, cno); }
+    public Integer getMyCourseCnt(String id, Integer cno) { return myCourseRepository.getMyCourse(id, cno); }
 
     // 해당 강좌를 몇 명이 듣고 있는지 확인
     public Integer getMyCourseCno(@Param("cno") Integer cno) {

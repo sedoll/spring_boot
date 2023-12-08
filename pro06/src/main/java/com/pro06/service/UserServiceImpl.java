@@ -38,13 +38,4 @@ public class UserServiceImpl implements UserService{
     public User getId(String id) {
         return userRepository.getId(id);
     }
-
-    // 동영상 시청 중
-    @Transactional
-    @Override
-    public void updateStudyYes(String id) {userRepository.updateStudyYes(id);}
-
-    // 동영상 시청 종료
-    @Override
-    public void updateStudyNo(String id) {userRepository.updateStudyNo(id);}
 }

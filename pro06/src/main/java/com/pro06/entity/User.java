@@ -44,7 +44,4 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ColumnDefault("'n'")
-    private String isStudy;
-
 }

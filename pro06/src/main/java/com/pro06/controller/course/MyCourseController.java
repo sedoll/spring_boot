@@ -6,13 +6,11 @@ import com.pro06.service.course.CourseServiceImpl;
 import com.pro06.service.course.LectureServiceImpl;
 import com.pro06.service.course.MyCourseServiceImpl;
 import com.pro06.service.course.MyVideoServiceImpl;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -72,7 +70,7 @@ public class MyCourseController {
 
         String id = principal.getName();
 
-        Integer ck = myCourseService.getMyCourse(id, no);
+        Integer ck = myCourseService.getMyCourseCnt(id, no);
         if(ck == 0) {
             log.error("해당 강좌를 듣는 수강생이 아닙니다.");
             return "redirect:/";

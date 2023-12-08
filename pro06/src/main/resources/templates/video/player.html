@@ -44,45 +44,41 @@
 <div>
     <!-- 이전 영상으로 넘어가기 -->
     <th:block th:if="${page > 0}">
-        <form th:action="@{/video/player}" onsubmit="return videoBack()">
+        <form th:action="@{/video/player}" method="post" onsubmit="return videoBack()">
             <input type="hidden" name="cno" id="cno1" th:value="${cno}">
             <input type="hidden" name="lno" id="lno1" th:value="${lno}">
             <input type="hidden" name="page" id="page1" th:value="${page - 1}">
-            <!--    <input type="hidden" name="vidoe_time" id="video_time" th:value="${video_time}">-->
             <input type="submit" value="이전 영상">
         </form>
     </th:block>
 
     <!-- 다음 영상으로 넘어가기 -->
     <th:block th:if="${page < total_size - 1 and user_page <= page}">
-        <form th:action="@{/video/player}" onsubmit="return videoNext()">
+        <form th:action="@{/video/player}" method="post" onsubmit="return videoNext()">
             <input type="hidden" name="cno" id="cno2" th:value="${cno}">
             <input type="hidden" name="lno" id="lno2" th:value="${lno}">
             <input type="hidden" name="page" id="page2" th:value="${page + 1}">
-            <!--    <input type="hidden" name="vidoe_time" id="video_time" th:value="${video_time}">-->
             <input type="submit" value="다음 영상">
         </form>
     </th:block>
 
     <!-- 다음 영상으로 넘어가기 -->
     <th:block th:if="${page < total_size - 1 and user_page > page}">
-        <form th:action="@{/video/player}">
+        <form th:action="@{/video/player}" method="post">
             <input type="hidden" name="cno" id="cno4" th:value="${cno}">
             <input type="hidden" name="lno" id="lno4" th:value="${lno}">
             <input type="hidden" name="page" id="page4" th:value="${page + 1}">
-            <!--    <input type="hidden" name="vidoe_time" id="video_time" th:value="${video_time}">-->
             <input type="submit" value="다음 영상">
         </form>
     </th:block>
 
     <!-- 문제 풀기전 요약정리 보기 -->
     <th:block th:if="${page == total_size - 1}">
-        <form th:action="@{/video/complete}" onsubmit="return videoNext()">
+        <form th:action="@{/video/complete}" method="post" onsubmit="return videoNext()">
             <input type="hidden" name="cno" id="cno3" th:value="${cno}">
             <input type="hidden" name="lno" id="lno3" th:value="${lno}">
             <input type="hidden" name="page" id="page3" th:value="${page+1}">
-            <!--    <input type="hidden" name="vidoe_time" id="video_time" th:value="${video_time}">-->
-            <input type="submit" value="종료">
+            <input type="submit" value="수강 완료">
         </form>
     </th:block>
 </div>
@@ -130,7 +126,7 @@
     // 이전으로 넘어가기
     function videoBack() {
         video.pause(); // 일시정지
-        if(confirm('정말뒤로넘어가시겠습니까?')) {
+        if(confirm('뒤로 넘어가시겠습니까?')) {
             return true;
         }
         return true;

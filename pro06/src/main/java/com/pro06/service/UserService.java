@@ -10,10 +10,4 @@ public interface UserService {
     public User userInsert(User user);
     public PasswordEncoder passwordEncoder();
     public User getId(String id);
-
-    // 동영상 시청 중
-    void updateStudyYes(String id);
-
-    // 동영상 시청 종료
-    void updateStudyNo(String id);
 }

@@ -1,8 +1,8 @@
 package com.pro06.controller.course;
 
 import com.pro06.entity.*;
-import com.pro06.repository.course.VideoRepository;
 import com.pro06.service.UserServiceImpl;
+import com.pro06.service.course.MyCourseServiceImpl;
 import com.pro06.service.course.MyVideoServiceImpl;
 import com.pro06.service.course.VideoServiceImpl;
 import jakarta.servlet.http.HttpServletResponse;
@@ -31,12 +31,15 @@ public class VideoController {
     private MyVideoServiceImpl myVideoService;
 
     @Autowired
-    private UserServiceImpl userService;
+    private MyCourseServiceImpl myCourseService;
     
     // 영상 재생
     // 아이디, 강좌번호, 강의번호, 현재페이지를 받음
-    @GetMapping("player")
-    public String player(Principal principal, @RequestParam("cno") Integer cno, @RequestParam("lno") Integer lno, @RequestParam("page") Integer page, Model model) {
+    @PostMapping("player")
+    public String player(Principal principal,
+                         @RequestParam("cno") Integer cno,
+                         @RequestParam("lno") Integer lno,
+                         @RequestParam("page") Integer page, Model model) {
 
         if(principal == null) {
             log.error("잘 못된 접근입니다.");
@@ -44,18 +47,17 @@ public class VideoController {
         }
 
         String id = principal.getName();
-
-        User user = userService.getId(id);
-        if(user.getIsStudy().equals("y")) {
-            log.error("이미 다른 강의를 수강중 입니다.");
+        
+        // 해당 강의를 수강하는 사람인지 확인
+        Integer ck1 = myCourseService.getMyCourseCnt(id, cno);
+        if(ck1 == 0) {
+            log.error("고객님은 해당 강의를 수강하고 있지 않습니다.");
             return "redirect:/";
         }
-
-        // 동영상 시청 시작
-//        userService.updateStudyYes(id);
-
-        Integer ck1 = myVideoService.getMyVideoCnt(id, cno, lno);
-        if(ck1 == 0) { // 만약 회원의 해당 강의 영상 정보가 없으면 생성
+        
+        // 수강중인 강의 시간 저장 데이터 생성
+        Integer ck2 = myVideoService.getMyVideoCnt(id, cno, lno);
+        if(ck2 == 0) { // 만약 회원의 해당 강의 영상 정보가 없으면 생성
             MyVideo myVideo = new MyVideo();
             myVideo.setId(id);  // 회원의 아이디 저장
 
@@ -70,6 +72,7 @@ public class VideoController {
             myVideoService.myVideoInsert(myVideo); // 데이터 생성
         }
         
+        // page, sec(시간) 처리
         MyVideo myVideo = myVideoService.getMyVideo(id, cno, lno);
         Integer userPage = 0;
         Integer userSec = 0;
@@ -98,7 +101,7 @@ public class VideoController {
     }
     
     // 수강 종료 (해당 강의의 모든 영상을 다 봄)
-    @GetMapping("complete")
+    @PostMapping("complete")
     public void summary(Principal principal, HttpServletResponse res,
                         @RequestParam("cno") Integer cno,
                         @RequestParam("lno") Integer lno,
@@ -109,11 +112,6 @@ public class VideoController {
         }
 
         String id = principal.getName();
-
-        User user = userService.getId(id);
-        if(user.getIsStudy().equals("y")) {
-            log.error("이미 다른 강의를 수강중 입니다.");
-        }
 
         Integer ck1 = myVideoService.getMyVideoCnt(id, cno, lno);
         if(ck1 == 0) { // 만약 회원의 해당 강의 영상 정보가 없으면 생성
@@ -144,7 +142,8 @@ public class VideoController {
                 myVideoService.updatePageSec(myVideo);
             }
         }
-
+        
+        // 동영상 플레이어 창 닫기
         res.setContentType("text/html; charset=UTF-8");
         PrintWriter out = res.getWriter();
         out.println("<script>window.close();</script>");
@@ -182,10 +181,6 @@ public class VideoController {
         log.warn("cno : " + cno);
         log.warn("lno : " + lno);
         log.warn("id : " + id);
-
-        // 동영상 시청 종료
-        // 유저가 동영상을 시청중이지 않다는 정보를 저장
-        userService.updateStudyNo(id);
         
         // 영상 시청 정보 저장
         MyVideo myVideo = new MyVideo();

@@ -7,7 +7,6 @@ import com.pro06.service.course.CourseServiceImpl;
 import com.pro06.service.course.LectureServiceImpl;
 import com.pro06.service.UserService;
 import com.pro06.service.course.MyCourseServiceImpl;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +52,7 @@ public class CourseController {
         if(principal != null) {
             String id = principal.getName();
             for (Course course: courseList) {
-                Integer cnt = myCourseService.getMyCourse(id, course.getNo());
+                Integer cnt = myCourseService.getMyCourseCnt(id, course.getNo());
                 if(cnt > 0) {
                     checkList.add("y");
                 } else {
@@ -108,7 +106,7 @@ public class CourseController {
 
         String id = principal.getName();
 
-        Integer ck = myCourseService.getMyCourse(id, cno);
+        Integer ck = myCourseService.getMyCourseCnt(id, cno);
 
         if(ck > 0) {
             log.error("이미 해당 강의를 수강하고 있습니다.");
