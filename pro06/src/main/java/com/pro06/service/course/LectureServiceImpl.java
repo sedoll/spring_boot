@@ -72,6 +72,6 @@ public class LectureServiceImpl {
     
     // 답안 정보 추출
     public LecAns getLecAns(Integer cno, Integer lno, String id) {
-        return lecAnsRepository.sa
+        return lecAnsRepository.getLecAns(cno, lno, id);
     }
 }
