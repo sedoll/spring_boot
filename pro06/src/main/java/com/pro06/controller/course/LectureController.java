@@ -1,13 +1,11 @@
 package com.pro06.controller.course;
 
 import com.pro06.dto.LectureVO;
-import com.pro06.entity.Course;
-import com.pro06.entity.LecTest;
-import com.pro06.entity.Lecture;
-import com.pro06.entity.Video;
+import com.pro06.entity.*;
 import com.pro06.service.course.LectureServiceImpl;
 import com.pro06.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.*;
 
@@ -65,6 +64,8 @@ public class LectureController {
         itemList.add(lecTest.getAnswer5());
         Collections.shuffle(itemList);
 
+        model.addAttribute("cno", cno);
+        model.addAttribute("lno", lno);
         model.addAttribute("examList", examList);
         model.addAttribute("itemList", itemList);
         model.addAttribute("lecTest", lecTest);
@@ -75,7 +76,7 @@ public class LectureController {
     @PostMapping("answers")
     @ResponseBody
     public List<String> answers(@RequestParam("cno") Integer cno,
-                                @RequestParam("lno") Integer lno) {
+                                @RequestParam("lno") Integer lno) throws Exception {
         LecTest lecTest = lectureService.getLecTest(cno, lno);
         List<String> answers = new ArrayList<>();
         answers.add(lecTest.getAnswer1());
@@ -84,5 +85,41 @@ public class LectureController {
         answers.add(lecTest.getAnswer4());
         answers.add(lecTest.getAnswer5());
         return answers;
+    }
+    
+    // 답안 전송
+    @PostMapping("lecAns")
+    public void lecAns(Principal principal,
+                       @RequestParam("cno") Integer cno,
+                       @RequestParam("lno") Integer lno,
+                       LecAns lecAns, HttpServletResponse res) throws Exception {
+        String id = principal.getName();
+
+        LecAns lecAns1 = lectureService.getLecAns(cno, lno, id);
+
+        if(lecAns1 != null) {
+
+        } else {
+            // 강좌 번호
+            Course course = new Course();
+            course.setNo(cno);
+            lecAns.setCourse(course);
+
+            // 강의 번호
+            Lecture lecture = new Lecture();
+            lecture.setNo(lno);
+            lecAns.setLecture(lecture);
+
+            // 아이디
+            lecAns.setId(id);
+
+            lectureService.lecAnsInsUpd(lecAns);
+        }
+
+        // 동영상 플레이어 창 닫기
+        res.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = res.getWriter();
+        out.println("<script>window.close();</script>");
+        out.flush();
     }
 }

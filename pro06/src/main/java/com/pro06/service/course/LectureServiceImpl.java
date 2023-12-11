@@ -1,10 +1,8 @@
 package com.pro06.service.course;
 
 import com.pro06.dto.LectureVO;
-import com.pro06.entity.Course;
-import com.pro06.entity.LecTest;
-import com.pro06.entity.Lecture;
-import com.pro06.entity.Video;
+import com.pro06.entity.*;
+import com.pro06.repository.course.LecAnsRepository;
 import com.pro06.repository.course.LecTestRepository;
 import com.pro06.repository.course.LectureRepository;
 import com.pro06.repository.course.VideoRepository;
@@ -26,6 +24,9 @@ public class LectureServiceImpl {
 
     @Autowired
     private LecTestRepository lecTestRepository;
+
+    @Autowired
+    private LecAnsRepository lecAnsRepository;
 
     // 강의 정보 + 파일 등록
     public void LectureVoInsert(LectureVO vo) throws Exception {
@@ -59,11 +60,18 @@ public class LectureServiceImpl {
     public List<Lecture> lectureCnoList(Integer cno) {
         return lectureRepository.lectureCnoList(cno);
     }
-
-    // 강의 비디오 보기
-    public Lecture getLecture(Integer cno, Integer lno) {return lectureRepository.videoList(cno, lno);}
-//    public List<String> getLecture(Integer cno, Integer lno) {return lectureRepository.videoList(cno, lno);}
     
     // 시험 정보 가져오기
     public LecTest getLecTest(Integer cno, Integer lno) {return lecTestRepository.getLecTest(cno, lno);}
+    
+    // 시험 제출 답안 입력, 수정
+    public LecAns lecAnsInsUpd(LecAns lecAns) { return lecAnsRepository.save(lecAns);}
+    
+    // 제출된 답안 수정
+    public LecAns lecAnsUpdate(LecAns lecAns) {return lecAnsRepository.save(lecAns);}
+    
+    // 답안 정보 추출
+    public LecAns getLecAns(Integer cno, Integer lno, String id) {
+        return lecAnsRepository.sa
+    }
 }

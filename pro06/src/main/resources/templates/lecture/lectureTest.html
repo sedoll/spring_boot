@@ -9,7 +9,11 @@
 <body>
 <h1>시험</h1>
 <div>
-  <form action="" method="post" onsubmit="return sbmsn();">
+  <form th:action="@{/lecture/lecAns}" method="post" onsubmit="return sbmsn();">
+
+    <input type="hidden" name="cno" id="cno" th:value="${cno}">
+    <input type="hidden" name="lno" id="lno" th:value="${lno}">
+
     <!-- 해당 문제 동안 반복 -->
     <th:block th:each="exam, status : ${examList}">
       <div>
@@ -19,28 +23,28 @@
           <legend>정답 선택</legend>
 
           <div>
-            <input type="radio" th:id="'ex' + ${status.count} + '1'" th:name="'ex' + ${status.count}" th:value="${itemList.get(0)}" />
-            <label th:for="'ex' + ${status.count} + '1'" th:text="${itemList.get(0)}"></label>
+            <input type="radio" th:id="'answer' + ${status.count} + '1'" th:name="'answer' + ${status.count}" th:value="${itemList.get(0)}" />
+            <label th:for="'answer' + ${status.count} + '1'" th:text="${itemList.get(0)}"></label>
           </div>
 
           <div>
-            <input type="radio" th:id="'ex' + ${status.count} + '2'" th:name="'ex' + ${status.count}" th:value="${itemList.get(1)}" />
-            <label th:for="'ex' + ${status.count} + '2'" th:text="${itemList.get(1)}"></label>
+            <input type="radio" th:id="'answer' + ${status.count} + '2'" th:name="'answer' + ${status.count}" th:value="${itemList.get(1)}" />
+            <label th:for="'answer' + ${status.count} + '2'" th:text="${itemList.get(1)}"></label>
           </div>
 
           <div>
-            <input type="radio" th:id="'ex' + ${status.count} + '3'" th:name="'ex' + ${status.count}" th:value="${itemList.get(2)}" />
-            <label th:for="'ex' + ${status.count} + '3'" th:text="${itemList.get(2)}"></label>
+            <input type="radio" th:id="'answer' + ${status.count} + '3'" th:name="'answer' + ${status.count}" th:value="${itemList.get(2)}" />
+            <label th:for="'answer' + ${status.count} + '3'" th:text="${itemList.get(2)}"></label>
           </div>
 
           <div>
-            <input type="radio" th:id="'ex' + ${status.count} + '4'" th:name="'ex' + ${status.count}" th:value="${itemList.get(3)}" />
-            <label th:for="'ex' + ${status.count} + '4'" th:text="${itemList.get(3)}"></label>
+            <input type="radio" th:id="'answer' + ${status.count} + '4'" th:name="'answer' + ${status.count}" th:value="${itemList.get(3)}" />
+            <label th:for="'answer' + ${status.count} + '4'" th:text="${itemList.get(3)}"></label>
           </div>
 
           <div>
-            <input type="radio" th:id="'ex' + ${status.count} + '5'" th:name="'ex' + ${status.count}" th:value="${itemList.get(4)}" />
-            <label th:for="'ex' + ${status.count} + '5'" th:text="${itemList.get(4)}"></label>
+            <input type="radio" th:id="'answer' + ${status.count} + '5'" th:name="'answer' + ${status.count}" th:value="${itemList.get(4)}" />
+            <label th:for="'answer' + ${status.count} + '5'" th:text="${itemList.get(4)}"></label>
           </div>
         </fieldset>
       </div>
@@ -76,24 +80,27 @@
     function sbmsn() {
 
       let selectArr = []; // 선택된 값들을 저장할 배열
-
+      let undi = 0;
+      let checkedRadio;
       // 각 fieldset 내에서 선택된 라디오 버튼의 값을 추출하여 배열에 저장합니다.
-      $('fieldset').each(function() {
-        let checkedRadio = $(this).find('input[type="radio"]:checked');
+      $('fieldset').each(function(index) {
+        checkedRadio = $(this).find('input[type="radio"]:checked');
 
-        if(checkedRadio.length < 5) {
-          return false;
+        let str = checkedRadio.val();
+        if (typeof str == "undefined" || str == null || str == "") {
+          undi++;
         }
-
-        if (checkedRadio.length > 0) {
-          selectArr.push(checkedRadio.val()); // 선택된 값을 배열에 추가합니다.
-        }
+        selectArr.push(checkedRadio.val()); // 선택된 값을 배열에 추가합니다.
       });
 
       // 추출된 선택된 값들을 콘솔에 출력합니다.
-      console.log("선택된 값들:", selectArr);
-      console.log('정답 : ', answers);
+      // console.log("선택된 값들:", selectArr);
+      // console.log('정답 : ', answers);
 
+      if(undi > 0) {
+        alert('풀지 않은 문제가 존재합니다.')
+        return false;
+      }
 
       // 여기서 미리 몇 개를 맞았는지 계산해서 출력
       // 지금 상태는 예시 코드 상태
@@ -110,8 +117,11 @@
               '\n통과하지 못할 경우 해당 강의를 처음부터 다시 공부해야 합니다.\n';
       if(answerCnt >= 3) {
         hint = '과반수 이상 맞아서 통과가 가능합니다.\n';
+        return confirm(hint + `답안을 제출하시겠습니까? \n맞은 답안의 개수 : ${answerCnt} \n선택 : ${selectArr} \n정답 : ${answers}`);
+      } else if(selectArr.length === 5 && answerCnt <=2) {
+        alert(`아직 과반수 이상 맞추지 못 했습니다. \n맞은 답안의 개수 : ${answerCnt}`)
+        return false;
       }
-      return confirm(hint + `답안을 제출하시겠습니까? \n맞은 답안의 개수 : ${answerCnt} \n선택 : ${selectArr} \n정답 : ${answers}`);
     }
   </script>
 </div>
