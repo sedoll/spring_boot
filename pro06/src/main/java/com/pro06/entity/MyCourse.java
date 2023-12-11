@@ -27,8 +27,10 @@ public class MyCourse extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer no;         // 번호
 
+    @Column(length = 20, nullable = false)
     private String id;          // 수강신청자
 
+    @Column(length = 20)
     @ColumnDefault("'y'")
     private String state;       // 수강상태
 

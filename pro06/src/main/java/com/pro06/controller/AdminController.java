@@ -86,7 +86,7 @@ public class AdminController {
     @PostMapping("courseInsert")
     public String courseInsert(Course course, Model model) {
         courseService.courseInsert(course);
-        return "redirect:/admin/course/list";
+        return "redirect:/admin/courseList";
     }
 
 

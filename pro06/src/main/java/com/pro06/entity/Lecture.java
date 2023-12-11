@@ -26,9 +26,16 @@ public class Lecture extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer no;         // 강의 번호
 
+    @Column(length = 20, nullable = false)
     private String id;          // 작성자(관리자)
+
+    @Column(length = 100, nullable = false)
     private String title;       // 강의 제목
+
+    @Column(length = 2000, nullable = false)
     private String content;     // 강의 설명
+
+    @Column(length = 100, nullable = false)
     private String keyword;     // 키워드
 
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)

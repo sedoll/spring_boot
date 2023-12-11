@@ -26,6 +26,7 @@ public class MyVideo extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer no;             // 번호
 
+    @Column(length = 20)
     private String id;              // 수강신청자
 
     @ColumnDefault("0")
@@ -33,7 +34,8 @@ public class MyVideo extends BaseEntity{
 
     @ColumnDefault("0")
     private Integer sec;            // 시간 초
-    
+
+    @Column(length = 10)
     @ColumnDefault("'n'")
     private String state;           // 모든 비디오를 봤는지 안봤는지 체크
 

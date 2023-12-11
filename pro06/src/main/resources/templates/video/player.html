@@ -6,6 +6,13 @@
     <title>비디오 플레이어</title>
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
+    <style>
+        /* 출처
+            https://www.baragi.net/bbs/board.php?bo_table=dev&wr_id=8718
+        */
+        .video-js .vjs-time-control{display:block;}
+        .video-js .vjs-remaining-time{display: none;}
+    </style>
 </head>
 <body>
 <div>
@@ -103,7 +110,6 @@
     let sec = [[${sec}]];
     let cno = [[${cno}]];
     let lno = [[${lno}]];
-    let state = [[${state}]];
 
     console.log('user_page : ' + user_page);
     console.log('page : ' + page);

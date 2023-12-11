@@ -22,9 +22,16 @@ public class Video extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer no;             // 영상번호
 
+    @Column(nullable = false)
     private String savefolder;      // 저장경로
+
+    @Column(nullable = false)
     private String originfile;      // 실제 파일 이름
+
+    @Column(nullable = false)
     private String savefile;        // 저장된 파일 이름
+
+    @Column(nullable = false)
     private Long filesize;          // 파일 크기
 
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
