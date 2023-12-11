@@ -18,10 +18,14 @@ public class CourseServiceImpl {
         return courseRepository.save(course);
     }
     
+    // 어드민 강좌 목록 불러오기
+    public List<Course> admCourseList() {
+        return courseRepository.findAll();
+    }
+
     // 강좌 목록 불러오기
     public List<Course> courseList() {
-        return courseRepository.findAll();
-//        return courseRepository.courseList();
+        return courseRepository.courseList();
     }
     
     // 강좌 상세 보기

@@ -10,12 +10,15 @@
     <h2>인덱스 페이지입니다.</h2>
 
     <ul>
-        <li><a th:href="@{/login}">로그인</a></li>
-        <li><a th:href="@{/join1}">회원가입11</a></li>
-        <li><a th:href="@{/join2}">회원가입22</a></li>
+        <li sec:authorize="isAnonymous()" ><a th:href="@{/login}">로그인</a></li>
+        <li sec:authorize="isAnonymous()" ><a th:href="@{/join1}">회원가입11</a></li>
+        <li sec:authorize="isAnonymous()" ><a th:href="@{/join2}">회원가입22</a></li>
         <li><a th:href="@{/course/list}">강좌 목록</a></li>
         <th:block sec:authorize="isAuthenticated()">
             <li><a th:href="@{/mycourse/list}">나의 학습방</a></li>
+        </th:block>
+        <th:block sec:authorize="hasAuthority('ADMIN')">
+            <li><a th:href="@{/admin/admIndex}">관리자페이지</a></li>
         </th:block>
         <li sec:authorize="isAuthenticated()" ><a th:href="@{/logout}">로그아웃</a></li>
     </ul>

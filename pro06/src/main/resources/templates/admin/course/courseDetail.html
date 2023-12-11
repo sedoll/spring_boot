@@ -7,6 +7,7 @@
     <title>강좌 상세</title>
 </head>
 <body>
+<h1>관리자 페이지</h1>
 <h1>강좌 상세</h1>
 <ul>
     <li>강좌 이름 : [[${course.title}]]</li>
@@ -25,5 +26,10 @@
     </li>
     </th:block>
 </ul>
+<div>
+    <th:block sec:authorize="hasAuthority('ADMIN')">
+        <a th:href="@{/admin/lectureInsert(cno=${course.no})}">강의등록</a>
+    </th:block>
+</div>
 </body>
 </html>

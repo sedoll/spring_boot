@@ -79,21 +79,6 @@ public class CourseController {
         model.addAttribute("lectureList", lectureList);
         return "course/courseDetail";
     }
-    
-    // 강좌 생성폼 이동
-    @GetMapping("insert")
-    public String courseInsert(Principal principal, Model model) {
-        String id = principal.getName();
-        model.addAttribute("id", id);
-        return "course/courseInsert";
-    }
-    
-    // 강좌 생성
-    @PostMapping("insert")
-    public String courseInsert(Course course, Model model) {
-        courseService.courseInsert(course);
-        return "redirect:/course/list";
-    }
 
     // 강좌 수강신청
     @GetMapping("apply")

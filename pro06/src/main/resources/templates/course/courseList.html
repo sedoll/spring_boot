@@ -8,23 +8,18 @@
 </head>
 <body>
 <h1>강좌 목록</h1>
-    <ul>
-        <th:block th:each="course, status : ${courseList}">
-            <li>
-                <span th:text="${course.title} + ' ' + ${course.peo} + '/' + ${course.peo_max}"></span>
-                <th:block sec:authorize="isAuthenticated()">
-                    <th:block th:if="${checkList.get(status.index)} eq 'n'">
-                        <a th:href="@{/course/apply(cno=${course.no})}">수강신청</a>
-                    </th:block>
+<ul>
+    <th:block th:each="course, status : ${courseList}">
+        <li>
+            <span th:text="${course.title} + ' ' + ${course.peo} + '/' + ${course.peo_max}"></span>
+            <th:block sec:authorize="isAuthenticated()">
+                <th:block th:if="${checkList.get(status.index)} eq 'n'">
+                    <a th:href="@{/course/apply(cno=${course.no})}">수강신청</a>
                 </th:block>
-                <a th:href="@{/course/detail(no=${course.no})}">강좌 상세 보기</a>
-            </li>
-        </th:block>
-    </ul>
-<div>
-    <th:block sec:authorize="hasAuthority('ADMIN')">
-        <li><a th:href="@{/course/insert}">강좌 등록</a></li>
+            </th:block>
+            <a th:href="@{/course/detail(no=${course.no})}">강좌 상세 보기</a>
+        </li>
     </th:block>
-</div>
+</ul>
 </body>
 </html>

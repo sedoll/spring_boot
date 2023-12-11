@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>강좌등록</h1>
-<form th:action="@{/course/insert}" method="post">
+<form th:action="@{/admin/courseInsert}" method="post">
     <div>
         <label for="id">아이디</label>
         <input type="text" name="id" id="id" th:value="${id}" readonly>
