@@ -1,0 +1,1 @@
+# 기존의 test06을 thymeleaf 버전으로 바꾼거
