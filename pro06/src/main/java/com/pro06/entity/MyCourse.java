@@ -1,9 +1,7 @@
 package com.pro06.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -16,6 +14,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @Setter
 @Table(name="mycourse")
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 // column에 defualt 값을 설정할 때에 밑의 두개를 같이 써줘야 한다.
 @DynamicInsert

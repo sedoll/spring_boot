@@ -6,6 +6,7 @@ import com.pro06.repository.course.LecAnsRepository;
 import com.pro06.repository.course.LecTestRepository;
 import com.pro06.repository.course.LectureRepository;
 import com.pro06.repository.course.VideoRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Transactional
 @Log4j2
 public class LectureServiceImpl {
     @Autowired
@@ -65,7 +67,10 @@ public class LectureServiceImpl {
     public LecTest getLecTest(Integer cno, Integer lno) {return lecTestRepository.getLecTest(cno, lno);}
     
     // 시험 제출 답안 입력, 수정
-    public LecAns lecAnsInsUpd(LecAns lecAns) { return lecAnsRepository.save(lecAns);}
+    public LecAns lecAnsInsUpd(LecAns lecAns) {
+//        lecAnsRepository.findById();
+        return lecAnsRepository.save(lecAns);
+    }
     
     // 제출된 답안 수정
     public LecAns lecAnsUpdate(LecAns lecAns) {return lecAnsRepository.save(lecAns);}

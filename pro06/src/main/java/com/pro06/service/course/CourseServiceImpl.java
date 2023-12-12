@@ -2,6 +2,7 @@ package com.pro06.service.course;
 
 import com.pro06.entity.Course;
 import com.pro06.repository.course.CourseRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class CourseServiceImpl {
     @Autowired
     private CourseRepository courseRepository;

@@ -11,8 +11,9 @@
 <div>
   <form th:action="@{/lecture/lecAns}" method="post" onsubmit="return sbmsn();">
 
-    <input type="hidden" name="cno" id="cno" th:value="${cno}">
-    <input type="hidden" name="lno" id="lno" th:value="${lno}">
+    <input type="hidden" name="cno" id="cno" th:value="${cno}" readonly>
+    <input type="hidden" name="lno" id="lno" th:value="${lno}" readonly>
+    <input type="hidden" name="ansCnt" id="ansCnt" value="" readonly>
 
     <!-- 해당 문제 동안 반복 -->
     <th:block th:each="exam, status : ${examList}">
@@ -112,6 +113,8 @@
           answerCnt++;
         }
       }
+
+      $("#ansCnt").val(answerCnt);
 
       let hint = '과반수 이상 맞히지 못해서 아직 수정을 더 해야 합니다.' +
               '\n통과하지 못할 경우 해당 강의를 처음부터 다시 공부해야 합니다.\n';

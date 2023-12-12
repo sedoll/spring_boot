@@ -97,24 +97,20 @@ public class LectureController {
 
         LecAns lecAns1 = lectureService.getLecAns(cno, lno, id);
 
-        if(lecAns1 != null) {
+        // 강좌 번호
+        Course course = new Course();
+        course.setNo(cno);
+        lecAns.setCourse(course);
 
-        } else {
-            // 강좌 번호
-            Course course = new Course();
-            course.setNo(cno);
-            lecAns.setCourse(course);
+        // 강의 번호
+        Lecture lecture = new Lecture();
+        lecture.setNo(lno);
+        lecAns.setLecture(lecture);
 
-            // 강의 번호
-            Lecture lecture = new Lecture();
-            lecture.setNo(lno);
-            lecAns.setLecture(lecture);
+        // 아이디
+        lecAns.setId(id);
 
-            // 아이디
-            lecAns.setId(id);
-
-            lectureService.lecAnsInsUpd(lecAns);
-        }
+        lectureService.lecAnsInsUpd(lecAns);
 
         // 동영상 플레이어 창 닫기
         res.setContentType("text/html; charset=UTF-8");

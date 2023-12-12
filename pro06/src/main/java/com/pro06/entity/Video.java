@@ -13,6 +13,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @Setter
 @Table(name="video")
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 // column에 defualt 값을 설정할 때에 밑의 두개를 같이 써줘야 한다.
 @DynamicInsert

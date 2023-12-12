@@ -2,6 +2,7 @@ package com.pro06.service.course;
 
 import com.pro06.entity.MyCourse;
 import com.pro06.repository.course.MyCourseRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import java.util.List;
 
 // 내 강좌
 @Service
+@Transactional
 public class MyCourseServiceImpl {
 
     @Autowired

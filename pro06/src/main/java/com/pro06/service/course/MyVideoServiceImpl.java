@@ -1,16 +1,15 @@
 package com.pro06.service.course;
 
-import com.pro06.entity.MyCourse;
 import com.pro06.entity.MyVideo;
 import com.pro06.repository.course.MyVideoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class MyVideoServiceImpl {
 
     @Autowired
@@ -31,6 +30,5 @@ public class MyVideoServiceImpl {
     public MyVideo getMyVideo(String id, Integer cno, Integer lno) { return myVideoRepository.getMyVideo(id, cno, lno); }
     
     // page와 sec 업데이트
-    @Transactional
     public void updatePageSec(MyVideo myVideo) { myVideoRepository.updatePageSec(myVideo);}
 }
