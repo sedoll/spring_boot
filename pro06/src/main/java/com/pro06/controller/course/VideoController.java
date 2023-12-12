@@ -1,7 +1,8 @@
 package com.pro06.controller.course;
 
-import com.pro06.entity.*;
-import com.pro06.service.UserServiceImpl;
+import com.pro06.dto.CourseDto;
+import com.pro06.dto.LectureDto;
+import com.pro06.dto.MyVideoDto;
 import com.pro06.service.course.MyCourseServiceImpl;
 import com.pro06.service.course.MyVideoServiceImpl;
 import com.pro06.service.course.VideoServiceImpl;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -58,14 +58,14 @@ public class VideoController {
         // 수강중인 강의 시간 저장 데이터 생성
         Integer ck2 = myVideoService.getMyVideoCnt(id, cno, lno);
         if(ck2 == 0) { // 만약 회원의 해당 강의 영상 정보가 없으면 생성
-            MyVideo myVideo = new MyVideo();
+            MyVideoDto myVideo = new MyVideoDto();
             myVideo.setId(id);  // 회원의 아이디 저장
 
-            Lecture lecture = new Lecture();
+            LectureDto lecture = new LectureDto();
             lecture.setNo(lno); // 강의번호 저장
             myVideo.setLecture(lecture);
 
-            Course course = new Course();
+            CourseDto course = new CourseDto();
             course.setNo(cno);  // 강좌번호 저장
             myVideo.setCourse(course);
 
@@ -73,7 +73,7 @@ public class VideoController {
         }
         
         // page, sec(시간) 처리
-        MyVideo myVideo = myVideoService.getMyVideo(id, cno, lno);
+        MyVideoDto myVideo = myVideoService.getMyVideo(id, cno, lno);
         Integer userPage = 0;
         Integer userSec = 0;
         if(myVideo != null) {
@@ -83,7 +83,8 @@ public class VideoController {
                 // 동영상 시청 위치 저장
                 myVideo.setSec(0);
                 myVideo.setPage(page);
-                myVideoService.updatePageSec(myVideo);
+                myVideo.setState("n");
+                myVideoService.updateSecPageState(myVideo);
             }
             userSec = myVideo.getSec();
         }
@@ -113,23 +114,7 @@ public class VideoController {
 
         String id = principal.getName();
 
-        Integer ck1 = myVideoService.getMyVideoCnt(id, cno, lno);
-        if(ck1 == 0) { // 만약 회원의 해당 강의 영상 정보가 없으면 생성
-            MyVideo myVideo = new MyVideo();
-            myVideo.setId(id);  // 회원의 아이디 저장
-
-            Lecture lecture = new Lecture();
-            lecture.setNo(lno); // 강의번호 저장
-            myVideo.setLecture(lecture);
-
-            Course course = new Course();
-            course.setNo(cno);  // 강좌번호 저장
-            myVideo.setCourse(course);
-
-            myVideoService.myVideoInsert(myVideo); // 데이터 생성
-        }
-
-        MyVideo myVideo = myVideoService.getMyVideo(id, cno, lno);
+        MyVideoDto myVideo = myVideoService.getMyVideo(id, cno, lno);
         Integer userPage = 0;
         if(myVideo != null) {
             userPage = myVideo.getPage();
@@ -139,7 +124,7 @@ public class VideoController {
                 myVideo.setSec(0);
                 myVideo.setPage(page);
                 myVideo.setState("y");
-                myVideoService.updatePageSec(myVideo);
+                myVideoService.updateSecPageState(myVideo);
             }
         }
         
@@ -169,15 +154,15 @@ public class VideoController {
         log.warn("id : " + id);
         
         // 영상 시청 정보 저장
-        MyVideo myVideo = new MyVideo();
+        MyVideoDto myVideo = new MyVideoDto();
         myVideo.setSec(sec);
         myVideo.setPage(page);
 
-        Course course = new Course();
+        CourseDto course = new CourseDto();
         course.setNo(cno);
         myVideo.setCourse(course);
 
-        Lecture lecture = new Lecture();
+        LectureDto lecture = new LectureDto();
         lecture.setNo(lno);
         myVideo.setLecture(lecture);
 
@@ -186,7 +171,7 @@ public class VideoController {
         log.warn("영상 시청 정보 수정");
         
         // 동영상 시청 위치 저장
-        myVideoService.updatePageSec(myVideo);
+        myVideoService.updateSecPage(myVideo);
 
         log.warn("영상 시청 정보 수정완료");
     }

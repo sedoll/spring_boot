@@ -24,7 +24,7 @@ public class LecAnsDto {
     private String id;
     
     // 제출된 답안
-    @Size(max = 20)
+    @Size(max = 100)
     @NotBlank
     private String answer1;         // 1번
 

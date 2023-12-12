@@ -2,6 +2,7 @@ package com.pro06.controller.course;
 
 import com.pro06.dto.CourseDto;
 import com.pro06.dto.LectureDto;
+import com.pro06.dto.MyCourseDto;
 import com.pro06.entity.Course;
 import com.pro06.entity.Lecture;
 import com.pro06.entity.MyCourse;
@@ -108,10 +109,10 @@ public class CourseController {
             return "redirect:/";
         }
 
-        Course course = new Course();
+        CourseDto course = new CourseDto();
         course.setNo(cno);
 
-        MyCourse myCourse = new MyCourse();
+        MyCourseDto myCourse = new MyCourseDto();
         myCourse.setId(id);
         myCourse.setCourse(course);
 

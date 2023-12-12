@@ -37,7 +37,7 @@ public class MyVideoDto {
     private String state;           // 모든 비디오를 봤는지 안봤는지 체크
 
     @NotNull
-    private Course course;      // 강좌 번호
+    private CourseDto course;      // 강좌 번호
 
     @NotNull
     private LectureDto lecture;        // 강의 번호 외래키 지정

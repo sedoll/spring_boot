@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MyVideoRepository extends JpaRepository<MyVideo, Integer> {
@@ -25,7 +26,7 @@ public interface MyVideoRepository extends JpaRepository<MyVideo, Integer> {
 
     // 해당 강의 영상정보가 있는지 확인
     @Query("select mv from MyVideo mv where mv.id = :id and mv.course.no = :cno and mv.lecture.no = :lno")
-    MyVideo getMyVideo(@Param("id") String id, @Param("cno") Integer cno, @Param("lno") Integer lno);
+    Optional<MyVideo> getMyVideo(@Param("id") String id, @Param("cno") Integer cno, @Param("lno") Integer lno);
 
     // 동영상 시청 위치 저장
     @Modifying

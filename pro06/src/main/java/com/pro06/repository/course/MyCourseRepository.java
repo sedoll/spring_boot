@@ -1,6 +1,7 @@
 package com.pro06.repository.course;
 
 
+import com.pro06.dto.MyCourseDto;
 import com.pro06.entity.Course;
 import com.pro06.entity.Lecture;
 import com.pro06.entity.MyCourse;

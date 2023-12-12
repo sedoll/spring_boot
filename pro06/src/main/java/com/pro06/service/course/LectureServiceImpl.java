@@ -48,6 +48,7 @@ public class LectureServiceImpl {
         
         // 저장 및 dto로 변환
         Lecture lec2 = lectureRepository.save(lec);
+        // 이거 안해주면 오류뜸
         LectureDto lecDto = modelMapper.map(lec2, LectureDto.class);
 
         log.info("lecture 저장");
