@@ -37,7 +37,6 @@ public class LectureDto {
     @NotNull
     private String keyword;     // 키워드
 
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cno", referencedColumnName = "no")
-    private Course course;        // 강좌 번호 외래키 지정
+    @NotNull
+    private CourseDto course;        // 강좌 번호 외래키 지정
 }

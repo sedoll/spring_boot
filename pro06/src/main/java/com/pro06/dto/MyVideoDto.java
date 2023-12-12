@@ -36,11 +36,9 @@ public class MyVideoDto {
     @NotNull
     private String state;           // 모든 비디오를 봤는지 안봤는지 체크
 
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cno", referencedColumnName = "no")
+    @NotNull
     private Course course;      // 강좌 번호
 
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "lno", referencedColumnName = "no")
-    private Lecture lecture;        // 강의 번호 외래키 지정
+    @NotNull
+    private LectureDto lecture;        // 강의 번호 외래키 지정
 }

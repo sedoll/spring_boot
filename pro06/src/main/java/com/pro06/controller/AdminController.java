@@ -1,6 +1,6 @@
 package com.pro06.controller;
 
-import com.pro06.dto.LectureVO;
+import com.pro06.dto.*;
 import com.pro06.entity.Course;
 import com.pro06.entity.LecTest;
 import com.pro06.entity.Lecture;
@@ -55,7 +55,7 @@ public class AdminController {
     // 강좌 목록
     @GetMapping("courseList")
     public String courseList(Model model) {
-        List<Course> courseList = courseService.admCourseList();
+        List<CourseDto> courseList = courseService.admCourseList();
         model.addAttribute("courseList", courseList);
         return "admin/course/courseList";
     }
@@ -65,11 +65,11 @@ public class AdminController {
     public String courseDetail(@RequestParam("no") Integer no, Model model) throws IOException {
 
         // 강좌 상세
-        Course course = courseService.getCourse(no);
+        CourseDto course = courseService.getCourse(no);
         model.addAttribute("course", course);
 
         // 강의 목록
-        List<Lecture> lectureList = lectureService.lectureCnoList(no);
+        List<LectureDto> lectureList = lectureService.lectureCnoList(no);
         model.addAttribute("lectureList", lectureList);
         return "admin/course/courseDetail";
     }
@@ -84,8 +84,8 @@ public class AdminController {
 
     // 강좌 생성
     @PostMapping("courseInsert")
-    public String courseInsert(Course course, Model model) {
-        courseService.courseInsert(course);
+    public String courseInsert(CourseDto courseDto, Model model) {
+        courseService.courseInsert(courseDto);
         return "redirect:/admin/courseList";
     }
 
@@ -110,9 +110,9 @@ public class AdminController {
         // 입력된 파일목록
         List<MultipartFile> files = new ArrayList<>();
         // 강의 정보
-        Lecture lecture = new Lecture();
+        LectureDto lecture = new LectureDto();
         // 여러 파일 반복 저장
-        List<Video> fileList = new ArrayList<>();
+        List<VideoDto> fileList = new ArrayList<>();
 
         // 파일 저장
         for (int i = 0; i < req.getFiles("files").size(); i++) {
@@ -120,7 +120,7 @@ public class AdminController {
         }
 
         // 강의정보 저장
-        Course course = new Course();
+        CourseDto course = new CourseDto();
         Integer cno = Integer.parseInt(req.getParameter("cno"));
         course.setNo(cno);
         lecture.setCourse(course);      // cno 저장
@@ -130,7 +130,7 @@ public class AdminController {
         lecture.setKeyword(req.getParameter("keyword"));
 
         // 시험정보 저장
-        LecTest lecTest = new LecTest();
+        LecTestDto lecTest = new LecTestDto();
         lecTest.setExam1(req.getParameter("exam1"));
         lecTest.setExam2(req.getParameter("exam2"));
         lecTest.setExam3(req.getParameter("exam3"));
@@ -176,7 +176,7 @@ public class AdminController {
                 String saveFileName = randomUUID + Extension;  // 저장할 파일 이름 생성
 
                 // 저장위치, 실제파일이름, 저장될 파일이름, 파일크기 정보를 저장
-                Video data = new Video();
+                VideoDto data = new VideoDto();
                 data.setSavefolder(uploadFolder);
                 data.setOriginfile(file.getOriginalFilename());
                 data.setSavefile(saveFileName);

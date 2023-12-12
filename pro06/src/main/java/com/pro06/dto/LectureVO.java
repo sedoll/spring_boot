@@ -15,8 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class LectureVO {
-    private Lecture lecture;
-    private List<Video> fileList;
-    private LecTest lecTest;
+    private LectureDto lecture;
+    private List<VideoDto> fileList;
+    private LecTestDto lecTest;
     private Integer cno;
 }

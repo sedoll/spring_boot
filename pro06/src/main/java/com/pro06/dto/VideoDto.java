@@ -5,6 +5,7 @@ import com.pro06.entity.Course;
 import com.pro06.entity.Lecture;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
@@ -37,11 +38,9 @@ public class VideoDto extends BaseEntity {
     @NotBlank
     private Long filesize;          // 파일 크기
 
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cno", referencedColumnName = "no")
-    private Course course;        // 강좌 번호 외래키 지정
+    @NotNull
+    private CourseDto course;        // 강좌 번호 외래키 지정
 
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "lno", referencedColumnName = "no")
-    private Lecture lecture;        // 강의 번호 외래키 지정
+    @NotNull
+    private LectureDto lecture;        // 강의 번호 외래키 지정
 }

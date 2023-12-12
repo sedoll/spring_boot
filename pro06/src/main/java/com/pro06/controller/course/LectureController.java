@@ -1,6 +1,6 @@
 package com.pro06.controller.course;
 
-import com.pro06.dto.LectureVO;
+import com.pro06.dto.*;
 import com.pro06.entity.*;
 import com.pro06.service.course.LectureServiceImpl;
 import com.pro06.service.UserService;
@@ -45,7 +45,7 @@ public class LectureController {
                        @RequestParam("lno") Integer lno,
                        Principal principal, Model model){
 
-        LecTest lecTest = lectureService.getLecTest(cno, lno);
+        LecTestDto lecTest = lectureService.getLecTest(cno, lno);
         
         // 문제 저장
         List<String> examList = new ArrayList<>();
@@ -77,7 +77,7 @@ public class LectureController {
     @ResponseBody
     public List<String> answers(@RequestParam("cno") Integer cno,
                                 @RequestParam("lno") Integer lno) throws Exception {
-        LecTest lecTest = lectureService.getLecTest(cno, lno);
+        LecTestDto lecTest = lectureService.getLecTest(cno, lno);
         List<String> answers = new ArrayList<>();
         answers.add(lecTest.getAnswer1());
         answers.add(lecTest.getAnswer2());
@@ -92,18 +92,18 @@ public class LectureController {
     public void lecAns(Principal principal,
                        @RequestParam("cno") Integer cno,
                        @RequestParam("lno") Integer lno,
-                       LecAns lecAns, HttpServletResponse res) throws Exception {
+                       LecAnsDto lecAns, HttpServletResponse res) throws Exception {
         String id = principal.getName();
 
-        LecAns lecAns1 = lectureService.getLecAns(cno, lno, id);
+        LecAnsDto lecAns1 = lectureService.getLecAns(cno, lno, id);
 
         // 강좌 번호
-        Course course = new Course();
+        CourseDto course = new CourseDto();
         course.setNo(cno);
         lecAns.setCourse(course);
 
         // 강의 번호
-        Lecture lecture = new Lecture();
+        LectureDto lecture = new LectureDto();
         lecture.setNo(lno);
         lecAns.setLecture(lecture);
 

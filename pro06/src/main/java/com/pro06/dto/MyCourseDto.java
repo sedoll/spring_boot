@@ -30,7 +30,6 @@ public class MyCourseDto {
     @NotNull
     private String state;       // 수강상태
 
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cno", referencedColumnName = "no")
-    private Course course;      // 강좌 번호
+    @NotNull
+    private CourseDto course;      // 강좌 번호
 }
