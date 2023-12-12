@@ -12,6 +12,7 @@
         */
         .video-js .vjs-time-control{display:block;}
         .video-js .vjs-remaining-time{display: none;}
+        .complete {display: none;}
     </style>
 </head>
 <body>
@@ -26,15 +27,13 @@
             height="360"
             data-setup="{}"
     >
-<!--        <source th:src="@{/upload/video/test.mp4}" type="video/mp4" />-->
         <source th:src="@{/shop/} + ${savefile}" type="video/mp4" />
-<!--        <source th:src="${'/common/file?savefile='+savefile}" type="video/mp4" />-->
         <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that
-            <a href="https://videojs.com/html5-video-support/" target="_blank"
-            >supports HTML5 video</a
-            >
+            <a href="https://videojs.com/html5-video-support/" target="_blank">
+                supports HTML5 video
+            </a>
         </p>
     </video>
 
@@ -65,11 +64,12 @@
             <input type="hidden" name="cno" id="cno2" th:value="${cno}">
             <input type="hidden" name="lno" id="lno2" th:value="${lno}">
             <input type="hidden" name="page" id="page2" th:value="${page + 1}">
-            <input type="submit" value="다음 영상">
+            <input type="submit" class="complete" value="다음 영상">
         </form>
     </th:block>
 
     <!-- 다음 영상으로 넘어가기 -->
+    <!-- 이미 해당 영상을 수강한 경우 -->
     <th:block th:if="${page < total_size - 1 and user_page > page}">
         <form th:action="@{/video/player}" method="post">
             <input type="hidden" name="cno" id="cno4" th:value="${cno}">
@@ -85,7 +85,7 @@
             <input type="hidden" name="cno" id="cno5" th:value="${cno}">
             <input type="hidden" name="lno" id="lno5" th:value="${lno}">
             <input type="hidden" name="page" id="page5" th:value="${page+1}">
-            <input type="submit" value="수강 완료">
+            <input type="submit" class="complete" value="수강 완료">
         </form>
     </th:block>
 
@@ -104,12 +104,11 @@
     /*<![CDATA[*/
     let video = document.getElementById('my-video');
     let videoDurationDisplay = document.getElementById('video-duration');
-    let time = [[${time}]];
-    let user_page = [[${user_page}]];
-    let page = [[${page}]];
-    let sec = [[${sec}]];
-    let cno = [[${cno}]];
-    let lno = [[${lno}]];
+    let user_page = [[${user_page}]];       // db에 저장된 해당 이용자가 본 영상 위치
+    let page = [[${page}]];                 // 현재 듣는 강의 페이지
+    let sec = [[${sec}]];                   // db에 저장된 해당 이용자가 본 시간
+    let cno = [[${cno}]];                   // 강좌 번호
+    let lno = [[${lno}]];                   // 강의 번호
 
     console.log('user_page : ' + user_page);
     console.log('page : ' + page);
@@ -130,14 +129,6 @@
         videoDurationDisplay.innerHTML = `총 길이: ${hours}시간 ${minutes}분 ${seconds}초<br>
                                                 ${totalSeconds}초`;
     });
-
-    // db에 저장된 시간이 있으면
-    // 특정 시간부터 재생
-    if(time > 0)  {
-        const specificTimeInSeconds = time;
-        video.currentTime = specificTimeInSeconds; // 특정 시간으로 비디오 이동
-        video.play();
-    }
 
     // 이전으로 넘어가기
     function videoBack() {
@@ -193,6 +184,17 @@
         }
     });
 
+    // 영상을 다 들은 경우 다음 강의 영상으로 넘어가도록 설정
+    complete = () => {
+        console.log('inter : ' + Math.floor(video.duration) + ' = ' + Math.floor(video.currentTime));
+        if(Math.floor(video.duration) === Math.floor(video.currentTime)) {
+            setTimeout(()=> {
+                $(".complete").css("display", "block");
+            }, 500);
+            clearInterval(intervalID);
+        }
+    }
+    const intervalID = setInterval(complete, 1000);
     /*]]>*/
 </script>
 <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>

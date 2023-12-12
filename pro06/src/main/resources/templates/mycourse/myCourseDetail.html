@@ -31,11 +31,6 @@
     </li>
     </th:block>
 </ol>
-<div>
-    <th:block sec:authorize="hasAuthority('ADMIN')">
-            <a th:href="@{/lecture/insert(cno=${course.no})}">강의등록</a>
-    </th:block>
-</div>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
