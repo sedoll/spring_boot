@@ -1,15 +1,9 @@
 package com.pro06.dto;
 
-import com.pro06.entity.BaseEntity;
-import com.pro06.entity.Course;
-import com.pro06.entity.Lecture;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 // 강의 영상 테이블
 // 강의 영상 정보를 저장
@@ -17,7 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VideoDto extends BaseEntity {
+public class VideoDto {
 
     @NotBlank
     private Integer no;             // 영상번호

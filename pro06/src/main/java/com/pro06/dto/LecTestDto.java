@@ -13,7 +13,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LecTestDto {
+public class LecTestDto extends BaseDto {
 
     @NotBlank
     private Integer no;         // 시험 번호

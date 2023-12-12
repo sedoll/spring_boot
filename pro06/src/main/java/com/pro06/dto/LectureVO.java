@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class LectureVO {
+public class LectureVO extends BaseDto {
     private LectureDto lecture;
     private List<VideoDto> fileList;
     private LecTestDto lecTest;

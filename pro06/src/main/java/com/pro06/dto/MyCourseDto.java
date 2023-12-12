@@ -17,7 +17,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MyCourseDto {
+public class MyCourseDto extends BaseDto {
 
     @NotBlank
     private Integer no;         // 번호

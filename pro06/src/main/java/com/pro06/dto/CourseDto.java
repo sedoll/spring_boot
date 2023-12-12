@@ -18,7 +18,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CourseDto {
+public class CourseDto extends BaseDto {
 
     private Integer no;         // 강좌 번호
 
