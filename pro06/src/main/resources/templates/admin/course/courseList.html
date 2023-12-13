@@ -12,13 +12,14 @@
         <th:block th:each="course, status : ${courseList}">
             <li>
                 <span th:text="${course.title} + ' ' + ${course.peo} + '/' + ${course.peo_max}"></span>
-                <a th:href="@{/admin/courseDetail(no=${course.no})}">강좌 상세 보기</a>
+                <a th:href="@{/admin/courseDetail(no=${course.no})}">강좌상세</a>
+                <a th:href="@{/admin/courseUpdate(no=${course.no})}">강좌수정</a>
             </li>
         </th:block>
     </ul>
 <div>
     <th:block sec:authorize="hasAuthority('ADMIN')">
-        <li><a th:href="@{/admin/courseInsert}">강좌 등록</a></li>
+        <a th:href="@{/admin/courseInsert}">강좌등록</a>
     </th:block>
 </div>
 </body>

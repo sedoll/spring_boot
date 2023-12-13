@@ -97,13 +97,13 @@ public class LectureServiceImpl {
     }
     
     // 제출된 답안 수정
-    public LecAns lecAnsUpdate(LecAnsDto lecAnsDto) {
+    public void lecAnsUpdate(LecAnsDto lecAnsDto) {
         Optional<LecAns> lec = lecAnsRepository.getLecAns(lecAnsDto.getCourse().getNo(),
                 lecAnsDto.getLecture().getNo(), lecAnsDto.getId());
         LecAns lecAns = lec.orElseThrow();
         lecAns.answerChange(lecAnsDto.getAnswer1(), lecAnsDto.getAnswer2(), lecAnsDto.getAnswer3(),
                 lecAnsDto.getAnswer4(), lecAnsDto.getAnswer5(), lecAnsDto.getAnsCnt());
-        return lecAnsRepository.save(lecAns);
+        lecAnsRepository.save(lecAns);
     }
     
     // 답안 정보 추출

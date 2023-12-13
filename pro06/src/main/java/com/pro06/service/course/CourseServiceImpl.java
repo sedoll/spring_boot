@@ -1,5 +1,6 @@
 package com.pro06.service.course;
 
+import ch.qos.logback.core.CoreConstants;
 import com.pro06.dto.CourseDto;
 import com.pro06.entity.Course;
 import com.pro06.repository.course.CourseRepository;
@@ -25,6 +26,20 @@ public class CourseServiceImpl {
     public void courseInsert(CourseDto courseDto) {
         Course course = modelMapper.map(courseDto, Course.class);
         courseRepository.save(course);
+    }
+
+    // 강좌 수정
+    public void courseUpdate(CourseDto courseDto) {
+        Optional<Course> course = courseRepository.findById(courseDto.getNo());
+        Course res = course.orElseThrow();
+        res.change(courseDto.getId(), courseDto.getLevel(),
+                courseDto.getTitle(), courseDto.getContent());
+        courseRepository.save(res);
+    }
+
+    // 강좌 삭제
+    public void courseDelete(Integer no) {
+        courseRepository.deleteById(no);
     }
     
     // 어드민 강좌 목록 불러오기

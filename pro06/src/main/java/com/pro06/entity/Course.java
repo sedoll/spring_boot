@@ -57,4 +57,12 @@ public class Course extends BaseEntity{
         this.peo = this.peo + 1;
     }
 
+    public void change(String id, String level,
+                       String title, String content) {
+        this.id = id;
+        this.level = level;
+        this.title = title;
+        this.content = content;
+    }
+
 }

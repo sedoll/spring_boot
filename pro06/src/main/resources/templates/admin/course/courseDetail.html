@@ -20,9 +20,8 @@
 <ul>
     <th:block th:each="lecture, status : ${lectureList}">
     <li>
-        <div>
-            <span th:text="${status.count} + '. ' +  ${lecture.title}"></span>
-        </div>
+        <span th:text="${status.count} + '. ' +  ${lecture.title}"></span>
+        <a th:href="@{/admin/lectureUpdate(cno=${course.no}, lno=${lecture.no})}">수정</a>
     </li>
     </th:block>
 </ul>
