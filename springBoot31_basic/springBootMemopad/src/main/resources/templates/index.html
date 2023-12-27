@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>메인</title>
+</head>
+<body>
+    <h1>메인</h1>
+    <hr>
+    <textarea name="content" id="content" cols="30" rows="10"></textarea><br>
+    <input type="text" name="filename" id="filename" placeholder="파일 이름 입력"><br>
+    <button id="btn1">저장</button>
+    <button id="btn2">삭제</button>
+    <hr>
+    <h2>파일 목록</h2>
+    <div>
+        <ul>
+            <li th:each="list : ${filelist}">
+                <span th:text="${list}" onclick="loadingData(this)"></span>
+            </li>
+        </ul>
+    </div>
+    <script>
+    document.getElementById("btn1").addEventListener("click", () => {
+        let filename = document.getElementById("filename").value;
+        let content = document.getElementById("content").value;
+        let memo = { 'filename':filename, 'content':content};
+        axios.post("/api/test1", memo).then((response) => {
+            console.log(response.data);
+        })
+        .catch((error) => {
+           console.log(error);
+        });
+    });
+    document.getElementById("btn2").addEventListener("click", () => {
+        let filename = document.getElementById("filename").value;
+        let content = document.getElementById("content").value;
+        let memo = { 'filename':filename, 'content':content};
+        axios.post("/api/test3", memo).then((response) => {
+            console.log(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
+    let loadingData = (t) => {
+        console.log(t.innerText);
+        let txt = t.innerText;
+        let filename = txt.substring(txt.lastIndexOf("\\")+1);
+        console.log(filename);
+        document.getElementById("filename").value = filename;
+        axios.get("/api/test2?filename="+filename).then((response) => {
+            console.log(response.data);
+            document.getElementById("content").innerText = response.data;
+        })
+        .catch((error) => {
+           console.log(error);
+        });
+    };
+    </script>
+</body>
+</html>

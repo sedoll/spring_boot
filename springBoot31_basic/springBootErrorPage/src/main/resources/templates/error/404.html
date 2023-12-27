@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+<div>
+    <h1>404 에러 발생</h1>
+    <hr>
+    <h2>에러 정보</h2>
+    <ul>
+        <li th:text="|timestamp: ${timestamp}|"></li>
+        <li th:text="|path: ${path}|"></li>
+        <li th:text="|status: ${status}|"></li>
+        <li th:text="|message: ${message}|"></li>
+        <li th:text="|error: ${error}|"></li>
+        <li th:text="|exception: ${exception}|"></li>
+        <li th:text="|errors: ${errors}|"></li>
+        <li th:text="|trace: ${trace}|"></li>
+    </ul>
+</div>
+</body>
+</html>
